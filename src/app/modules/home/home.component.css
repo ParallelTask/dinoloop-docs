@@ -1,0 +1,21 @@
+.home-content {
+    position:fixed;
+    top:0;
+    left:0;
+}
+.left-title {
+    color:#ff751a; 
+    font-size: 18px;
+    font-weight:bold;
+    font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Arial,sans-serif;
+}
+.dinoloop {
+    font-size: 42px;
+    font-weight:bold;
+    font-family: Verdana;
+}
+.content {
+    margin: 60px;
+    font-size: 18px;
+    font-family: "Helvetica Neue Light","Helvetica Neue",Arial,sans-serif;
+}

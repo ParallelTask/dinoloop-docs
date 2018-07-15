@@ -1,0 +1,21 @@
+.nav-link{
+    color: #444;
+    font-family: Arial,sans-serif;  
+}
+
+.nav-link:hover{
+    color: #ff8533;
+}
+
+.dinoloop-link{
+    color: #ff8533!important;
+    font-size: 36px;
+    font-weight:bold;
+    text-decoration: none;
+    font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Arial,sans-serif;   
+}
+
+.active-link{
+    color:#ff8533;
+    font-weight: bold;
+}

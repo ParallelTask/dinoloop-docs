@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "msjsdiag.debugger-for-chrome",
+        "stevencl.adddoccomments",
+        "KnisterPeter.vscode-github",
+        "eamodio.gitlens",
+        "eg2.tslint",
+        "donjayamanne.githistory",
+        "EditorConfig.editorconfig",
+        "streetsidesoftware.code-spell-checker",
+        "robertohuertasm.vscode-icons"
+    ]
+}
