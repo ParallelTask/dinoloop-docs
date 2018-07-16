@@ -19,3 +19,41 @@
     color:#ff8533;
     font-weight: bold;
 }
+
+.section-header {
+    font-weight: bold;
+    margin: 20px 10px 15px 0;
+    font-family: Roboto,'San Francisco',Helvetica,Arial,sans-serif;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.section-content {
+    text-align: justify;
+    line-height: 26px;
+    margin-right: 20px;
+    font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
+}
+
+.sub-section-content{
+    font-weight: bold;
+}
+
+.code-snippet-terminal{
+    background: #222; 
+    color:#fff;
+    padding: 15px 30px; 
+    font-family: "consolas"; 
+    margin: 15px 0;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.code-snippet-terminal pre{
+    color:#fff;
+}
+
+.non-nav-style-links{
+    background:#eee;
+    color:#2876d2; 
+    padding: 5px;
+}

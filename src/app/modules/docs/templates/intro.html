@@ -1,4 +1,123 @@
-<h3>Introduction</h3>
-<p>
-  Dinoloop is a REST API library for building scalable Node.js server side applications.
-</p>
+<h3 class="section-header">Introduction</h3>
+<div class="section-content">
+  <p>
+    Dinoloop is a REST API library for building scalable Node.js server-side applications powered by Typescript. Dinoloop uses
+    <a href="https://expressjs.com">Expressjs</a> and has been designed with a simple motto to reuse similar coding skills of C#/JAVA/OOP minded programmers
+    (OOP practises, SOLID principles and MVC architecture) in Node.js. Dinoloop adds syntactic sugar to expressjs enabling
+    OOP programmers to easily switch to Nodejs with less learning curve.
+  </p>
+  <p class="sub-section-content">Typescript?</p>
+  <p>
+    We love Typescript and it provides great tooling to build enterprise applications.
+    <a href="https://angular.io">Angular</a> uses typescript and now it is hard to imagine npm packages without types. If you are a lover of angular (like
+    us), we highly suggest you to use Dinoloop to maintain single Typescript codebase for
+    <a href="http://mean.io/">MEAN</a> application.
+  </p>
+  <p class="sub-section-content">Why Dinoloop?</p>
+  <p>
+    As a contributor, we would definitely request you to give it a try (May be your personal or mini sized projects). The way
+    expressjs does not abstract you from node.js, Dinoloop does not abstract you from expressjs (you have complete access
+    to node and expressjs). You are free to use/mix node.js, expressjs and dinoloop codebase in your development. Dinoloop
+    is a library at server-side (like
+    <a href="https://reactjs.org">Reactjs</a>, we love what Reactjs does at client-side). You can either develop entire application in Dinoloop or part
+    of it or gradually migrate existing expressjs to Dinoloop. The first principle of Dinoloop is to provide architecture
+    shift to developers and not to create a complete bundled framework. We love and support pluggable architecture.
+  </p>
+</div>
+<h3 class="section-header">Features</h3>
+<div class="section-content">
+  <ul>
+    <li>
+      Super easy set-up, The Dinoloop team recommends your taste of starter project and start building right away. We want our
+      developers to have freedom to choose DI or not. You can develop APIs without using DI framework.
+      <ol>
+        <li>Without DI framework
+          <a href="https://github.com/ParallelTask/dinoloop-starter">dinoloop-starter-without-DI</a>
+        </li>
+        <li>With DI framework
+          <a href="https://github.com/ParallelTask/dinoloop-inversify-starter">dinoloop-starter-with-DI</a> (uses
+          <a href="https://github.com/inversify/InversifyJS">Inversifyjs</a>)</li>
+      </ol>
+    </li>
+    <li>
+      Supports expressjs middlewares, completely expressjs driven library. Here is one
+      <a href="#">example</a> that demonstrates use of Expressjs middleware.
+    </li>
+    <li>
+      Heavily influenced by MVC pattern.
+    </li>
+    <li>
+      Configurable Dependency injection framework. You can choose your favorite DI framework
+      <a href="http://inversify.io/">InversifyJs</a>,
+      <a href="https://www.npmjs.com/package/peppermint-di">peppermint-di</a> and
+      <a href="https://www.npmjs.com/search?q=DI">more</a> or build your own. Here is
+      <a href="#">how you can choose your favorite DI framework</a>.
+    </li>
+    <li>
+      Proper isolation of controllers and services for better unit-testing. You can use
+      <a href="https://github.com/dvabuzyarov/moq.ts">moq.ts</a> (plain and less code) to create mocks in unit-tests. This is how you can
+      <a href="#">create mocks using moq.ts</a> in unit-testing.
+    </li>
+    <li>
+      Controller level Middlewares, ActionFilters, ExceptionFilters, ResultFilters with Robust sync/async (handles es6 async-await
+      pattern).
+    </li>
+    <li>
+      Application level RequestStart, RequestEnd and ServerError handlers.
+    </li>
+    <li>
+      UserIdentity principal across request. Still an experimental feature.
+    </li>
+  </ul>
+
+</div>
+<h3 class="section-header">Philosophy</h3>
+<div class="section-content">
+  <p>
+    Dinoloop lets user to freely upgrade/downgrade expressjs.
+    <span style="text-decoration: underline">Installing dinoloop won't install express</span>. You can install your own version of express. All you have to provide
+    is express app and router instance to dinoloop.
+  </p>
+  <p class="sub-section-content">Why Expressjs is not bundled as dependency?</p>
+  <p>
+    Dinoloop is an Expressjs library with core principles to be light-weight and pluggable architecture. Libraries are built
+    and targeted to work with versions, we use the same principles. Current, dinoloop version 2.x.x works with Expressjs
+    >= 4.x.x version.
+  </p>
+</div>
+<h3 class="section-header">Principles</h3>
+<div class="section-content">
+  <p>
+    Dinoloop has been designed from the start for gradual adoption, and you can use as little or as much dinoloop as you need.
+    Perhaps you only want to develop some "REST APIs" using dinoloop and other REST APIs can be developed using expressjs.
+    In
+    <a href="#">this</a> section, we will show how to create dinoloop REST API to an existing or newly created express app.
+  </p>
+</div>
+<h3 class="section-header">Motivation</h3>
+<div class="section-content">
+  <p>
+    Typescript (Javascript now) supports object oriented programming, these features are great with SOLID design principles.
+    Dinoloop has simple motto, to apply SOLID principles and reuse similar coding skills of Java and C# in Node.js. We are
+    not trying to make every Node.js developer as OOP programmer, we are providing an OOP architecture framework. We love
+    javascript the way it is
+    <i class="fa fa-heart" aria-hidden="true"></i>
+  </p>
+</div>
+<h3 class="section-header">Contribute/Discussion</h3>
+<div class="section-content">
+  <p>
+    Want to file a bug, contribute some code, or improve documentation? Excellent! Read up on our
+    <a href="https://github.com/ParallelTask/dinoloop/blob/master/CONTRIBUTING.md">CONTRIBUTING</a>. Have questions? Join the dinoloop lobby on
+    <a href="https://gitter.im/dinoloop/Lobby">Gitter</a>.
+  </p>
+</div>
+<h3 class="section-header">Support us</h3>
+<div class="section-content">
+  <p>
+    Dinoloop is an MIT-licensed open source project. It can grow thanks to the support by the awesome contributors. Share your
+    love and support on
+    <a href="https://github.com/ParallelTask/dinoloop">github</a>. If you'd like to contribute, please read up on our
+    <a href="https://github.com/ParallelTask/dinoloop/blob/master/CONTRIBUTING.md">CONTRIBUTING</a>
+  </p>
+</div>

@@ -1,7 +1,8 @@
-.home-content {
-    position:fixed;
+.content {
+    position: absolute;
     top:0;
     left:0;
+    overflow-x: hidden;
 }
 .left-title {
     color:#ff751a; 
@@ -9,13 +10,20 @@
     font-weight:bold;
     font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Arial,sans-serif;
 }
-.dinoloop {
-    font-size: 42px;
+.dinoloop-title {
+    font-size: 36px;
     font-weight:bold;
     font-family: Verdana;
 }
-.content {
-    margin: 60px;
-    font-size: 18px;
-    font-family: "Helvetica Neue Light","Helvetica Neue",Arial,sans-serif;
+.body-content {
+    margin: 2px 30px;
+    font-size: 17px;
+    font-family: Arial,sans-serif;
+}
+.copyright{
+    margin: 5px 30px; 
+    font-weight: bold; 
+    position: fixed;
+    bottom: 0;
+    right: 0;
 }

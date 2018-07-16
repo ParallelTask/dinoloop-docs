@@ -1,0 +1,101 @@
+<h3 class="section-header">CRUD Application</h3>
+<div class="section-content">
+    <p>
+        By the end of this guide, you will have a basic understanding of Dinoloop which covers at an introductory level. This guide
+        assumes you have already read the
+        <a routerLink="/docs/getting-started">Getting started</a>
+    </p>
+    <p class="sub-section-content">
+        Step 1. Create package.json
+    </p>
+    <div class="code-snippet-terminal">
+        $ npm init
+    </div>
+    <p>Will ask you a few questions about your project/package and then generate a package.json file for you.</p>
+    <p class="sub-section-content">
+        Step 2. Install Dev-Dependencies
+    </p>
+    <div class="code-snippet-terminal">
+        $ npm install typescript@2.4.x @types/node@10.x --save-dev
+    </div>
+    <ul>
+        <li>typescript - To transpile
+            <b>.ts</b> to
+            <b>.js</b>
+        </li>
+        <li>@types/node - To support node types for typescript hinting and compilation phase</li>
+    </ul>
+    <p class="sub-section-content">
+        Step 3. Install Dependencies
+    </p>
+    <div class="code-snippet-terminal">
+        $ npm install dinoloop express@4.x --save
+    </div>
+    <p class="sub-section-content">
+        Step 4. Your package.json should look similar to this
+    </p>
+    <div class="code-snippet-terminal">
+        <pre>{{package | json}}</pre>
+    </div>
+    <p>Notice the
+        <b>build</b>
+        and
+        <b>start</b> script, add it to your package.json.</p>
+    <ul>
+        <li>
+            build- Transpiles .ts to .js files into
+            <i>/dist</i> directory
+        </li>
+        <li>
+            start- Node runs your transpiled app.js file
+        </li>
+    </ul>
+    <p class="sub-section-content">
+        Step 5. Create tsconfig.json
+    </p>
+    <div class="code-snippet-terminal">
+        <pre>{{tsconfig | json}}</pre>
+    </div>
+    <p class="sub-section-content">
+        Step 6. Create home.controller.ts
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="homeController"></pre>
+    </div>
+    <p class="sub-section-content">
+        Step 7. Create app.ts
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="appts"></pre>
+    </div>
+    <p>Make sure to invoke
+        <b>dino.bind()</b> before you launch express.</p>
+    <p class="sub-section-content">
+        Step 8. Run application
+    </p>
+    <div class="code-snippet-terminal">
+        $ npm start
+    </div>
+    <p>Navigate to
+        <a href="http://localhost:8088/api/home/get">http://localhost:8088/api/home/get</a> in browser. You should be able to see the "Hello World!" response</p>
+</div>
+<h3 class="section-header">Project Directory</h3>
+<div class="section-content">
+    <p>The project directory will contain following files.</p>
+    <ul>
+        <li>
+            <span class="non-nav-style-links">package.json</span> - Node package manager file.</li>
+        <li>
+            <span class="non-nav-style-links">tsconfig.json</span> - Typescript compiler options.</li>
+        <li>
+            <span class="non-nav-style-links">app.ts</span> - The entry file of the application.</li>
+        <li>
+            <span class="non-nav-style-links">home.controller.ts</span> - Basic controller sample with a single route.</li>
+    </ul>
+</div>
+<h3 class="section-header">Next Steps</h3>
+<div class="section-content">
+    <p>
+        Dive into the
+        <a href="#">next chapter</a> of this guide
+    </p>
