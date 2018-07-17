@@ -1,4 +1,116 @@
-<h3>Controllers</h3>
-<p>
-  Controller
-</p>
+<h3 class="section-header">Controllers</h3>
+<div class="section-content">
+  <p>
+    This documentation assumes that you are already familiar with
+    <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a> architecture. In Dinoloop, controller is just a class. However, we need to add
+    <span class="highlight-it">@Controller</span> decorator and must be derived from
+    <span class="highlight-it">ApiController</span> class. Here is how you can create a controller
+  </p>
+  <div class="code-snippet-terminal">
+    <pre [innerHTML]="homeController"></pre>
+  </div>
+  <p>
+    <span class="highlight-it">/home</span> is the prefix which allows all your routes share a common prefix.
+    <a href="#">@Controller</a> decorator have more features.
+  </p>
+  <ul>
+    <li>
+      @Controller(null) or @Controller(undefined) raises
+      <span class="highlight-it">InvalidRouteException</span>
+    </li>
+  </ul>
+</div>
+<h3 class="section-header">Action Methods</h3>
+<div class="section-content">
+  <p>
+    Controller class contains methods and we can use variety of decorators (
+    <a href="#">@HttpGet</a>,
+    <a href="#">@HttpPost</a> ...) to make them as Action methods.
+  </p>
+  <div class="code-snippet-terminal">
+    <pre [innerHTML]="actionMethod"></pre>
+  </div>
+  <p>
+    <span class="highlight-it">@HttpGet</span> tells to create an endpoint. Here, we have created two endpoints
+    <span class="highlight-it">/home/get</span> and
+    <span class="highlight-it">/home/get/user/:id</span>. For the second endpoint, values are automatically parsed from named-segments and injected
+    into parameters using
+    <a href="#">ParameterInjection</a> technique. Values parsed from named-segments are always injected as string type. You can use conversion
+    techniques like
+    <a href="#">@Parse</a> decorator.
+  </p>
+  <ul>
+    <li>
+      @Http*(null) or @Http*(undefined) raises
+      <span class="highlight-it">InvalidRouteException</span>. * indicates Get, Post, Patch etc.
+    </li>
+  </ul>
+  <p>
+    Now, when a GET request is made to any of these endpoints, Dinloop will return a json response with 200 status code. How
+    is that possible? Generally, we distinguish two different approaches to send the response:
+  </p>
+  <p class="sub-section-content">1. Action method without @SendsResponse decorator</p>
+  <p>
+    In the example above, we haven't used
+    <span class="highlight-it">@SendsResponse</span>. Dinoloop keeps waiting for result from controller, once the results are returned it invokes ResponseEndMiddleware
+    (It is a built-in dinoware) which is responsible to send JSON response. Here is the snippet
+  </p>
+  <div class="code-snippet-terminal">
+    <pre [innerHTML]="responseEndMiddleware"></pre>
+  </div>
+  <p>If your result is undefined (
+    <span class="highlight-it">null</span> is still considered as a return value), it ends the response with 204 status code. Otherwise, it ends the
+    response with 200 status code. However you can override this behavior by creating one using
+    <a href="#">RequestEndMiddleware</a> technique. An example to implement
+    <a href="#">content-negotation</a> using RequestEndMiddleware.
+  </p>
+  <p class="sub-section-content">2. Action method with @SendsResponse decorator</p>
+  <div class="code-snippet-terminal">
+    <pre [innerHTML]="sendsResponseUsed"></pre>
+  </div>
+  <p>
+    In the example above, we have used
+    <span class="highlight-it">@SendsResponse</span>. Dinoloop is notified and it is the responsibility of this endpoint to send the response. Now,
+    when a GET request is made to this endpoint, express method
+    <a href="https://expressjs.com/en/api.html#res.download">res.download</a> ends the response.
+  </p>
+  <ul>
+    <li>
+      <a href="#">this.response</a> - derived from ApiController of type
+      <a href="https://expressjs.com/en/api.html#res">express.Response</a>
+    </li>
+    <li>
+      It is better practise to have return type as
+      <span class="highlight-it">void</span> since the return value is ignored.
+    </li>
+    <li>
+      @SendsResponse is decorated on action method and not applicable on controller, so you can have action methods with/without
+      @SendsResponse in same controller.
+    </li>
+  </ul>
+  <p>However, there are scenarios where you still want to process and continue your results with the
+    <a href="#">chain of dinowares</a> after returning from callbacks. For example, still the 90% of javascript libraries uses
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout">Callback</a> /
+    <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> pattern. Here is one such example</p>
+  <div class="code-snippet-terminal">
+    <pre [innerHTML]="callbackEx"></pre>
+  </div>
+  <p>
+    <a href="#">this.dino.proceed</a> is derived from ApiController which proceeds the results to the next chain of middlewares. We also
+    have a
+    <a href="#">Deferrer</a> built into dinoloop to convert promise objects to async-await pattern (if you are a lover of async-await).</p>
+  <div class="remember-points">
+    <p>
+      <i class="fa fa-bullhorn" aria-hidden="true"></i>
+      <span class="title">Remember</span>
+    </p>
+    <ul>
+      <li>
+        It is better practise to have every controller class name end with a word "Controller".
+      </li>
+      <li>
+        It is better practise to have every controller class located in controllers folder of MVC application.
+      </li>
+    </ul>
+  </div>
+</div>

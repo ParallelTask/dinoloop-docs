@@ -57,3 +57,30 @@
     color:#2876d2; 
     padding: 5px;
 }
+
+#sidebar{
+    background: #f9f9f9;
+    box-shadow: inset -35px -18px 70px hsla(0,0%,91%,.65);
+}
+
+.docs-actual-content{
+    border-left: 1px solid #eee;
+    padding-left: 20px;
+}
+
+.remember-points{
+    background-color: #ebf4fa; 
+    padding: 10px 15px;
+}
+
+.remember-points .title {
+    margin-left:5px;
+    font-weight: bold; 
+    font-size:18px;
+}
+
+.highlight-it{
+    padding: 3px 5px;
+    background: #eaeaea;
+    font-weight: bold;
+}

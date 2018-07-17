@@ -54,7 +54,7 @@ export class DocsCrudAppComponent {
   homeController = `
   import { ApiController, Controller, HttpGet } from 'dinoloop';
 
-  // Set baseUri for all action methods
+  // Sets baseUri for all action methods
   @Controller('/home')
   export class HomeController extends ApiController {
 
@@ -85,7 +85,7 @@ export class DocsCrudAppComponent {
   dino.registerController(HomeController);
 
   // Bind dino to express,
-  // Invoke just before starting the express server
+  // Invoke it before starting the express server
   dino.bind();
 
   // Start your express app
@@ -105,4 +105,50 @@ export class DocsFaqComponent { }
   templateUrl: '../templates/controllers.html',
   styleUrls: ['../docs.component.css']
 })
-export class DocsControllerComponent { }
+export class DocsControllerComponent {
+  homeController = `
+  import { ApiController, Controller } from 'dinoloop';
+
+  @Controller('/home')
+  export class HomeController extends ApiController { }`;
+
+  actionMethod = `
+  import { ApiController, Controller } from 'dinoloop';
+
+  @Controller('/home')
+  export class HomeController extends ApiController {
+
+    @HttpGet('/get')
+    get(): string {
+      return 'HomeController';
+    }
+
+    @HttpGet('/get/user/:id')
+    getUser(id: string): string {
+      return id;
+    }
+  }`;
+
+  responseEndMiddleware = `
+  if (result is undefined)) {
+    response.status(204).end();
+  } else {
+    response.status(200).json(result);
+  }`;
+  sendsResponseUsed = `
+    @SendsResponse()
+    @HttpGet('/get/:img')
+    get(img: string): void {
+      this.response.download(img + '.jpg');
+    }
+  `;
+  callbackEx = `
+    @SendsResponse()
+    @HttpGet('/get')
+    get(): void {
+      setTimeout(() => {
+        this.dino.proceed('Returning from setTimeout after 2 seconds');
+      }, 2000);
+    }
+  `;
+}
