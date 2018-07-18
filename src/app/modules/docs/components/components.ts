@@ -130,19 +130,26 @@ export class DocsControllerComponent {
   }`;
 
   responseEndMiddleware = `
-  if (result is undefined)) {
-    response.status(204).end();
-  } else {
-    response.status(200).json(result);
-  }`;
+  if (result is undefined)) response.status(204).end();
+  else response.status(200).json(result);`;
   sendsResponseUsed = `
+  import { Controller, ApiController, HttpGet, SendsResponse } from 'dinoloop';
+
+  @Controller('/home')
+  export class HomeController extends ApiController {
+
     @SendsResponse()
     @HttpGet('/get/:img')
     get(img: string): void {
       this.response.download(img + '.jpg');
     }
-  `;
+  }`;
   callbackEx = `
+  import { Controller, ApiController, HttpGet, SendsResponse } from 'dinoloop';
+
+  @Controller('/home')
+  export class HomeController extends ApiController {
+
     @SendsResponse()
     @HttpGet('/get')
     get(): void {
@@ -150,5 +157,197 @@ export class DocsControllerComponent {
         this.dino.proceed('Returning from setTimeout after 2 seconds');
       }, 2000);
     }
-  `;
+  }`;
 }
+
+@Component({
+  selector: 'app-docs-attributes',
+  templateUrl: '../templates/decorators.html',
+  styleUrls: ['../docs.component.css']
+})
+export class DocsConceptsDecoratorComponent {
+  asyncEx = `
+  import { Controller, ApiController, HttpGet, Async } from 'dinoloop';
+
+  @Controller('/home')
+  export class HomeController extends ApiController {
+
+    private tout(): Promise&lt;string&gt; {
+
+      // Deferrer is dinoloop wrapper to convert callback to promise object
+      return Deferrer.run&lt;string&gt;((resolve, reject) => {
+
+        // Native setTimeout js method
+        setTimeout(() => {
+          // you have to resolve instead of return
+          resolve('Response after 2 sec');
+        }, 2000);
+      });
+    }
+
+    // Async methods must be decorated with @Async
+    @Async()
+    @HttpGet('/get');
+    async get(): Promise&lt;string&gt; {
+      const result = await tout();
+      return result;
+    }
+  }`;
+  httpAllEx = `
+  @HttpAll('/all');
+  all(): string {
+    return 'HttpAll';
+  }`;
+  httpDeleteEx = `
+  @HttpDelete('/del');
+  del(): string {
+    return 'HttpDelete';
+  }`;
+  httpGetEx = `
+  @HttpGet('/get');
+  get(): string {
+    return 'HttpGet';
+  }`;
+  httpHeadEx = `
+  @HttpHead('/head');
+  head(): string {
+    return 'HttpHead';
+  }`;
+  httpPostEx = `
+  // Injects http-body to first parameter
+  @HttpPost('/post');
+  post(body: any): any {
+    return body;
+  }
+
+  // With named-segments, params must be added from 2nd parameter
+  // body will always be first parameter
+  @HttpPost('/post/:id')
+  post(body: any, id: string): any {
+    return {
+     bodyVal: body,
+     idVal: id
+    };
+  }
+
+  // Wrong: body must be first parameter.
+  // This would not throw compilation or runtime error but http-body is injected to id.
+  @HttpPost('/post/:id')
+  post(id: string, body: any): any {
+    return {
+     bodyVal: body,
+     idVal: id
+    };
+  }`;
+  httpPatchEx = `
+  @HttpPatch('/patch');
+  patch(): string {
+    return 'HttpPatch';
+  }`;
+  httpPutEx = `
+  @HttpPut('/put');
+  put(): string {
+    return 'HttpPut';
+  }`;
+  sendsResponseEx = `
+  @SendsResponse()
+  @HttpGet('/download')
+  download(): void {
+    // .download() is the expressjs method
+    this.response.download('path/to/file/');
+  }
+
+  @SendsResponse()
+  @HttpGet('/get')
+  get(): void {
+    // Send response after 2 seconds.
+    setTimeout(() => {
+      this.response
+        .status(HttpStatusCode.ok)
+        .json('Response sent after 2 seconds!');
+    }, 2000);
+  }`;
+  multipleVerbsEx = `
+  // 1. NOT RECOMMENDED
+  // Responds to GET and POST.
+  @HttpGet('/name')
+  @HttpPost('/name)
+  name(): string {
+    return 'Hello World!';
+  }
+
+  // 2. Recommended way
+  // Responds to GET
+  @HttpGet('/name')
+  getName(): string {
+    return 'GetName';
+  }
+
+  // Responds to POST
+  @HttpPost('/name')
+  postName(): string {
+    return 'PostName';
+  }`;
+  withoutMiddlewaresEx = `
+  import { Controller, ApiController, HttpGet } from 'dinoloop';
+
+  @Controller('/home')
+  export class HomeController extends ApiController {
+
+    HttpGet('/get');
+    get(): string {
+      return 'Hello world!';
+    }
+  }`;
+  withMiddlewaresEx = `
+  import cors = require('cors');
+  import { Controller, ApiController, HttpGet } from 'dinoloop';
+
+  @Controller('/orders', {
+    use: [
+      // enable cors for this controller - it's an express-ware
+      cors(),
+
+      // or have a custom express-ware
+      (req, res, next) => {
+        ... add logic
+        next();
+      }
+    ],
+    middlewares: [
+      // Authorization logic
+      AuthorizeMiddlewareAsync
+    ],
+    filters: [
+      // Log request and response of endpoint
+      LogActionFilter
+    ],
+    results: [
+      // Override JSON with XML response
+      XMLResult
+    ],
+    exceptions: [
+      // Handle invalid order exceptions
+      InvalidOrderException
+    ]
+  })
+  export class OrdersController extends ApiController {
+
+    @HttpGet('/get');
+    get(): string {
+      return 'Successfully placed your orders. Yay!';
+    }
+
+    @HttpGet('/get/:id');
+    getById(id: string): string {
+      throw new InvalidOrderException();
+    }
+  }`;
+}
+
+@Component({
+  selector: 'app-docs-api-ctrl',
+  templateUrl: '../templates/api-controller.html',
+  styleUrls: ['../docs.component.css']
+})
+export class DocsConceptsApiCtrlComponent { }

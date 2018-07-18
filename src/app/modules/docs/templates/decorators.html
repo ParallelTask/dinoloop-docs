@@ -1,0 +1,206 @@
+<h3 class="section-header">Decorators</h3>
+<div class="section-content">
+    <p>
+        Dinoloop decorators use
+        <a href="#">reflect-metadata</a> behind the scenes. It's a well-known concept in JAVA/C# and other programming languages, but
+        in the JavaScript world, it's relatively new. Attributes are very much similar to
+        <a href="https://en.wikipedia.org/wiki/Java_annotation">Java annotation</a> and
+        <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/">C# attributes</a>.
+    </p>
+</div>
+<h3 class="section-header">1. Action Decorators</h3>
+<h5 class="section-sub-header">@Async()</h5>
+<div class="section-content">
+    <p>
+        Action method with
+        <span class="highlight-it">async</span> modifier, must be decorated with
+        <span class="highlight-it">@Async</span>. This notifies dinoloop to setup asynchronous execution model with expressjs.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="asyncEx"></pre>
+    </div>
+    <p>When a GET request is made to this endpoint, you will receive response after 2 seconds. This example explains you how
+        to use async-await pattern. According to ES spec any
+        <a href="https://javascript.info/async-await">Promise</a> return type method is awaitable using
+        <span class="highlight-it">await</span> keyword.
+    </p>
+    <ul>
+        <li>
+            <a href="#">Deferrer</a> built into dinoloop to convert promise objects to async-await pattern</li>
+    </ul>
+</div>
+<h5 class="section-sub-header">@HttpAll(route: string)</h5>
+<div class="section-content">
+    <p>Defines an endpoint that responds to every
+        <span class="highlight-it">HTTP-VERB</span> request.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="httpAllEx"></pre>
+    </div>
+</div>
+<h5 class="section-sub-header">@HttpDelete(route: string)</h5>
+<div class="section-content">
+    <p>Defines an endpoint that responds to
+        <span class="highlight-it">DELETE</span> request.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="httpDeleteEx"></pre>
+    </div>
+</div>
+<h5 class="section-sub-header">@HttpGet(route: string)</h5>
+<div class="section-content">
+    <p>Defines an endpoint that responds to
+        <span class="highlight-it">GET</span> request.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="httpGetEx"></pre>
+    </div>
+</div>
+<h5 class="section-sub-header">@HttpHead(route: string)</h5>
+<div class="section-content">
+    <p>Defines an endpoint that responds to
+        <span class="highlight-it">HEAD</span> request.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="httpHeadEx"></pre>
+    </div>
+</div>
+<h5 class="section-sub-header">@HttpPost(route: string)</h5>
+<div class="section-content">
+    <p>Defines an endpoint that responds to
+        <span class="highlight-it">POST</span> request.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="httpPostEx"></pre>
+    </div>
+    <ul>
+        <li>
+            ValueInjection framework always injects http-body as first parameter for
+            <span class="highlight-it">HttpPost</span>,
+            <span class="highlight-it">HttpPut</span>,
+            <span class="highlight-it">HttpPatch</span>. Dinoloop considers the above three HttpVerbs to have body. However, you can always access the
+            body using
+            <a href="#">this.request.body</a> (
+            <a href="https://stackoverflow.com/questions/38306569/what-does-body-parser-do-with-express">body</a> is expressjs property)
+        </li>
+        <li>
+            ValueInjection framework parses the named-segments from the URL and injects as parameters. Refer
+            <a href="#">Here</a>.
+        </li>
+    </ul>
+</div>
+<h5 class="section-sub-header">@HttpPatch(route: string)</h5>
+<div class="section-content">
+    <p>Defines an endpoint that responds to
+        <span class="highlight-it">PATCH</span> request.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="httpPatchEx"></pre>
+    </div>
+</div>
+<h5 class="section-sub-header">@HttpPut(route: string)</h5>
+<div class="section-content">
+    <p>Defines an endpoint that responds to
+        <span class="highlight-it">PUT</span> request.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="httpPutEx"></pre>
+    </div>
+</div>
+<h5 class="section-sub-header">@SendsResponse()</h5>
+<div class="section-content">
+    <p>If you would like to have action method responding to request, then use @SendsResponse(). Pretty useful in situations
+        like File
+        <span class="highlight-it">downloads/uploads</span> or more.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="sendsResponseEx"></pre>
+    </div>
+    <ul>
+        <li>
+            <a href="#">HttpStatusCode.oK</a> is the dinoloop enum for standard http-status codes.
+        </li>
+    </ul>
+</div>
+<h5 class="section-sub-header">Having multiple http verbs</h5>
+<div class="section-content">
+    <p>You can also have multiple http verbs on the same action.</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="multipleVerbsEx"></pre>
+    </div>
+    <ul>
+        <li>
+            It is better practise to have different names for action method but have same route for different http-verbs.
+        </li>
+        <li>
+            Highly recommended not to mix multiple http verbs for a single endpoint. Unless, you have a reason.
+        </li>
+    </ul>
+</div>
+<h3 class="section-header">2. Controller Decorators</h3>
+<h5 class="section-sub-header">@Controller(prefix: string, attr?: IControllerAttribute)</h5>
+<div class="section-content">
+    <p>Adds metadata to a controller class derived from ApiController.</p>
+    <p class="sub-section-content">prefix: string</p>
+    <p>Acts as a base route for all your action endpoints.</p>
+    <p class="sub-section-content">attr: IControllerAttribute</p>
+    <p>Configures middlewares at controller level. These middlewares are invoked when any of the enpoint of controller gets
+        request.
+    </p>
+    <ul>
+        <li>
+            <b>use:</b> Provide an array of express middlewares. These express middlewares are first to execute, and then proceeds
+            to dinoloop middlewares.
+        </li>
+        <li>
+            <b>middlewares:</b> Provide an array of dinoloop middlewares which are executed, and then proceeds to filters.
+        </li>
+        <li>
+            <b>filters:</b> Provide an array of filters which are executed before and after action method.
+        </li>
+        <li>
+            <b>result:</b> Provide an array of result dinowares which captures return values from action method and proceeds
+            to
+            <a href="#">RequestEnd</a> middlewares.
+        </li>
+        <li>
+            <b>exceptions:</b> Provide an array of exception dinowares which handles uncaught exceptions thrown by controller.
+        </li>
+    </ul>
+    <p class="sub-section-content">1. @Controller Without Middlewares</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="withoutMiddlewaresEx"></pre>
+    </div>
+    <p class="sub-section-content">2. @Controller With Middlewares</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="withMiddlewaresEx"></pre>
+    </div>
+    <p>Dinowares are explained in detail
+        <a href="#">here</a>.</p>
+</div>
+<div class="remember-points">
+    <p>
+        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+        <span class="title">Remember</span>
+    </p>
+    <ul>
+        <li>
+            Dinoloop considers HttpPost, HttpPut, HttpPatch verbs that have http-request body.
+        </li>
+        <li>If you don't have parameters for HttpPost, HttpPut and HttpPatch, it still works. However, if you have parameter
+            http-body gets injected.
+        </li>
+        <li>
+            You can always access the http-body using
+            <i>this.request.body</i>.
+        </li>
+        <li>
+            When an action method is decorated with
+            <i>@SendsResponse()</i>, it's return value is ignored. Preferred to have void methods.
+        </li>
+        <li>
+            Always use
+            <a href="#">HttpStatusCode</a> enum for status codes to have better readability.
+        </li>
+    </ul>
+</div>

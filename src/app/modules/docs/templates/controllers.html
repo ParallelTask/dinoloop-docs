@@ -4,7 +4,7 @@
     This documentation assumes that you are already familiar with
     <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a> architecture. In Dinoloop, controller is just a class. However, we need to add
     <span class="highlight-it">@Controller</span> decorator and must be derived from
-    <span class="highlight-it">ApiController</span> class. Here is how you can create a controller
+    <span class="highlight-it">ApiController</span> class. Here is how you create a controller
   </p>
   <div class="code-snippet-terminal">
     <pre [innerHTML]="homeController"></pre>
@@ -35,9 +35,9 @@
     <span class="highlight-it">/home/get</span> and
     <span class="highlight-it">/home/get/user/:id</span>. For the second endpoint, values are automatically parsed from named-segments and injected
     into parameters using
-    <a href="#">ParameterInjection</a> technique. Values parsed from named-segments are always injected as string type. You can use conversion
-    techniques like
-    <a href="#">@Parse</a> decorator.
+    <a href="#">ParameterInjection</a> technique. Values parsed from named-segments are always injected as string type. However, you
+    can use data conversion techniques like
+    <a href="#">@Parse</a>.
   </p>
   <ul>
     <li>
@@ -52,53 +52,70 @@
   <p class="sub-section-content">1. Action method without @SendsResponse decorator</p>
   <p>
     In the example above, we haven't used
-    <span class="highlight-it">@SendsResponse</span>. Dinoloop keeps waiting for result from controller, once the results are returned it invokes ResponseEndMiddleware
-    (It is a built-in dinoware) which is responsible to send JSON response. Here is the snippet
+    <a href="#">@SendsResponse</a>. So, Dinoloop keeps waiting for result from controller, once the results are returned it invokes ResponseEndMiddleware
+    (a built-in dinoware) which is responsible to send JSON response. Here is the pseudo code
   </p>
   <div class="code-snippet-terminal">
     <pre [innerHTML]="responseEndMiddleware"></pre>
   </div>
-  <p>If your result is undefined (
-    <span class="highlight-it">null</span> is still considered as a return value), it ends the response with 204 status code. Otherwise, it ends the
-    response with 200 status code. However you can override this behavior by creating one using
+  <p>If result is undefined then it ends the response with 204 status code. Otherwise, it ends the response with 200 status
+    code. You can override this behavior by creating you own dinoware using
     <a href="#">RequestEndMiddleware</a> technique. An example to implement
     <a href="#">content-negotation</a> using RequestEndMiddleware.
   </p>
+  <ul>
+    <li>
+      When an action method is void or return value is undefined then it ends response with 204 status code.
+    </li>
+    <li>When action method returns
+      <span class="highlight-it">null</span> or
+      <span class="highlight-it">other</span> values, It ends responds with 200 status code and result is JSON parsed.
+    </li>
+  </ul>
   <p class="sub-section-content">2. Action method with @SendsResponse decorator</p>
   <div class="code-snippet-terminal">
     <pre [innerHTML]="sendsResponseUsed"></pre>
   </div>
   <p>
     In the example above, we have used
-    <span class="highlight-it">@SendsResponse</span>. Dinoloop is notified and it is the responsibility of this endpoint to send the response. Now,
+    <a href="#">@SendsResponse</a>. Dinoloop is now notified and it is the responsibility of this endpoint to send the response. Now,
     when a GET request is made to this endpoint, express method
     <a href="https://expressjs.com/en/api.html#res.download">res.download</a> ends the response.
   </p>
   <ul>
     <li>
-      <a href="#">this.response</a> - derived from ApiController of type
+      <a href="#">this.response</a> - derived from ApiController and it is of type
       <a href="https://expressjs.com/en/api.html#res">express.Response</a>
     </li>
     <li>
       It is better practise to have return type as
-      <span class="highlight-it">void</span> since the return value is ignored.
-    </li>
-    <li>
-      @SendsResponse is decorated on action method and not applicable on controller, so you can have action methods with/without
-      @SendsResponse in same controller.
+      <span class="highlight-it">void</span> when an action method has @SendsResponse since the return value is ignored.
     </li>
   </ul>
-  <p>However, there are scenarios where you still want to process and continue your results with the
-    <a href="#">chain of dinowares</a> after returning from callbacks. For example, still the 90% of javascript libraries uses
-    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout">Callback</a> /
-    <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> pattern. Here is one such example</p>
+  <p>However, there are cases where you still want to process and continue your results with the
+    <a href="#">chain of dinowares</a> (ex: after returning from callbacks). Here is one such example</p>
   <div class="code-snippet-terminal">
     <pre [innerHTML]="callbackEx"></pre>
   </div>
   <p>
-    <a href="#">this.dino.proceed</a> is derived from ApiController which proceeds the results to the next chain of middlewares. We also
-    have a
-    <a href="#">Deferrer</a> built into dinoloop to convert promise objects to async-await pattern (if you are a lover of async-await).</p>
+    In the above example, we have got results after async-callback operation. Now we can end the response with
+    <span class="highlight-it">this.response</span>, but we would like to continue these results with the chain of middlewares i.e. ResponseEndMiddleware.
+    We can simply do that by using
+    <a href="#">this.dino.proceed</a>, the response will end with 200 status code and JSON parsed result.
+  </p>
+  <ul>
+    <li>
+      <span class="highlight-it">this.dino.proceed</span> is derived from ApiController which proceeds the results to the next chain of middlewares.
+    </li>
+    <li>
+      The 90% of javascript libraries uses
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout">Callback</a> /
+      <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> pattern which are still reusable using
+      <span class="highlight-it">this.dino.proceed</span>
+    </li>
+    <li> We also have a
+      <a href="#">Deferrer</a> built into dinoloop to convert promise objects to async-await pattern (if you are a lover of async-await).</li>
+  </ul>
   <div class="remember-points">
     <p>
       <i class="fa fa-bullhorn" aria-hidden="true"></i>

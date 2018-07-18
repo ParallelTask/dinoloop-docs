@@ -1,0 +1,39 @@
+<h3 class="section-header">Api Controller</h3>
+<div class="section-content">
+    <p>Every controller must extend this class. List of properties which are available
+    </p>
+    <h5 class="section-sub-header">request: Express.Request</h5>
+    <div class="section-content">
+        Express request object is mapped to this property.
+    </div>
+    <h5 class="section-sub-header">response: Express.Response</h5>
+    <div class="section-content">
+        Express response object is mapped to this property.
+    </div>
+    <h5 class="section-sub-header">next: Express.NextFunction</h5>
+    <div class="section-content">
+        Express next handler is mapped to this property.
+    </div>
+    <h5 class="section-sub-header">dino: DinoResponse</h5>
+    <div class="section-content">
+        <p>dino property has two methods
+            <span class="highlight-it">proceed()</span> and
+            <span class="highlight-it">throw()</span> explained below
+        </p>
+        <p class="sub-section-content">proceed(result: any)</p>
+        <p>Typically used when you receive response after async-callback operation, you would then like to have your result
+            available to the next middlewares in the chain, say your result filters. Here is how you do it:</p>
+    </div>
+</div>
+
+<div class="remember-points">
+    <p>
+        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+        <span class="title">Remember</span>
+    </p>
+    <ul>
+        <li>
+            The request and response properties depends purely on express.js version you have installed.
+        </li>
+    </ul>
+</div>

@@ -28,6 +28,14 @@
     border-bottom: 1px solid #eee;
 }
 
+.section-sub-header {
+    font-weight: bold;
+    margin: 20px 10px 15px 0;
+    font-family: Roboto,'San Francisco',Helvetica,Arial,sans-serif;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
 .section-content {
     text-align: justify;
     line-height: 26px;
@@ -71,6 +79,7 @@
 .remember-points{
     background-color: #ebf4fa; 
     padding: 10px 15px;
+    margin: 20px 0 40px;
 }
 
 .remember-points .title {

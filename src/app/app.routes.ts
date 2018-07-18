@@ -6,7 +6,9 @@ import {
     DocsGettingStartedComponent,
     DocsFaqComponent,
     DocsControllerComponent,
-    DocsCrudAppComponent
+    DocsCrudAppComponent,
+    DocsConceptsDecoratorComponent,
+    DocsConceptsApiCtrlComponent
 } from './modules/docs/components/components';
 
 export const AppRouteStates: Routes = [
@@ -23,7 +25,9 @@ export const AppRouteStates: Routes = [
             { path: 'getting-started', component: DocsGettingStartedComponent },
             { path: 'todo-app', component: DocsCrudAppComponent },
             { path: 'faq', component: DocsFaqComponent },
-            { path: 'concepts/controllers', component: DocsControllerComponent }
+            { path: 'concepts/controllers', component: DocsControllerComponent },
+            { path: 'concepts/decorators', component: DocsConceptsDecoratorComponent },
+            { path: 'concepts/api-controller', component: DocsConceptsApiCtrlComponent }
         ]
     }
 ];

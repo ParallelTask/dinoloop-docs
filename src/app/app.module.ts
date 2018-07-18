@@ -12,7 +12,9 @@ import {
   DocsGettingStartedComponent,
   DocsFaqComponent,
   DocsControllerComponent,
-  DocsCrudAppComponent
+  DocsCrudAppComponent,
+  DocsConceptsDecoratorComponent,
+  DocsConceptsApiCtrlComponent
 } from './modules/docs/components/components';
 
 @NgModule({
@@ -25,7 +27,9 @@ import {
     DocsGettingStartedComponent,
     DocsFaqComponent,
     DocsControllerComponent,
-    DocsCrudAppComponent
+    DocsCrudAppComponent,
+    DocsConceptsDecoratorComponent,
+    DocsConceptsApiCtrlComponent
   ],
   imports: [
     BrowserModule,
