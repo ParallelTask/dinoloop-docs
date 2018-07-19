@@ -8,7 +8,8 @@ import {
     DocsControllerComponent,
     DocsCrudAppComponent,
     DocsConceptsDecoratorComponent,
-    DocsConceptsApiCtrlComponent
+    DocsConceptsApiCtrlComponent,
+    DocsConceptsErrCtrlComponent
 } from './modules/docs/components/components';
 
 export const AppRouteStates: Routes = [
@@ -27,7 +28,8 @@ export const AppRouteStates: Routes = [
             { path: 'faq', component: DocsFaqComponent },
             { path: 'concepts/controllers', component: DocsControllerComponent },
             { path: 'concepts/decorators', component: DocsConceptsDecoratorComponent },
-            { path: 'concepts/api-controller', component: DocsConceptsApiCtrlComponent }
+            { path: 'concepts/api-controller', component: DocsConceptsApiCtrlComponent },
+            { path: 'concepts/error-controller', component: DocsConceptsErrCtrlComponent }
         ]
     }
 ];

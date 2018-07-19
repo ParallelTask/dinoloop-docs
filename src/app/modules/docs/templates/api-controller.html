@@ -2,17 +2,26 @@
 <div class="section-content">
     <p>Every controller must extend this class. List of properties which are available
     </p>
+    <h5 class="section-sub-header">model: DinoModel</h5>
+    <div class="section-content">
+        It represents model data and validation errors for the request. It is used along with
+        <a href="#">@Parse()</a>. Here we have a complete
+        <a href="#">example</a>.
+    </div>
     <h5 class="section-sub-header">request: Express.Request</h5>
     <div class="section-content">
-        Express request object is mapped to this property.
+        Expressjs
+        <a href="https://expressjs.com/en/api.html#req">request</a> object is mapped to this property.
     </div>
     <h5 class="section-sub-header">response: Express.Response</h5>
     <div class="section-content">
-        Express response object is mapped to this property.
+        Expressjs
+        <a href="https://expressjs.com/en/api.html#res">response</a> object is mapped to this property.
     </div>
     <h5 class="section-sub-header">next: Express.NextFunction</h5>
     <div class="section-content">
-        Express next handler is mapped to this property.
+        Expressjs
+        <a href="https://stackoverflow.com/questions/10695629/what-is-the-parameter-next-used-for-in-express">next</a> handler is mapped to this property.
     </div>
     <h5 class="section-sub-header">dino: DinoResponse</h5>
     <div class="section-content">
@@ -20,9 +29,44 @@
             <span class="highlight-it">proceed()</span> and
             <span class="highlight-it">throw()</span> explained below
         </p>
-        <p class="sub-section-content">proceed(result: any)</p>
-        <p>Typically used when you receive response after async-callback operation, you would then like to have your result
-            available to the next middlewares in the chain, say your result filters. Here is how you do it:</p>
+        <p class="sub-section-content">1. proceed(result: any)</p>
+        <p>When results are returned after async-callback operation, you would then like to have your result available to the
+            next middlewares in the chain, say your result filters and ResponseEnd middlewares. Here is how you do it:</p>
+        <div class="code-snippet-terminal">
+            <pre [innerHTML]="callbackEx"></pre>
+        </div>
+        <ul>
+            <li>
+                <span class="highlight-it">this.next</span> is highly discouraged to use.
+            </li>
+            <li>
+                Invoking
+                <span class="highlight-it">this.next()</span> proceeds the execution to the next dinoware but results are not captured. If results are
+                to be captured and proceeded use
+                <i>this.dino.proceed(result)</i>.
+            </li>
+        </ul>
+        <p class="sub-section-content">2. throw(err: Error)</p>
+        <p>
+            <span class="highlight-it">this.dino.throw</span> is responsible to proceed errors to the next error middlewares in the chain when error
+            is encountered in async-callback operation. Following example explains one such example of mongo connection error.</p>
+        <div class="code-snippet-terminal">
+            <pre [innerHTML]="dinoThrowEx"></pre>
+        </div>
+        <ul>
+            <li>
+                <a href="https://mongodb.github.io/node-mongodb-native/api-generated/mongoclient.html#mongoclient-connect">MongoClient</a> is an external npm package to install.</li>
+            <li>
+                <span class="highlight-it">this.next(new MongoConnectException())</span> or
+                <span class="highlight-it">this.dino.throw(new MongoConnectException())</span> both essentially does the same, you can pick your own
+                choice.
+            </li>
+            <li>
+                The exception will be caught by
+                <span class="highlight-it">MongoConnectExceptionFilter</span> which is declared on controller and ends the response with 500 status
+                code.
+            </li>
+        </ul>
     </div>
 </div>
 
@@ -34,6 +78,15 @@
     <ul>
         <li>
             The request and response properties depends purely on express.js version you have installed.
+        </li>
+        <li>
+            To handle exceptions on application level use
+            <a href="#">ServerError</a> middlewares.
+        </li>
+        <li>
+            We suggest you to use
+            <i>this.dino.throw</i> over
+            <i>this.next</i> for better consistence and readability.
         </li>
     </ul>
 </div>

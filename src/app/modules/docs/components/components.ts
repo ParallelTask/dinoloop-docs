@@ -350,4 +350,88 @@ export class DocsConceptsDecoratorComponent {
   templateUrl: '../templates/api-controller.html',
   styleUrls: ['../docs.component.css']
 })
-export class DocsConceptsApiCtrlComponent { }
+export class DocsConceptsApiCtrlComponent {
+  callbackEx = `
+  import { Controller, ApiController, HttpGet, SendsResponse } from 'dinoloop';
+
+  @Controller('/home')
+  export class HomeController extends ApiController {
+
+    @SendsResponse()
+    @HttpGet('/get')
+    get(): void {
+
+      const req = this.request; // complete access to express.request object
+      const res = this.response; // complete access to express.response object
+      const next = this.next; // complete access to express.next handler
+
+      setTimeout(() => {
+        // proceeds the result to next middleware in the dinoloop chain
+        this.dino.proceed('Returning from setTimeout after 2 seconds');
+      }, 2000);
+    }
+  }`;
+  dinoThrowEx = `
+  import { UserException, Controller, HttpGet, ApiController, ExceptionFilter } from 'dinoloop';
+
+  // Create MongoConnectException
+  class MongoConnectException extends UserException {
+    constructor(msg: string, innerEx?: Error){
+      super(msg, innerEx);
+    }
+  }
+
+  // Create MongoConnectExceptionFilter
+  class MongoConnectExceptionFilter extends ExceptionFilter {
+    invoke(err: Error, request: Request, response: Response, next: NextFunction): void {
+
+      if(err instanceof MongoConnectException) {
+        ... logToDB();
+        this.response.status(500).json('ServerBusy');
+      } else {
+        // pass on to next error middleware
+        next(err);
+      }
+    }
+  }
+
+  @Controller('/home', {
+    exceptions: [MongoConnectExceptionFilter]
+  })
+  export class HomeController extends ApiController {
+
+    @HttpGet('/get')
+    get(): void {
+      MongoClient.connect("XXXX", (err, db) => {
+        if (err) this.dino.throw(new MongoConnectException());
+        db.close();
+      });
+    }
+  }`;
+}
+
+@Component({
+  selector: 'app-docs-error-ctrl',
+  templateUrl: '../templates/error-controller.html',
+  styleUrls: ['../docs.component.css']
+})
+export class DocsConceptsErrCtrlComponent {
+  internalErrorEx = `
+  export class ApplicationError extends ErrorController {
+
+    internalServerError(): void {
+      logToDatabase(this.error);
+
+      // Need to crash container?
+      if(this.error instanceof SystemFaultedException) {
+        // This error is now gone out of dino's control.
+        // If you have err handlers on express they might handle or
+        // simply crash container
+        this.next(this.error);
+      } else {
+        // If error is not critical and it is recoverable
+        this.response.status(500).send('Internal server error occurred');
+      }
+    }
+  }`;
+}

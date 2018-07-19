@@ -1,0 +1,41 @@
+<h3 class="section-header">Error Controller</h3>
+<div class="section-content">
+    <p>Extend this class to handle Application Level errors (all thrown exceptions across your whole application). Unlike controllers
+        (where you register multiple), you can register only one class extending ErrorController. This
+        <a href="#">link</a> explains you
+        <span class="highlight-it">why single error controller</span>. List of properties which are available
+    </p>
+    <h5 class="section-sub-header">request: Express.Request</h5>
+    <div class="section-content">
+        Expressjs
+        <a href="https://expressjs.com/en/api.html#req">request</a> object is mapped to this property.
+    </div>
+    <h5 class="section-sub-header">response: Express.Response</h5>
+    <div class="section-content">
+        Expressjs
+        <a href="https://expressjs.com/en/api.html#res">response</a> object is mapped to this property.
+    </div>
+    <h5 class="section-sub-header">next: Express.NextFunction</h5>
+    <div class="section-content">
+        Expressjs
+        <a href="https://stackoverflow.com/questions/10695629/what-is-the-parameter-next-used-for-in-express">next</a> handler is mapped to this property.
+    </div>
+    <h5 class="section-sub-header">error: Error</h5>
+    <div class="section-content">
+        Placeholder for unhandled error thrown by application.
+    </div>
+    <h5 class="section-sub-header">internalServerError()</h5>
+    <div class="section-content">
+        <p>Gets executed when any unhandled error thrown by application. This is an appropriate place to put your global error
+            handling logic.
+        </p>
+        <div class="code-snippet-terminal">
+            <pre [innerHTML]="internalErrorEx"></pre>
+        </div>
+        <ul>
+            <li>
+                <span class="highlight-it">internalServerError()</span> is an abstract method on ErrorController which has to be implemented.
+            </li>
+        </ul>
+    </div>
+</div>

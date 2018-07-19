@@ -14,7 +14,8 @@ import {
   DocsControllerComponent,
   DocsCrudAppComponent,
   DocsConceptsDecoratorComponent,
-  DocsConceptsApiCtrlComponent
+  DocsConceptsApiCtrlComponent,
+  DocsConceptsErrCtrlComponent
 } from './modules/docs/components/components';
 
 @NgModule({
@@ -29,7 +30,8 @@ import {
     DocsControllerComponent,
     DocsCrudAppComponent,
     DocsConceptsDecoratorComponent,
-    DocsConceptsApiCtrlComponent
+    DocsConceptsApiCtrlComponent,
+    DocsConceptsErrCtrlComponent
   ],
   imports: [
     BrowserModule,
