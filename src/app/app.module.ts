@@ -17,6 +17,7 @@ import {
   DocsConceptsApiCtrlComponent,
   DocsConceptsErrCtrlComponent
 } from './modules/docs/components/components';
+import { DocsConceptsDinoPropComponent } from './modules/docs/components/concepts.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {
     DocsCrudAppComponent,
     DocsConceptsDecoratorComponent,
     DocsConceptsApiCtrlComponent,
-    DocsConceptsErrCtrlComponent
+    DocsConceptsErrCtrlComponent,
+    DocsConceptsDinoPropComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,173 @@
+<h3 class="section-header">Dino Properties</h3>
+<div class="section-content">
+    <p>Dino object is the main interface through which you will register controllers and middlewares. List of properties which
+        are available
+    </p>
+    <h5 class="section-sub-header">1. constructor(app: Express, baseUri: String)</h5>
+    <div class="section-content">
+        Requires express instance and baseUri on which dino app will be mounted
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="constructorEx"></pre>
+    </div>
+    <h5 class="section-sub-header">2. bind()</h5>
+    <div class="section-content">
+        Once you invoke .bind() dinoloop binds routes to express. Invoking .bind() twice throws
+        <span class="highlight-it">Error: dino.bind(): Already invoked</span>.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="bindEx"></pre>
+    </div>
+    <ul>
+        <li>Invoke
+            <span class="highlight-it">bind()</span> only after everything (controllers, middlewares) is registered.</li>
+    </ul>
+    <h5 class="section-sub-header">3. dependencyResolver &lt;T&gt;(injector: T, cb: (injector: T, type: any) => any)</h5>
+    <div class="section-content">
+        Allows you to configure any dependency injection framework available in Typescript. We highly recommend
+        <a href="http://inversify.io/">InversifyJs</a> which is just fantastic. We already have a
+        <a href="https://github.com/ParallelTask/dinoloop-inversify-starter">dino-inverisfy-starter</a> project adhere to SOLID principles, clone it and start developing your app :)
+    </div>
+    <br>
+    <p class="sub-section-content">1. Inverisfyjs as DependencyResolver</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="diEx"></pre>
+    </div>
+    <ul>
+        <li>
+            <span class="highlight-it">Warning:</span> Please be sure when you choose DI framework, you do not have singleton instance of controller
+            objects. If you have single instance lifescope for controller objects then you might enter into serious issues
+            where one user request gets tampered with other users request.</li>
+    </ul>
+    <p class="sub-section-content">Why does singleton controller create problems?</p>
+    <p>
+        Dinoloop resolves objects from DI container on every request. Now If you get the same object reference on every hit to HomeController
+        (Assuming HomeController as singleton) then you are having single object/request sharing across users which results
+        lot of problems.
+    </p>
+    <ul>
+        <li>
+            <span class="highlight-it">Note:</span> This is applicable only for Controller instances. Middleware instances can be singleton.</li>
+    </ul>
+    <p class="sub-section-content">Problems with injection-js?</p>
+    <p>
+        <a href="https://github.com/mgechev/injection-js">injection-js</a> is one such DI framework which resolves everything as singleton. However, to have a quick fix, you
+        can shallow clone the controller objects as shown below
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="injectionEx"></pre>
+    </div>
+    <h5 class="section-sub-header">4. disableRouteNotFoundException()</h5>
+    <div class="section-content">
+        <p>
+            Dinoloop internally uses router middleware (created by dinoloop team) which handles every request to verify if the request
+            matches a valid endpoint i.e. action method, If the request does not match then dinloop throws
+            <a href="#">RouteNotFoundException</a>. You can handle it by
+            <a href="#">writing your own RouteNotFoundException middleware</a>.
+        </p>
+    </div>
+    <p class="sub-section-content">Why dinoloop uses router middleware?</p>
+    <p>
+        Expressjs fires the
+        <a href="https://stackoverflow.com/questions/10695629/what-is-the-parameter-next-used-for-in-express">next</a> handlers based on the mounted path and does not know/care the endpoint before ahead. So the middlewares
+        still gets fired, though the endpoint or action route is not matched. Below code explains you
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="expressMountEx"></pre>
+    </div>
+    <ul>
+        <li>
+            <span class="highlight-it">GET /admin/home;</span> This works as expected</li>
+        <li>
+            <span class="highlight-it">GET /admin/apple;</span> There is no
+            <span class="highlight-it">/admin/apple</span> endpoint in the router but still the
+            <span class="highlight-it">/admin</span> middleware gets fired.
+        </li>
+    </ul>
+    <p>
+        Even though end route is not matched, expressjs fires the middlewares in the chain of execution model. To overcome this problem,
+        dinoloop introduced router-middleware. Dinoloop makes sure middlewares are executed only when the valid action route/endpoint
+        is matched. This increases response times and reduces unwanted handlers execution time. Invoking this method disables
+        dinoloop router middleware and the execution works similar to expressjs. Highly recommended
+        <span class="highlight-it">NOT TO INVOKE</span> this.
+    </p>
+    <h5 class="section-sub-header">5. enableUserIdentity()</h5>
+    <div class="section-content">
+        Experimental feature for future use.
+    </div>
+    <h5 class="section-sub-header">6. registerApplicationError&lt;T&gt;(T)</h5>
+    <div class="section-content">
+        Register controller that extends
+        <a routerLink="/docs/concepts/error-controller">ErrorController</a>.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="errCtrlEx"></pre>
+    </div>
+    <ul>
+        <li> Dinoloop allows only one error controller to register. If you register multiple, the last error controller gets registered.</li>
+    </ul>
+    <h5 class="section-sub-header">7. registerController&lt;T&gt;(T)</h5>
+    <div class="section-content">
+        Register controller that extends
+        <a routerLink="/docs/concepts/api-controller">ApiController</a>.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="ctrlEx"></pre>
+    </div>
+    <h5 class="section-sub-header">8. requestStart&lt;T&gt;(T)</h5>
+    <div class="section-content">
+        Register RequestStart middlewares that handles the request first in the chain of execution. More on
+        <a href="#">RequestStart</a> Middlewares.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="requestStartEx"></pre>
+    </div>
+    <h5 class="section-sub-header">9. requestEnd&lt;T&gt;(T)</h5>
+    <div class="section-content">
+        Register RequestEnd middlewares that handles the request last in the chain of execution. More on
+        <a href="#">RequestEnd</a> Middlewares.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="requestEndEx"></pre>
+    </div>
+    <h5 class="section-sub-header">10. serverError&lt;T&gt;(T)</h5>
+    <div class="section-content">
+        Register ServerError middlewares to handle uncaught exceptions/errors thrown by the application. More on
+        <a href="#">ServerError</a> Middlewares.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="serverErrorEx"></pre>
+    </div>
+    <h5 class="section-sub-header">11. useRouter(cb: () => express.Router)</h5>
+    <div class="section-content">
+        Register callback that returns new instance of
+        <a href="https://expressjs.com/en/guide/routing.html">express.Router</a> on every invoke.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="routerEx"></pre>
+    </div>
+    <ul>
+        <li>
+            Make sure to attach
+            <i>express.Router()</i> via
+            <span class="highlight-it">.useRouter()</span>, otherwise dinoloop throws
+            <span class="highlight-it">Error: Express router is not registered with dino
+            </span>.
+        </li>
+    </ul>
+    <div class="remember-points">
+        <p>
+            <i class="fa fa-bullhorn" aria-hidden="true"></i>
+            <span class="title">Remember</span>
+        </p>
+        <ul>
+            <li>
+                Multiple requestStart, requestEnd and serverError dinowares can be registered and their order of execution depends on the
+                order of registration.</li>
+            <li>
+                When you choose DI framework, make sure
+                <i>Controller</i> instances cannot be singleton.
+            </li>
+        </ul>
+    </div>
+</div>
