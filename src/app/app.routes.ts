@@ -17,7 +17,13 @@ import {
     DocsConceptsCtrlMiddlewareComponent
 } from './modules/docs/components/concepts.component';
 import {
-    DocsGuideHttpStatusComponent, DocsGuideDeferrerComponent
+    DocsGuideHttpStatusComponent,
+    DocsGuideDeferrerComponent,
+    DocsGuideCtrlInheritanceComponent,
+    DocsGuideDinowaresFlowComponent,
+    DocsGuideParamInjectionComponent,
+    DocsGuideUpdateExpressDComponent,
+    DocsGuideErrCtrlErrMwareDComponent
 } from './modules/docs/components/guide.component';
 
 export const AppRouteStates: Routes = [
@@ -42,7 +48,12 @@ export const AppRouteStates: Routes = [
             { path: 'middlewares/app-middlewares', component: DocsAppMiddlewareComponent },
             { path: 'middlewares/controller-middlewares', component: DocsConceptsCtrlMiddlewareComponent },
             { path: 'guide/http-codes', component: DocsGuideHttpStatusComponent },
-            { path: 'guide/deferrer', component: DocsGuideDeferrerComponent }
+            { path: 'guide/deferrer', component: DocsGuideDeferrerComponent },
+            { path: 'guide/ctrl-inheritance', component: DocsGuideCtrlInheritanceComponent },
+            { path: 'guide/dinowares-flow', component: DocsGuideDinowaresFlowComponent },
+            { path: 'guide/param-injection', component: DocsGuideParamInjectionComponent },
+            { path: 'guide/update-expressd', component: DocsGuideUpdateExpressDComponent },
+            { path: 'guide/errctrl-errmware', component: DocsGuideErrCtrlErrMwareDComponent }
         ]
     }
 ];

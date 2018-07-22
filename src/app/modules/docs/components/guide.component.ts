@@ -104,3 +104,100 @@ export class DocsGuideDeferrerComponent {
         }
     }`;
 }
+
+@Component({
+    selector: 'app-guide-ctrl-inheritance',
+    templateUrl: '../templates/ctrl-inheritance.html',
+    styleUrls: ['../docs.component.css']
+})
+export class DocsGuideCtrlInheritanceComponent { }
+
+@Component({
+    selector: 'app-guide-dinowares-flow',
+    templateUrl: '../templates/dinowares-flow.html',
+    styleUrls: ['../docs.component.css']
+})
+export class DocsGuideDinowaresFlowComponent { }
+
+@Component({
+    selector: 'app-guide-param-injection',
+    templateUrl: '../templates/param-injection.html',
+    styleUrls: ['../docs.component.css']
+})
+export class DocsGuideParamInjectionComponent {
+    paramEx = `
+    @Controller('/home')
+    export class HomeController extends ApiController {
+
+        @HttpGet('/get/:img')
+        getImage(img: string) {
+            return { imgVal: img };
+        }
+
+        @HttpGet('/user/:id/images/:photo')
+        getImage(id: string, photo: string) {
+            return { imgVal: img };
+        }
+
+        // for POST requests, Injects http body to first parameter
+        @HttpPost('/post');
+        post(body: any): any {
+            return body;
+        }
+
+        // POST request With variable segments
+        // params must be added from 2nd parameter
+        // body will always be injected to 1st parameter
+        @HttpPost('/post/:id')
+        post(body: any, id: string): any {
+            return {
+                bodyVal: body,
+                idVal: id
+            };
+        }
+
+        // Wrong: body must be first parameter
+        // This would not throw compilation or runtime error but http body is injected to id.
+        @HttpPost('/post/:id')
+        post(id: string, body: any): any {
+            return {
+                bodyVal: body,
+                idVal: id
+            };
+        }
+    }`;
+}
+
+@Component({
+    selector: 'app-guide-update-express',
+    templateUrl: '../templates/update-express.html',
+    styleUrls: ['../docs.component.css']
+})
+export class DocsGuideUpdateExpressDComponent {
+    installEx = `
+    $ npm install @types/express --save-dev`;
+    typesEx = `
+    import { Request, Response, NextFunction, Express, Router } from '../../../@types/express';
+
+    export declare type Express = Express;
+    export declare type Router = Router;
+    export declare type Request = Request;
+    export declare type Response = Response;
+    export declare type NextFunction = NextFunction;`;
+}
+
+@Component({
+    selector: 'app-guide-err-ctrl-err-mware',
+    templateUrl: '../templates/err-ctrl-err-mware.html',
+    styleUrls: ['../docs.component.css']
+})
+export class DocsGuideErrCtrlErrMwareDComponent {
+    errCtrlEx = `
+    import { ErrorController } from 'dinoloop';
+
+    export class ApplicationErrorController extends ErrorController {
+        internalServerError(): void {
+            this.response.status(500).send('Internal server error occurred');
+        }
+    }`;
+}

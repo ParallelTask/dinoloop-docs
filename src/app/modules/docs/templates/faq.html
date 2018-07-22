@@ -1,4 +1,9 @@
-<h3>FAQ</h3>
-<p>
-  This is FAQ
-</p>
+<h3 class="section-header">FAQ</h3>
+<div class="section-content">
+  <ul>
+    <li>Result values (objects) returned by action methods are passed by reference to result filters and
+      <i>RequestEnd</i> middlwares, if one of your result filter mutates the object then the mutated object reflects in other
+      filters. Highly recommended to perform
+      <span class="highlight-it">read-only</span> operations on result values.</li>
+  </ul>
+</div>

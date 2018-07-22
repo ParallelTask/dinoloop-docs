@@ -16,7 +16,7 @@
           <a class="nav-link" routerLink="todo-app" routerLinkActive="active-link">CRUD Application</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#nothing">Concepts
+          <a class="nav-link font-weight-bold" href="#nothing">Concepts
             <i style="margin-left: 8px;" class="fa fa-caret-right" aria-hidden="true"></i>
           </a>
           <div aria-expanded="false">
@@ -40,7 +40,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#nothing">Middlewares
+          <a class="nav-link font-weight-bold" href="#nothing">Middlewares
             <i style="margin-left: 8px;" class="fa fa-caret-right" aria-hidden="true"></i>
           </a>
           <div aria-expanded="false">
@@ -55,7 +55,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#nothing">Guide
+          <a class="nav-link font-weight-bold" href="#nothing">Guide
             <i style="margin-left: 8px;" class="fa fa-caret-right" aria-hidden="true"></i>
           </a>
           <div aria-expanded="false">
@@ -73,13 +73,34 @@
                 <a class="nav-link" routerLink="guide/param-injection" routerLinkActive="active-link">Parameter Injection</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" routerLink="guide/errctrl-errmware" routerLinkActive="active-link">ErrorController vs ErrorMiddleware</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" routerLink="guide/deferrer" routerLinkActive="active-link">Deferrer</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="guide/update-expressd" routerLinkActive="active-link">Update express.d.ts</a>
               </li>
             </ul>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#nothing">Examples
+          <a class="nav-link font-weight-bold" href="#nothing">Built-in
+            <i style="margin-left: 8px;" class="fa fa-caret-right" aria-hidden="true"></i>
+          </a>
+          <div aria-expanded="false">
+            <ul class="flex-column pl-2 nav">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="middlewares/app-middlewares" routerLinkActive="active-link">RouteNotFoundException</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="middlewares/app-middlewares" routerLinkActive="active-link">CustomException</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link font-weight-bold" href="#nothing">Examples
             <i style="margin-left: 8px;" class="fa fa-caret-right" aria-hidden="true"></i>
           </a>
           <div aria-expanded="false">
@@ -92,6 +113,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" routerLink="examples/controller-middlewares" routerLinkActive="active-link">Content negotiation</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="examples/controller-middlewares" routerLinkActive="active-link">HttpResponseMessage and HttpResponseException</a>
               </li>
             </ul>
           </div>

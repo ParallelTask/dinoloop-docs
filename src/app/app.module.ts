@@ -23,7 +23,13 @@ import {
   DocsConceptsCtrlMiddlewareComponent
 } from './modules/docs/components/concepts.component';
 import {
-  DocsGuideHttpStatusComponent, DocsGuideDeferrerComponent
+  DocsGuideHttpStatusComponent,
+  DocsGuideDeferrerComponent,
+  DocsGuideCtrlInheritanceComponent,
+  DocsGuideDinowaresFlowComponent,
+  DocsGuideParamInjectionComponent,
+  DocsGuideUpdateExpressDComponent,
+  DocsGuideErrCtrlErrMwareDComponent
 } from './modules/docs/components/guide.component';
 
 @NgModule({
@@ -44,7 +50,12 @@ import {
     DocsAppMiddlewareComponent,
     DocsConceptsCtrlMiddlewareComponent,
     DocsGuideHttpStatusComponent,
-    DocsGuideDeferrerComponent
+    DocsGuideDeferrerComponent,
+    DocsGuideCtrlInheritanceComponent,
+    DocsGuideDinowaresFlowComponent,
+    DocsGuideParamInjectionComponent,
+    DocsGuideUpdateExpressDComponent,
+    DocsGuideErrCtrlErrMwareDComponent
   ],
   imports: [
     BrowserModule,

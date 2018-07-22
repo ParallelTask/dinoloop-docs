@@ -1,0 +1,91 @@
+<h3 class="section-header">Flow of Dinowares</h3>
+<div class="section-content">
+    <p>This guide helps you to understand the execution flow of different dinowares. When dinoloop receives a request and if
+        it is a valid route, this is what happens</p>
+    <h5 class="section-sub-header">1. Order of Dinowares</h5>
+    <ul>
+        <li>Array of RequestStartMiddlewares execute (Irrespective of controller)</li>
+        <li>Array of Expressjs middlewares specific to controller (registered via
+            <i>.use</i>).</li>
+        <li>Array of Dino Middlewares specific to controller (registered via
+            <i>.middlewares</i>)</li>
+        <li>Array of ActionFilters specific to controller (registered via
+            <i>.filters</i>). Only the
+            <span class="highlight-it">beforeExecution</span> methods are invoked.</li>
+        <li>Action method/endpoint is executed.</li>
+        <li>Array of ActionFilters specific to controller (registered via
+            <i>.filters</i>). Only the
+            <span class="highlight-it">afterExecution</span> methods are invoked.</li>
+        <li>Array of ResultFilters specific to controller (registered via
+            <i>.result</i>).</li>
+        <li>Array of RequestEndMiddlewares (Irrespective of controller).</li>
+    </ul>
+    <h5 class="section-sub-header">2. Order of Dinowares in Base-Child Controller</h5>
+    <ul>
+        <li>Array of RequestStartMiddlewares execute (Irrespective of controller).</li>
+        <li>Array of Expressjs middlewares specific to base controller (registered via
+            <i>.use</i>).</li>
+        <li>Array of Expressjs middlewares specific to child controller (registered via
+            <i>.use</i>).</li>
+        <li>Array of Dino Middlewares specific to base controller (registered via
+            <i>.middlewares</i>)</li>
+        <li>Array of Dino Middlewares specific to child controller (registered via
+            <i>.middlewares</i>)</li>
+        <li>Array of ActionFilters specific to base controller (registered via
+            <i>.filters</i>). Only the
+            <span class="highlight-it">beforeExecution</span> methods are invoked.</li>
+        <li>Array of ActionFilters specific to child controller (registered via
+            <i>.filters</i>). Only the
+            <span class="highlight-it">beforeExecution</span> methods are invoked.</li>
+        <li>Action method/endpoint is executed.</li>
+        <li>Array of ActionFilters specific to child controller (registered via
+            <i>.filters</i>). Only the
+            <span class="highlight-it">afterExecution</span> methods are invoked.</li>
+        <li>Array of ActionFilters specific to base controller (registered via
+            <i>.filters</i>). Only the
+            <span class="highlight-it">afterExecution</span> methods are invoked.</li>
+        <li>Array of ResultFilters specific to child controller (registered via
+            <i>.result</i>).</li>
+        <li>Array of ResultFilters specific to base controller (registered via
+            <i>.result</i>).</li>
+        <li>Array of RequestEndMiddlewares (Irrespective of controller).</li>
+    </ul>
+    <h5 class="section-sub-header">3. Order of Dinowares When Error occured</h5>
+    <ul>
+        <li>Array of ExceptionFilters specific to controller (registered via
+            <i>.exceptions</i>).</li>
+        <li>Array of ErrorMiddlewares (Irrespective of controller).</li>
+        <li>Executes ErrorController implementation of
+            <span class="highlight-it">internalServerError()</span> method.</li>
+    </ul>
+    <h5 class="section-sub-header">4. Order of Dinowares when error occured in Base-Child Controller</h5>
+    <ul>
+        <li>Array of ExceptionFilters specific to child controller (registered via
+            <i>.exceptions</i>).</li>
+        <li>Array of ExceptionFilters specific to base controller (registered via
+            <i>.exceptions</i>).</li>
+        <li>Array of ErrorMiddlewares (Irrespective of controller).</li>
+        <li>Executes ErrorController implementation of
+            <span class="highlight-it">internalServerError()</span> method.</li>
+    </ul>
+</div>
+<div class="remember-points">
+    <p>
+        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+        <span class="title">Remember</span>
+    </p>
+    <ul>
+        <li>
+            RequestStartMiddleware are registered using
+            <span class="highlight-it">dino.requestStart()</span>
+        </li>
+        <li>
+            RequestEndMiddleware are registered using
+            <span class="highlight-it">dino.requestEnd()</span>
+        </li>
+        <li>
+            ErrorMiddleware are registered using
+            <span class="highlight-it">dino.serverError()</span>
+        </li>
+    </ul>
+</div>

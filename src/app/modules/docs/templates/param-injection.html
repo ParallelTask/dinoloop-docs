@@ -1,0 +1,17 @@
+<h3 class="section-header">Parameter Injection</h3>
+<div class="section-content">
+    <p>Dinoloop team created value injection framework which automatically parses the variable segments from the URI and injects
+        them to action method parameters. This reduces writing boiler plate code. This is how it works,
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="paramEx"></pre>
+    </div>
+    <ul>
+        <li>Variable segment key should match with action method parameter.</li>
+        <li>Currently, all values are injected as
+            <i>string</i> type. This is the limitation of Http segments.</li>
+        <li>We are excited to share in the next release V2.0, we are going to introduce
+            <span class="highlight-it">@Parse</span> decorator which is capable of validating data-types of variable segment and http body.
+        </li>
+    </ul>
+</div>

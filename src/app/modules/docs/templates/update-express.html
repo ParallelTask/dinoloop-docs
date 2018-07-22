@@ -1,0 +1,37 @@
+<h3 class="section-header">Type-hint for Express types</h3>
+<div class="section-content">
+    <p>Dinoloop is an Expressjs library and its philosophy is not to tie user to specific expressjs version. With such philosophy
+        there comes some caveats. The
+        <i>Request</i>,
+        <i>Response</i>,
+        <i>NextFunction</i> properties of ApiController are expressjs types, to have type-hint on express objects in development,
+        you are supposed to override
+        <span class="highlight-it">node_modules/dinoloop/modules/types/express.d.ts</span> contents after you install
+        <span class="highlight-it">@types/express</span>.
+    </p>
+    <p>First install expressjs types (version of your choice)</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="installEx"></pre>
+    </div>
+    <p>Now paste following content inside
+        <span class="highlight-it">node_modules/dinoloop/modules/types/express.d.ts</span>
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="typesEx"></pre>
+    </div>
+    <p>You will now be able to have type-hint on expressjs objects in development.</p>
+</div>
+<div class="remember-points">
+    <p>
+        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+        <span class="title">Remember</span>
+    </p>
+    <ul>
+        <li>
+            You will have to provide the path for expressjs types where it is installed.
+        </li>
+        <li>
+            You dont need to map expressjs types in production environment.
+        </li>
+    </ul>
+</div>
