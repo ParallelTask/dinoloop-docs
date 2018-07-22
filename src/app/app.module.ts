@@ -17,7 +17,14 @@ import {
   DocsConceptsApiCtrlComponent,
   DocsConceptsErrCtrlComponent
 } from './modules/docs/components/components';
-import { DocsConceptsDinoPropComponent } from './modules/docs/components/concepts.component';
+import {
+  DocsConceptsDinoPropComponent,
+  DocsAppMiddlewareComponent,
+  DocsConceptsCtrlMiddlewareComponent
+} from './modules/docs/components/concepts.component';
+import {
+  DocsGuideHttpStatusComponent, DocsGuideDeferrerComponent
+} from './modules/docs/components/guide.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +40,11 @@ import { DocsConceptsDinoPropComponent } from './modules/docs/components/concept
     DocsConceptsDecoratorComponent,
     DocsConceptsApiCtrlComponent,
     DocsConceptsErrCtrlComponent,
-    DocsConceptsDinoPropComponent
+    DocsConceptsDinoPropComponent,
+    DocsAppMiddlewareComponent,
+    DocsConceptsCtrlMiddlewareComponent,
+    DocsGuideHttpStatusComponent,
+    DocsGuideDeferrerComponent
   ],
   imports: [
     BrowserModule,

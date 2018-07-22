@@ -1,0 +1,109 @@
+<h3 class="section-header">Application Middlewares</h3>
+<div class="section-content">
+    <p>Application middlewares are configured at application level (which run for every request handled by dino). Dinoloop supports
+        both
+        <span class="highlight-it">sync/async</span> versions of middlewares. Following are the list of classes to be derived to create dinowares at
+        application level
+    </p>
+    <h5 class="section-sub-header">1. RequestStartMiddleware</h5>
+    <div class="section-content">
+        RequestStart middlewares are the first to run when dino receives a request. Please read
+        <a href="#">Flow of dinowares</a>.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="requestStartEx"></pre>
+    </div>
+    <p>Return values of middlewares are ignored. The only way to pass the control to next middleware is using
+        <span class="highlight-it">next()</span>
+    </p>
+    <ul>
+        <li>You have to extend
+            <i>RequestStartMiddleware</i> and implement
+            <span class="highlight-it">invoke()</span> method.</li>
+        <li>
+            <span class="highlight-it">return type is void for middlewares</span> because return values are ignored.</li>
+        <li>Request, Response, NextFunction are the expressjs types, whatever you can do with expressjs might get done.</li>
+        <li>You can read
+            <a href="https://expressjs.com/en/guide/error-handling.html">next(err)</a> on expressjs.</li>
+        <li>
+            <i>RequestStart</i> middlewares are similar to expressjs middlewares in functioning. However, they provide class-based
+            approach with Dependency Injection support as shown below</li>
+    </ul>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="requestStartDIEx"></pre>
+    </div>
+    <h5 class="section-sub-header">2. RequestStartMiddlewareAsync</h5>
+    <div class="section-content">
+        Asnyc version of RequestStart middleware.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="requestStartAsyncEx"></pre>
+    </div>
+    <h5 class="section-sub-header">3. RequestEndMiddleware</h5>
+    <div class="section-content">
+        RequestEnd middlewares are the last to run in the chain of middlewares. Please read
+        <a href="#">Flow of dinowares</a>.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="requestEndEx"></pre>
+    </div>
+    <p>
+        <a href="#">This</a> example explains you how to achieve content negotiation very easily using RequestEnd middleware.</p>
+    <ul>
+        <li>
+            <span class="highlight-it">result</span> is the palceholder of return value of action methods</li>
+    </ul>
+    <h5 class="section-sub-header">4. RequestEndMiddlewareAsync</h5>
+    <div class="section-content">
+        Asnyc version of RequestEnd middleware.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="requestEndAsyncEx"></pre>
+    </div>
+    <h5 class="section-sub-header">5. ErrorMiddleware</h5>
+    <div class="section-content">
+        Following example explains how to create error middlewares that handles uncaught exceptions/errors thrown by application.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="serverErrorEx"></pre>
+    </div>
+    <ul>
+        <li>
+            <span class="highlight-it">err</span> is the placeholder for original Error that occured.</li>
+        <li>Please read
+            <a href="https://expressjs.com/en/guide/error-handling.html">express docs</a> for robust error handling.</li>
+    </ul>
+    <h5 class="section-sub-header">6. ErrorMiddlewareAsync</h5>
+    <div class="section-content">
+        Asnyc version of ErrorMiddleware.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="serverErrorAsyncEx"></pre>
+    </div>
+    <h5 class="section-sub-header">How to register application middlewares?</h5>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="appMwareEx"></pre>
+    </div>
+</div>
+<div class="remember-points">
+    <p>
+        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+        <span class="title">Remember</span>
+    </p>
+    <ul>
+        <li>
+            It is recommended to have
+            <span class="highlight-it">Async</span> in name for asynchronous middlewares to recognize easily.
+        </li>
+        <li>
+            You can register multiple RequestStartMiddlewares, RequestEndMiddlewares and ErrorMiddlewares, order of execution depends
+            on the order of registration.
+        </li>
+        <li>
+            Dinoloop uses
+            <i>ResponseEndMiddleware</i> which is a built-in RequestEndMiddleware, it ends every API response with Json content-type
+            default. To override this, have your own response middleware by creating one like
+            <a href="#">here</a>.
+        </li>
+    </ul>
+</div>

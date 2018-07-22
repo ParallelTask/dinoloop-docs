@@ -11,7 +11,14 @@ import {
     DocsConceptsApiCtrlComponent,
     DocsConceptsErrCtrlComponent
 } from './modules/docs/components/components';
-import { DocsConceptsDinoPropComponent } from './modules/docs/components/concepts.component';
+import {
+    DocsConceptsDinoPropComponent,
+    DocsAppMiddlewareComponent,
+    DocsConceptsCtrlMiddlewareComponent
+} from './modules/docs/components/concepts.component';
+import {
+    DocsGuideHttpStatusComponent, DocsGuideDeferrerComponent
+} from './modules/docs/components/guide.component';
 
 export const AppRouteStates: Routes = [
     {
@@ -31,7 +38,11 @@ export const AppRouteStates: Routes = [
             { path: 'concepts/decorators', component: DocsConceptsDecoratorComponent },
             { path: 'concepts/api-controller', component: DocsConceptsApiCtrlComponent },
             { path: 'concepts/error-controller', component: DocsConceptsErrCtrlComponent },
-            { path: 'concepts/dino-properties', component: DocsConceptsDinoPropComponent }
+            { path: 'concepts/dino-properties', component: DocsConceptsDinoPropComponent },
+            { path: 'middlewares/app-middlewares', component: DocsAppMiddlewareComponent },
+            { path: 'middlewares/controller-middlewares', component: DocsConceptsCtrlMiddlewareComponent },
+            { path: 'guide/http-codes', component: DocsGuideHttpStatusComponent },
+            { path: 'guide/deferrer', component: DocsGuideDeferrerComponent }
         ]
     }
 ];

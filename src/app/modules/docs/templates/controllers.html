@@ -16,7 +16,7 @@
   <ul>
     <li>
       @Controller(null) or @Controller(undefined) throws
-      <span class="highlight-it">InvalidRouteException</span>
+      <a href="#">InvalidRouteException</a>
     </li>
   </ul>
 </div>
@@ -25,7 +25,8 @@
   <p>
     Controller class contains methods and we can use variety of decorators (
     <a href="#">@HttpGet</a>,
-    <a href="#">@HttpPost</a> etc) to make them as Action methods.
+    <a href="#">@HttpPost</a> etc) to treat them as
+    <span class="highlight-it">Action methods</span>
   </p>
   <div class="code-snippet-terminal">
     <pre [innerHTML]="actionMethod"></pre>
@@ -33,15 +34,15 @@
   <p>
     <span class="highlight-it">@HttpGet</span> tells to create an endpoint. Here, we have created two endpoints
     <span class="highlight-it">/home/get</span> and
-    <span class="highlight-it">/home/get/user/:id</span>. For the second endpoint, values are automatically parsed from named-segments and injected
+    <span class="highlight-it">/home/get/user/:id</span>. For the second endpoint, values are automatically parsed from variable-segments and injected
     into parameters using
-    <a href="#">ParameterInjection</a> technique. Values parsed from named-segments are always injected as string type. However, you
+    <a href="#">ParameterInjection</a> technique. Values parsed from variable-segments are always injected as string type. However, you
     can use data conversion techniques like
-    <a href="#">@Parse</a>.
+    <span class="highlight-it">@Parse</span> (to be released in Version 2.x)
   </p>
   <ul>
     <li>
-      @Http*(null) or @Http*(undefined) raises
+      @Http*(null) or @Http*(undefined) throws
       <span class="highlight-it">InvalidRouteException</span>. * indicates Get, Post, Patch etc.
     </li>
   </ul>
@@ -79,7 +80,7 @@
   <p>
     In the example above, we have used
     <a href="#">@SendsResponse</a>. Dinoloop is now notified and it is the responsibility of this endpoint to send the response. Now,
-    when a GET request is made to this endpoint, express method
+    when a GET request is made to this endpoint, here in this example expressjs method
     <a href="https://expressjs.com/en/api.html#res.download">res.download</a> ends the response.
   </p>
   <ul>
@@ -91,30 +92,6 @@
       It is better practise to have return type as
       <span class="highlight-it">void</span> when an action method has @SendsResponse since the return value is ignored.
     </li>
-  </ul>
-  <p>However, there are cases where you still want to process and continue your results with the
-    <a href="#">chain of dinowares</a> (ex: after returning from callbacks). Here is one such example</p>
-  <div class="code-snippet-terminal">
-    <pre [innerHTML]="callbackEx"></pre>
-  </div>
-  <p>
-    In the above example, we have got results after async-callback operation. Now we can end the response with
-    <span class="highlight-it">this.response</span>, but we would like to continue these results with the chain of middlewares i.e. ResponseEndMiddleware.
-    We can simply do that by using
-    <a href="#">this.dino.proceed</a>, the response will end with 200 status code and JSON parsed result.
-  </p>
-  <ul>
-    <li>
-      <span class="highlight-it">this.dino.proceed</span> is derived from ApiController which proceeds the results to the next chain of middlewares.
-    </li>
-    <li>
-      The 90% of javascript libraries uses
-      <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout">Callback</a> /
-      <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> pattern which are still reusable using
-      <span class="highlight-it">this.dino.proceed</span>
-    </li>
-    <li> We also have a
-      <a href="#">Deferrer</a> built into dinoloop to convert promise objects to async-await pattern (if you are a lover of async-await).</li>
   </ul>
   <div class="remember-points">
     <p>

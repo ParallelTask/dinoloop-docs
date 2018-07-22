@@ -20,7 +20,7 @@
         <pre [innerHTML]="asyncEx"></pre>
     </div>
     <p>When a GET request is made to this endpoint, you will receive response after 2 seconds. This example explains you how
-        to use async-await pattern. According to ES spec any
+        to use async-await pattern. According to ES spec a
         <a href="https://javascript.info/async-await">Promise</a> return type method is awaitable using
         <span class="highlight-it">await</span> keyword.
     </p>
@@ -78,14 +78,15 @@
             ValueInjection framework always injects http-body as first parameter for
             <span class="highlight-it">HttpPost</span>,
             <span class="highlight-it">HttpPut</span>,
-            <span class="highlight-it">HttpPatch</span>. Dinoloop considers the above three HttpVerbs to have body. However, you can always access the
-            body using
+            <span class="highlight-it">HttpPatch</span> requests. Dinoloop considers these three HttpVerbs to have body. However, you can always access
+            the body using
             <a href="#">this.request.body</a> (
-            <a href="https://stackoverflow.com/questions/38306569/what-does-body-parser-do-with-express">body</a> is expressjs property)
+            <a href="https://stackoverflow.com/questions/38306569/what-does-body-parser-do-with-express">body</a> is expressjs property added by
+            <a href="https://www.npmjs.com/package/body-parser">body-parser</a>)
         </li>
         <li>
-            ValueInjection framework parses the named-segments from the URL and injects as parameters. Refer
-            <a href="#">Here</a>.
+            ValueInjection framework parses the variable-segments from the URL and injects as parameters. Refer
+            <a href="#">Here</a> for more examples.
         </li>
     </ul>
 </div>
@@ -110,8 +111,8 @@
 <h5 class="section-sub-header">@SendsResponse()</h5>
 <div class="section-content">
     <p>If you would like to have action method responding to request, then use @SendsResponse(). Pretty useful in situations
-        like File
-        <span class="highlight-it">downloads/uploads</span> or more.
+        like file
+        <span class="highlight-it">downloads/uploads</span>, etc.
     </p>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="sendsResponseEx"></pre>
@@ -128,14 +129,6 @@
     <div class="code-snippet-terminal">
         <pre [innerHTML]="multipleVerbsEx"></pre>
     </div>
-    <ul>
-        <li>
-            It is better practise to have different names for action method but have same route for different http-verbs.
-        </li>
-        <li>
-            Highly recommended not to mix multiple http verbs for a single endpoint. Unless, you have a reason.
-        </li>
-    </ul>
 </div>
 <h3 class="section-header">2. Controller Decorators</h3>
 <h5 class="section-sub-header">@Controller(prefix: string, attr?: IControllerAttribute)</h5>
@@ -144,8 +137,8 @@
     <p class="sub-section-content">prefix: string</p>
     <p>Acts as a base route for all your action endpoints.</p>
     <p class="sub-section-content">attr: IControllerAttribute</p>
-    <p>Configures middlewares at controller level. These middlewares are invoked when any of the enpoint of controller gets
-        request.
+    <p>Configures middlewares for the particular controller. These middlewares are invoked when any one of the enpoint of controller
+        gets request.
     </p>
     <ul>
         <li>
@@ -175,7 +168,7 @@
     <div class="code-snippet-terminal">
         <pre [innerHTML]="withMiddlewaresEx"></pre>
     </div>
-    <p>Dinowares are explained in detail
+    <p>Controller dinowares are explained in detail
         <a href="#">here</a>.</p>
 </div>
 <div class="remember-points">
@@ -185,10 +178,9 @@
     </p>
     <ul>
         <li>
-            Dinoloop considers HttpPost, HttpPut, HttpPatch verbs that have http-request body.
+            Dinoloop considers HttpPost, HttpPut, HttpPatch verbs to have http-request body.
         </li>
-        <li>If you don't have parameters for HttpPost, HttpPut and HttpPatch, it still works. However, if you have parameter
-            http-body gets injected.
+        <li>Http body gets injected as first parameter always for HttpPost, HttpPut and HttpPatch.
         </li>
         <li>
             You can always access the http-body using

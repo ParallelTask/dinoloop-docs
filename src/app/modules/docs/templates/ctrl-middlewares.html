@@ -1,0 +1,138 @@
+<h3 class="section-header">Controller Middlewares</h3>
+<div class="section-content">
+    <p>Controller middlewares are configured at controller level (which run for every request handled by controller endpoint).
+        Dinoloop supports both
+        <span class="highlight-it">sync/async</span> versions of middlewares. Following are the list of classes to be derived to create dinowares at
+        controller level.
+    </p>
+    <h5 class="section-sub-header">1. use: [Expressjs middlewares]</h5>
+    <div class="section-content">
+        You can reuse existing expressjs (
+        <a href="https://www.npmjs.com/package/cors">cors</a>,
+        <a href="https://www.npmjs.com/package/body-parser">body-parser</a>) middlewares. These middlewares run only for the requests handled by controller.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="useEx"></pre>
+    </div>
+    <ul>
+        <li>
+            <span class="highlight-it">use:</span> Provide an array of express middlewares.</li>
+    </ul>
+    <h5 class="section-sub-header">2. Middleware</h5>
+    <p>This example shows how to create Dino middleware.</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="dinowareEx"></pre>
+    </div>
+    <ul>
+        <li>
+            <span class="highlight-it">invoke()</span> is executed everytime the controller receives a request.
+        </li>
+    </ul>
+    <p class="sub-section-content">Dino middleware with custom data</p>
+    <p>You can even provide custom data to your middlewares to
+        <i>make decisions/change behavior</i>. Here is an example to provide custom data</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="dinowareDataEx"></pre>
+    </div>
+    <ul>
+        <li>
+            <span class="highlight-it">data</span> is the placeholder for custom data provided to middleware.
+        </li>
+    </ul>
+    <h5 class="section-sub-header">3. MiddlewareAsync</h5>
+    <p>Async version of Middleware.</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="dinowareAsyncEx"></pre>
+    </div>
+    <ul>
+        <li>
+            You can provide custom data to your async middlewares too.
+        </li>
+    </ul>
+    <h5 class="section-sub-header">4. ActionFilter</h5>
+    <p>Action filters have two abstract methods to implement
+        <span class="highlight-it">beforeExecution()</span> and
+        <span class="highlight-it">afterExecution()</span>.</p>
+    <p class="sub-section-content">beforeExecution(request: Request, response: Response, next: NextFunction, data?: any)</p>
+    <p>This method executes just before executing the action method.</p>
+    <ul>
+        <li>
+            <span class="highlight-it">data</span> is the placeholder for custom data (if you provide)</li>
+    </ul>
+    <p class="sub-section-content">afterExecution(request: Request, response: Response, next: NextFunction, result: any, data?: any)</p>
+    <p>This method executes right after executing the action method.
+    </p>
+    <ul>
+        <li>
+            <span class="highlight-it">result</span> is the placeholder for return value of action method</li>
+        <li>
+            <span class="highlight-it">data</span> is the placeholder for custom data (if you provide)</li>
+    </ul>
+    <p>This example shows you how to create action filters.</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="filterEx"></pre>
+    </div>
+    <h5 class="section-sub-header">5. ActionFilterAsync</h5>
+    <p>Async version of ActionFilter.</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="filterAsyncEx"></pre>
+    </div>
+    <h5 class="section-sub-header">6. ResultFilter</h5>
+    <p>This example shows how to create result filter which handles return value of action method</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="resultEx"></pre>
+    </div>
+    <ul>
+        <li>
+            <span class="highlight-it">result</span> is the placeholder for return value of action method</li>
+        <li>Using result filters, you can override the response type for a particular controller endpoints.</li>
+    </ul>
+    <h5 class="section-sub-header">7. ResultFilterAsync</h5>
+    <p>Asnyc version of ResultFilter.</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="resultAsyncEx"></pre>
+    </div>
+    <h5 class="section-sub-header">8. ExceptionFilter</h5>
+    <p>This example shows how to create exception filters that handles uncaught exceptions/errors thrown by controller endpoints.
+        If any of the action method throws exception, it would first pass on to exception filters registered at controller.</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="exceptionEx"></pre>
+    </div>
+    <ul>
+        <li>
+            <span class="highlight-it">err</span> is the palceholder for original Error that occured</li>
+        <li>Unlike other dinowares,
+            <i>ExceptionFilter</i> and
+            <i>ExceptionFilterAsync</i> do not have support for custom
+            <span class="highlight-it">data</span>
+        </li>
+    </ul>
+    <h5 class="section-sub-header">9. ExceptionFilterAsync</h5>
+    <p>Asnyc version of ExceptionFilter.</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="exceptionAsyncEx"></pre>
+    </div>
+</div>
+<div class="remember-points">
+    <p>
+        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+        <span class="title">Remember</span>
+    </p>
+    <ul>
+        <li>
+            It is recommended to have
+            <span class="highlight-it">Async</span> in name for asynchronous middlewares to recognize easily.
+        </li>
+        <li>
+            You can register multiple use, middlewares, filters, result and exceptions but their order of execution depends on the order
+            of registration.
+        </li>
+        <li>
+            You have to invoke
+            <i>next()</i> to pass on to next middlewares in chain.
+        </li>
+        <li>
+            ExceptionFilter and ExceptionFilterAsync do not have support for custom data.
+        </li>
+    </ul>
+</div>

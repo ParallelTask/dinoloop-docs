@@ -4,52 +4,60 @@
     </p>
     <h5 class="section-sub-header">model: DinoModel</h5>
     <div class="section-content">
-        It represents model data and validation errors for the request. It is used along with
-        <a href="#">@Parse()</a>. Here we have a complete
-        <a href="#">example</a>.
+        Reserved for future use in Version 2.x.
     </div>
     <h5 class="section-sub-header">request: Express.Request</h5>
     <div class="section-content">
         Expressjs
-        <a href="https://expressjs.com/en/api.html#req">request</a> object is mapped to this property.
+        <a href="https://expressjs.com/en/api.html#req">request</a> object is mapped to
+        <span class="highlight-it">this.request</span> property.
     </div>
     <h5 class="section-sub-header">response: Express.Response</h5>
     <div class="section-content">
         Expressjs
-        <a href="https://expressjs.com/en/api.html#res">response</a> object is mapped to this property.
+        <a href="https://expressjs.com/en/api.html#res">response</a> object is mapped to
+        <span class="highlight-it">this.response</span> property.
     </div>
     <h5 class="section-sub-header">next: Express.NextFunction</h5>
     <div class="section-content">
         Expressjs
-        <a href="https://stackoverflow.com/questions/10695629/what-is-the-parameter-next-used-for-in-express">next</a> handler is mapped to this property.
+        <a href="https://stackoverflow.com/questions/10695629/what-is-the-parameter-next-used-for-in-express">next</a> handler is mapped to
+        <span class="highlight-it">this.next</span> property.
     </div>
     <h5 class="section-sub-header">dino: DinoResponse</h5>
     <div class="section-content">
-        <p>dino property has two methods
+        <p>
+            <span class="highlight-it">this.dino</span> property has two methods
             <span class="highlight-it">proceed()</span> and
-            <span class="highlight-it">throw()</span> explained below
+            <span class="highlight-it">throw()</span> which are explained below
         </p>
         <p class="sub-section-content">1. proceed(result: any)</p>
-        <p>When results are returned after async-callback operation, you would then like to have your result available to the
-            next middlewares in the chain, say your result filters and ResponseEnd middlewares. Here is how you do it:</p>
+        <p>When an action method is decorated with
+            <span class="highlight-it">@SendsResponse</span>, Dinoloop is notified and it is the responsibility of this endpoint to send the response.
+            However, there are cases where you still want to process and continue your results with the
+            <a href="#">chain of dinowares</a> (ex: after returning from callbacks). When results are returned after async-callback operation,
+            you would then like to have your result available to the next middlewares in the chain, say your result filters
+            and ResponseEnd middlewares. Here is how you do it:</p>
         <div class="code-snippet-terminal">
             <pre [innerHTML]="callbackEx"></pre>
         </div>
         <ul>
+
             <li>
                 <span class="highlight-it">this.next</span> is highly discouraged to use.
             </li>
             <li>
                 Invoking
                 <span class="highlight-it">this.next()</span> proceeds the execution to the next dinoware but results are not captured. If results are
-                to be captured and proceeded use
+                to be captured use
                 <i>this.dino.proceed(result)</i>.
             </li>
         </ul>
         <p class="sub-section-content">2. throw(err: Error)</p>
         <p>
-            <span class="highlight-it">this.dino.throw</span> is responsible to proceed errors to the next error middlewares in the chain when error
-            is encountered in async-callback operation. Following example explains one such example of mongo connection error.</p>
+            <span class="highlight-it">this.dino.throw</span> is responsible to capture and proceed errors to the next error middlewares in the chain
+            when error is encountered in async-callback operation. Following example explains one such example of mongo connection
+            error.</p>
         <div class="code-snippet-terminal">
             <pre [innerHTML]="dinoThrowEx"></pre>
         </div>
@@ -77,16 +85,23 @@
     </p>
     <ul>
         <li>
+            <i>this.dino.proceed</i> is derived from ApiController which proceeds the results to the next chain of middlewares.
+        </li>
+        <li>
             The request and response properties depends purely on express.js version you have installed.
         </li>
         <li>
-            To handle exceptions on application level use
-            <a href="#">ServerError</a> middlewares.
+            We suggest you to use
+            <i>this.dino.throw(err)</i> over
+            <i>this.next(err)</i> for better consistency and readability.
         </li>
         <li>
-            We suggest you to use
-            <i>this.dino.throw</i> over
-            <i>this.next</i> for better consistence and readability.
+            90% of javascript libraries uses
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout">Callback</a> /
+            <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> pattern which are fully reusable using
+            <span class="highlight-it">this.dino.proceed</span>
         </li>
+        <li> We also have a
+            <a href="#">Deferrer</a> built into dinoloop to convert promise objects to async-await pattern (if you are a lover of async-await).</li>
     </ul>
 </div>

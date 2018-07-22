@@ -21,9 +21,9 @@
     font-family: Arial,sans-serif;
 }
 .copyright{
-    margin: 5px 30px; 
-    font-weight: bold; 
     position: fixed;
     bottom: 0;
     right: 0;
+    width: 100%;
+    border-top: 1px solid #CCC;
 }

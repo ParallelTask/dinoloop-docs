@@ -144,20 +144,6 @@ export class DocsControllerComponent {
       this.response.download(img + '.jpg');
     }
   }`;
-  callbackEx = `
-  import { Controller, ApiController, HttpGet, SendsResponse } from 'dinoloop';
-
-  @Controller('/home')
-  export class HomeController extends ApiController {
-
-    @SendsResponse()
-    @HttpGet('/get')
-    get(): void {
-      setTimeout(() => {
-        this.dino.proceed('Returning from setTimeout after 2 seconds');
-      }, 2000);
-    }
-  }`;
 }
 
 @Component({
@@ -167,22 +153,22 @@ export class DocsControllerComponent {
 })
 export class DocsConceptsDecoratorComponent {
   asyncEx = `
-  import { Controller, ApiController, HttpGet, Async } from 'dinoloop';
+  import { Controller, ApiController, HttpGet, Async, Deferrer } from 'dinoloop';
 
   @Controller('/home')
   export class HomeController extends ApiController {
 
-    private tout(): Promise&lt;string&gt; {
+    async private tout(): Promise&lt;string&gt; {
 
       // Deferrer is dinoloop wrapper to convert callback to promise object
-      return Deferrer.run&lt;string&gt;((resolve, reject) => {
-
-        // Native setTimeout js method
+      const prom = Deferrer.run&lt;string&gt;((resolve, reject) => {
         setTimeout(() => {
           // you have to resolve instead of return
           resolve('Response after 2 sec');
         }, 2000);
       });
+
+      return prom;
     }
 
     // Async methods must be decorated with @Async
@@ -200,8 +186,8 @@ export class DocsConceptsDecoratorComponent {
   }`;
   httpDeleteEx = `
   @HttpDelete('/del');
-  del(): string {
-    return 'HttpDelete';
+  del(): void {
+    return;
   }`;
   httpGetEx = `
   @HttpGet('/get');
@@ -210,8 +196,8 @@ export class DocsConceptsDecoratorComponent {
   }`;
   httpHeadEx = `
   @HttpHead('/head');
-  head(): string {
-    return 'HttpHead';
+  head(): void {
+    return;
   }`;
   httpPostEx = `
   // Injects http-body to first parameter
@@ -220,8 +206,8 @@ export class DocsConceptsDecoratorComponent {
     return body;
   }
 
-  // With named-segments, params must be added from 2nd parameter
-  // body will always be first parameter
+  // With variable-segments, params must be added from 2nd parameter
+  // body will always be injected to first parameter
   @HttpPost('/post/:id')
   post(body: any, id: string): any {
     return {
@@ -268,25 +254,11 @@ export class DocsConceptsDecoratorComponent {
     }, 2000);
   }`;
   multipleVerbsEx = `
-  // 1. NOT RECOMMENDED
   // Responds to GET and POST.
   @HttpGet('/name')
   @HttpPost('/name)
   name(): string {
     return 'Hello World!';
-  }
-
-  // 2. Recommended way
-  // Responds to GET
-  @HttpGet('/name')
-  getName(): string {
-    return 'GetName';
-  }
-
-  // Responds to POST
-  @HttpPost('/name')
-  postName(): string {
-    return 'PostName';
   }`;
   withoutMiddlewaresEx = `
   import { Controller, ApiController, HttpGet } from 'dinoloop';
@@ -305,10 +277,10 @@ export class DocsConceptsDecoratorComponent {
 
   @Controller('/orders', {
     use: [
-      // enable cors for this controller - it's an express-ware
+      // enable cors for this controller - it's an express middleware
       cors(),
 
-      // or have a custom express-ware
+      // or have a custom express middleware
       (req, res, next) => {
         ... add logic
         next();
@@ -356,6 +328,13 @@ export class DocsConceptsApiCtrlComponent {
 
   @Controller('/home')
   export class HomeController extends ApiController {
+
+    @SendsResponse()
+    @HttpGet('/end')
+    end(): void {
+      // This is how you end the response using express.Response object
+      this.response.status(200).json('Ended Response');
+    }
 
     @SendsResponse()
     @HttpGet('/get')
@@ -425,7 +404,7 @@ export class DocsConceptsErrCtrlComponent {
       // Need to crash container?
       if(this.error instanceof SystemFaultedException) {
         // This error is now gone out of dino's control.
-        // If you have err handlers on express they might handle or
+        // If you have err handlers on expressjs they might handle or
         // simply crash container
         this.next(this.error);
       } else {

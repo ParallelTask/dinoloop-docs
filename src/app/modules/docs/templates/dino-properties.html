@@ -47,7 +47,10 @@
     </p>
     <ul>
         <li>
-            <span class="highlight-it">Note:</span> This is applicable only for Controller instances. Middleware instances can be singleton.</li>
+            <span class="highlight-it">Note:</span> This is applicable only for Controller instances. Middleware instances can be singleton depends
+            totally on your requirements. If you are new to DI, we highly recommend you to understand the lifetime and scope
+            of objects and terms like DependencyPerResolve, SingletonScope etc.
+        </li>
     </ul>
     <p class="sub-section-content">Problems with injection-js?</p>
     <p>
@@ -69,8 +72,8 @@
     <p class="sub-section-content">Why dinoloop uses router middleware?</p>
     <p>
         Expressjs fires the
-        <a href="https://stackoverflow.com/questions/10695629/what-is-the-parameter-next-used-for-in-express">next</a> handlers based on the mounted path and does not know/care the endpoint before ahead. So the middlewares
-        still gets fired, though the endpoint or action route is not matched. Below code explains you
+        <a href="https://stackoverflow.com/questions/10695629/what-is-the-parameter-next-used-for-in-express">next</a> handlers based on the mounted path and does not know/care the endpoint before ahead. The middlewares still
+        gets fired, though the endpoint or action route is not matched. Below example explains in detail
     </p>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="expressMountEx"></pre>
@@ -80,16 +83,16 @@
             <span class="highlight-it">GET /admin/home;</span> This works as expected</li>
         <li>
             <span class="highlight-it">GET /admin/apple;</span> There is no
-            <span class="highlight-it">/admin/apple</span> endpoint in the router but still the
+            <span class="highlight-it">/admin/apple</span> endpoint in the routes but still the
             <span class="highlight-it">/admin</span> middleware gets fired.
         </li>
     </ul>
     <p>
-        Even though end route is not matched, expressjs fires the middlewares in the chain of execution model. To overcome this problem,
-        dinoloop introduced router-middleware. Dinoloop makes sure middlewares are executed only when the valid action route/endpoint
-        is matched. This increases response times and reduces unwanted handlers execution time. Invoking this method disables
-        dinoloop router middleware and the execution works similar to expressjs. Highly recommended
-        <span class="highlight-it">NOT TO INVOKE</span> this.
+        Though, the end route is not matched expressjs fires the middlewares in the chain. To overcome this problem, dinoloop introduced
+        router-middleware. Dinoloop makes sure middlewares are executed only when the valid action route/endpoint is matched.
+        This increases response times and reduces unwanted handlers execution time. Invoking this method disables dinoloop
+        router middleware and the execution model works similar to expressjs. Highly recommended
+        <span class="highlight-it">DO NOT INVOKE</span> this.
     </p>
     <h5 class="section-sub-header">5. enableUserIdentity()</h5>
     <div class="section-content">
@@ -116,7 +119,7 @@
     </div>
     <h5 class="section-sub-header">8. requestStart&lt;T&gt;(T)</h5>
     <div class="section-content">
-        Register RequestStart middlewares that handles the request first in the chain of execution. More on
+        Register RequestStart middlewares which handle the request first in the chain of execution. More on
         <a href="#">RequestStart</a> Middlewares.
     </div>
     <div class="code-snippet-terminal">
@@ -124,7 +127,7 @@
     </div>
     <h5 class="section-sub-header">9. requestEnd&lt;T&gt;(T)</h5>
     <div class="section-content">
-        Register RequestEnd middlewares that handles the request last in the chain of execution. More on
+        Register RequestEnd middlewares which handle the request last in the chain of execution. More on
         <a href="#">RequestEnd</a> Middlewares.
     </div>
     <div class="code-snippet-terminal">
