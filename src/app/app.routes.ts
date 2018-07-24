@@ -25,6 +25,13 @@ import {
     DocsGuideUpdateExpressDComponent,
     DocsGuideErrCtrlErrMwareDComponent
 } from './modules/docs/components/guide.component';
+import {
+    DocsExamplesResMsgExComponent,
+    DocsExamplesExpressjsComponent
+} from './modules/docs/components/examples.component';
+import {
+    DocsBuiltInExceptionsComponent
+} from './modules/docs/components/builtin.component';
 
 export const AppRouteStates: Routes = [
     {
@@ -53,7 +60,10 @@ export const AppRouteStates: Routes = [
             { path: 'guide/dinowares-flow', component: DocsGuideDinowaresFlowComponent },
             { path: 'guide/param-injection', component: DocsGuideParamInjectionComponent },
             { path: 'guide/update-expressd', component: DocsGuideUpdateExpressDComponent },
-            { path: 'guide/errctrl-errmware', component: DocsGuideErrCtrlErrMwareDComponent }
+            { path: 'guide/errctrl-errmware', component: DocsGuideErrCtrlErrMwareDComponent },
+            { path: 'examples/using-expressjs', component: DocsExamplesExpressjsComponent },
+            { path: 'examples/response-msg-exception', component: DocsExamplesResMsgExComponent },
+            { path: 'builtin/exceptions', component: DocsBuiltInExceptionsComponent }
         ]
     }
 ];

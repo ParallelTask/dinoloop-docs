@@ -2,7 +2,7 @@
 <div class="section-content">
     <p>
         Dinoloop decorators use
-        <a href="#">reflect-metadata</a> behind the scenes. It's a well-known concept in JAVA/C# and other programming languages, but
+        <a href="https://www.npmjs.com/package/reflect-metadata">reflect-metadata</a> behind the scenes. It's a well-known concept in JAVA/C# and other programming languages, but
         in the JavaScript world, it's relatively new. Attributes are very much similar to
         <a href="https://en.wikipedia.org/wiki/Java_annotation">Java annotation</a> and
         <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/">C# attributes</a>.
@@ -26,7 +26,7 @@
     </p>
     <ul>
         <li>
-            <a href="#">Deferrer</a> built into dinoloop to convert promise objects to async-await pattern</li>
+            <a routerLink="/docs/guide/deferrer">Deferrer</a> built into dinoloop to convert promise objects to async-await pattern</li>
     </ul>
 </div>
 <h5 class="section-sub-header">@HttpAll(route: string)</h5>
@@ -80,13 +80,13 @@
             <span class="highlight-it">HttpPut</span>,
             <span class="highlight-it">HttpPatch</span> requests. Dinoloop considers these three HttpVerbs to have body. However, you can always access
             the body using
-            <a href="#">this.request.body</a> (
+            <span class="highlight-it">this.request.body</span> (
             <a href="https://stackoverflow.com/questions/38306569/what-does-body-parser-do-with-express">body</a> is expressjs property added by
             <a href="https://www.npmjs.com/package/body-parser">body-parser</a>)
         </li>
         <li>
             ValueInjection framework parses the variable-segments from the URL and injects as parameters. Refer
-            <a href="#">Here</a> for more examples.
+            <a routerLink="/docs/guide/param-injection">Here</a> for more examples.
         </li>
     </ul>
 </div>
@@ -119,7 +119,7 @@
     </div>
     <ul>
         <li>
-            <a href="#">HttpStatusCode.oK</a> is the dinoloop enum for standard http-status codes.
+            <a routerLink="/docs/guide/http-codes">HttpStatusCode.oK</a> is the dinoloop enum for standard http-status codes.
         </li>
     </ul>
 </div>
@@ -154,7 +154,7 @@
         <li>
             <b>result:</b> Provide an array of result dinowares which captures return values from action method and proceeds
             to
-            <a href="#">RequestEnd</a> middlewares.
+            <a routerLink="/docs/middlewares/app-middlewares">RequestEnd</a> middlewares.
         </li>
         <li>
             <b>exceptions:</b> Provide an array of exception dinowares which handles uncaught exceptions thrown by controller.
@@ -169,7 +169,7 @@
         <pre [innerHTML]="withMiddlewaresEx"></pre>
     </div>
     <p>Controller dinowares are explained in detail
-        <a href="#">here</a>.</p>
+        <a routerLink="/docs/middlewares/controller-middlewares">here</a>.</p>
 </div>
 <div class="remember-points">
     <p>
@@ -192,7 +192,7 @@
         </li>
         <li>
             Always use
-            <a href="#">HttpStatusCode</a> enum for status codes to have better readability.
+            <a routerLink="/docs/guide/http-codes">HttpStatusCode</a> enum for status codes to have better readability.
         </li>
     </ul>
 </div>

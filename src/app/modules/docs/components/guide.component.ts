@@ -110,7 +110,41 @@ export class DocsGuideDeferrerComponent {
     templateUrl: '../templates/ctrl-inheritance.html',
     styleUrls: ['../docs.component.css']
 })
-export class DocsGuideCtrlInheritanceComponent { }
+export class DocsGuideCtrlInheritanceComponent {
+    inheritanceEx = `
+    @Controller('', {
+        middlewares: [AuthorizeMiddleware]
+    })
+    export class AuthorizeController extends ApiController{ }
+
+    @Controller('/home')
+    export class HomeController extends AuthorizeController {
+
+        @HttpGet('/get')
+        get(): string {
+            return 'Home Page';
+        }
+    }
+
+    @Controller('/about')
+    export class AboutController extends AuthorizeController {
+
+        @HttpGet('/get')
+        get(): string {
+            return 'About Page';
+        }
+    }
+
+    // No Authorization
+    @Controller('/contact')
+    export class ContactController extends ApiController {
+
+        @HttpGet('/get')
+        get(): string {
+            return 'Contact Page';
+        }
+    }`;
+}
 
 @Component({
     selector: 'app-guide-dinowares-flow',
@@ -175,7 +209,7 @@ export class DocsGuideParamInjectionComponent {
 })
 export class DocsGuideUpdateExpressDComponent {
     installEx = `
-    $ npm install @types/express --save-dev`;
+    $ npm install @types/express@4.x --save-dev`;
     typesEx = `
     import { Request, Response, NextFunction, Express, Router } from '../../../@types/express';
 

@@ -11,12 +11,12 @@
   </div>
   <p>
     <span class="highlight-it">/home</span> is the prefix which allows all your routes share a common prefix.
-    <a href="#">@Controller</a> decorator have more features.
+    <a routerLink="/docs/concepts/decorators">@Controller</a> decorator have more features.
   </p>
   <ul>
     <li>
       @Controller(null) or @Controller(undefined) throws
-      <a href="#">InvalidRouteException</a>
+      <a routerLink="/docs/builtin/exceptions">InvalidRouteException</a>
     </li>
   </ul>
 </div>
@@ -24,8 +24,8 @@
 <div class="section-content">
   <p>
     Controller class contains methods and we can use variety of decorators (
-    <a href="#">@HttpGet</a>,
-    <a href="#">@HttpPost</a> etc) to treat them as
+    <a routerLink="/docs/concepts/decorators">@HttpGet</a>,
+    <a routerLink="/docs/concepts/decorators">@HttpPost</a> etc) to treat them as
     <span class="highlight-it">Action methods</span>
   </p>
   <div class="code-snippet-terminal">
@@ -36,7 +36,7 @@
     <span class="highlight-it">/home/get</span> and
     <span class="highlight-it">/home/get/user/:id</span>. For the second endpoint, values are automatically parsed from variable-segments and injected
     into parameters using
-    <a href="#">ParameterInjection</a> technique. Values parsed from variable-segments are always injected as string type. However, you
+    <a routerLink="/docs/guide/param-injection">ParameterInjection</a> technique. Values parsed from variable-segments are always injected as string type. However, you
     can use data conversion techniques like
     <span class="highlight-it">@Parse</span> (to be released in Version 2.x)
   </p>
@@ -53,7 +53,7 @@
   <p class="sub-section-content">1. Action method without @SendsResponse decorator</p>
   <p>
     In the example above, we haven't used
-    <a href="#">@SendsResponse</a>. So, Dinoloop keeps waiting for result from controller, once the results are returned it invokes ResponseEndMiddleware
+    <a routerLink="/docs/concepts/decorators">@SendsResponse</a>. So, Dinoloop keeps waiting for result from controller, once the results are returned it invokes ResponseEndMiddleware
     (a built-in dinoware) which is responsible to send JSON response. Here is the pseudo code
   </p>
   <div class="code-snippet-terminal">
@@ -61,8 +61,9 @@
   </div>
   <p>If result is undefined then it ends the response with 204 status code. Otherwise, it ends the response with 200 status
     code. You can override this behavior by creating you own dinoware using
-    <a href="#">RequestEndMiddleware</a> technique. An example to implement
-    <a href="#">content-negotation</a> using RequestEndMiddleware.
+    <a routerLink="/docs/middlewares/app-middlewares">RequestEndMiddleware</a> technique.
+    <!--An example to implement
+    <a routerLink="/docs/examples/content-negotiation">content-negotation</a> using RequestEndMiddleware. -->
   </p>
   <ul>
     <li>
@@ -79,13 +80,13 @@
   </div>
   <p>
     In the example above, we have used
-    <a href="#">@SendsResponse</a>. Dinoloop is now notified and it is the responsibility of this endpoint to send the response. Now,
+    <a routerLink="/docs/concepts/decorators">@SendsResponse</a>. Dinoloop is now notified and it is the responsibility of this endpoint to send the response. Now,
     when a GET request is made to this endpoint, here in this example expressjs method
     <a href="https://expressjs.com/en/api.html#res.download">res.download</a> ends the response.
   </p>
   <ul>
     <li>
-      <a href="#">this.response</a> - derived from ApiController and it is of type
+      <a routerLink="/docs/concepts/api-controller">this.response</a> - derived from ApiController and it is of type
       <a href="https://expressjs.com/en/api.html#res">express.Response</a>
     </li>
     <li>

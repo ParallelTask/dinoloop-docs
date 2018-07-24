@@ -31,6 +31,13 @@ import {
   DocsGuideUpdateExpressDComponent,
   DocsGuideErrCtrlErrMwareDComponent
 } from './modules/docs/components/guide.component';
+import {
+  DocsExamplesResMsgExComponent,
+  DocsExamplesExpressjsComponent
+} from './modules/docs/components/examples.component';
+import {
+  DocsBuiltInExceptionsComponent
+} from './modules/docs/components/builtin.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +62,10 @@ import {
     DocsGuideDinowaresFlowComponent,
     DocsGuideParamInjectionComponent,
     DocsGuideUpdateExpressDComponent,
-    DocsGuideErrCtrlErrMwareDComponent
+    DocsGuideErrCtrlErrMwareDComponent,
+    DocsExamplesResMsgExComponent,
+    DocsBuiltInExceptionsComponent,
+    DocsExamplesExpressjsComponent
   ],
   imports: [
     BrowserModule,

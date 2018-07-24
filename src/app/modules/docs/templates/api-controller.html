@@ -4,7 +4,7 @@
     </p>
     <h5 class="section-sub-header">model: DinoModel</h5>
     <div class="section-content">
-        Reserved for future use in Version 2.x.
+        Reserved for future use.
     </div>
     <h5 class="section-sub-header">request: Express.Request</h5>
     <div class="section-content">
@@ -35,7 +35,7 @@
         <p>When an action method is decorated with
             <span class="highlight-it">@SendsResponse</span>, Dinoloop is notified and it is the responsibility of this endpoint to send the response.
             However, there are cases where you still want to process and continue your results with the
-            <a href="#">chain of dinowares</a> (ex: after returning from callbacks). When results are returned after async-callback operation,
+            <a routerLink="/docs/guide/dinowares-flow">chain of dinowares</a> (ex: after returning from callbacks). When results are returned after async-callback operation,
             you would then like to have your result available to the next middlewares in the chain, say your result filters
             and ResponseEnd middlewares. Here is how you do it:</p>
         <div class="code-snippet-terminal">
@@ -57,7 +57,8 @@
         <p>
             <span class="highlight-it">this.dino.throw</span> is responsible to capture and proceed errors to the next error middlewares in the chain
             when error is encountered in async-callback operation. Following example explains one such example of mongo connection
-            error.</p>
+            error.
+        </p>
         <div class="code-snippet-terminal">
             <pre [innerHTML]="dinoThrowEx"></pre>
         </div>
@@ -102,6 +103,6 @@
             <span class="highlight-it">this.dino.proceed</span>
         </li>
         <li> We also have a
-            <a href="#">Deferrer</a> built into dinoloop to convert promise objects to async-await pattern (if you are a lover of async-await).</li>
+            <a routerLink="/docs/guide/deferrer">Deferrer</a> built into dinoloop to convert promise objects to async-await pattern (if you are a lover of async-await).</li>
     </ul>
 </div>

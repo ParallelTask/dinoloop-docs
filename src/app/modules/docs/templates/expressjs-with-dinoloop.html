@@ -1,0 +1,26 @@
+<h3 class="section-header">Expressjs with Dinoloop</h3>
+<div class="section-content">
+    <h5 class="section-sub-header">1. Adding dinoloop to existing expressjs application</h5>
+    <div class="section-content">
+        <p>Dinoloop has been designed from the start for gradual adoption, and you can use as little or as much dinoloop as
+            you need. Perhaps you only want to develop some "REST APIs" using dinoloop and other REST APIs can be developed
+            using expressjs. In this section, we will show how to create dinoloop REST API to an existing or newly created
+            express app</p>
+        <p class="sub-section-content">Step 1: Add HomeController (file: home.controller.ts)</p>
+        <div class="code-snippet-terminal">
+            <pre [innerHTML]="controllerAddEx"></pre>
+        </div>
+        <p class="sub-section-content">Step 2: Mount dinoloop and bind to express instance (file: app.ts)</p>
+        <div class="code-snippet-terminal">
+            <pre [innerHTML]="mountDinoloopEx"></pre>
+        </div>
+        <p>Dinoloop is mounted on
+            <span class="highlight-it">/api</span> and all of its controller routes/endpoints are also mounted on
+            <span class="highlight-it">/api</span>. Dinoloop will handle those requests which are mounted on
+            <span class="highlight-it">/api</span> i.e.
+            <span class="highlight-it">/api/home/get</span>, the other end points
+            <i>/home</i> and
+            <i>/about</i> which are created by expressjs are not handled by dinoloop, this way you can slowly migrate your existing
+            expressjs app to dinoloop or you can start writing your new REST APIs using dinoloop in combination with expressjs.</p>
+    </div>
+</div>

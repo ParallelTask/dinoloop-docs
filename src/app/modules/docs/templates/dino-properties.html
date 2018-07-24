@@ -65,8 +65,8 @@
         <p>
             Dinoloop internally uses router middleware (created by dinoloop team) which handles every request to verify if the request
             matches a valid endpoint i.e. action method, If the request does not match then dinloop throws
-            <a href="#">RouteNotFoundException</a>. You can handle it by
-            <a href="#">writing your own RouteNotFoundException middleware</a>.
+            <a routerLink="/docs/builtin/exceptions">RouteNotFoundException</a>. You can handle it by
+            <a routerLink="/docs/builtin/exceptions">writing your own RouteNotFoundException middleware</a>.
         </p>
     </div>
     <p class="sub-section-content">Why dinoloop uses router middleware?</p>
@@ -120,7 +120,7 @@
     <h5 class="section-sub-header">8. requestStart&lt;T&gt;(T)</h5>
     <div class="section-content">
         Register RequestStart middlewares which handle the request first in the chain of execution. More on
-        <a href="#">RequestStart</a> Middlewares.
+        <a routerLink="/docs/middlewares/app-middlewares">RequestStart</a> Middlewares.
     </div>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="requestStartEx"></pre>
@@ -128,7 +128,7 @@
     <h5 class="section-sub-header">9. requestEnd&lt;T&gt;(T)</h5>
     <div class="section-content">
         Register RequestEnd middlewares which handle the request last in the chain of execution. More on
-        <a href="#">RequestEnd</a> Middlewares.
+        <a routerLink="/docs/middlewares/app-middlewares">RequestEnd</a> Middlewares.
     </div>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="requestEndEx"></pre>
@@ -136,7 +136,7 @@
     <h5 class="section-sub-header">10. serverError&lt;T&gt;(T)</h5>
     <div class="section-content">
         Register ServerError middlewares to handle uncaught exceptions/errors thrown by the application. More on
-        <a href="#">ServerError</a> Middlewares.
+        <a routerLink="/docs/middlewares/app-middlewares">ServerError</a> Middlewares.
     </div>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="serverErrorEx"></pre>

@@ -6,7 +6,7 @@
         <i>Response</i>,
         <i>NextFunction</i> properties of ApiController are expressjs types, to have type-hint on express objects in development,
         you are supposed to override
-        <span class="highlight-it">node_modules/dinoloop/modules/types/express.d.ts</span> contents after you install
+        <span class="highlight-it">node_modules/dinoloop/modules/types/express.d.ts</span> contents, this can be done only after you install
         <span class="highlight-it">@types/express</span>.
     </p>
     <p>First install expressjs types (version of your choice)</p>
@@ -28,10 +28,10 @@
     </p>
     <ul>
         <li>
-            You will have to provide the path for expressjs types where it is installed.
+            You will have to provide the installed path of expressjs types.
         </li>
         <li>
-            You dont need to map expressjs types in production environment.
+            You dont need to map expressjs types in production environment. This is required only in development.
         </li>
     </ul>
 </div>

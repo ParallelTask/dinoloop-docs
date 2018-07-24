@@ -1,0 +1,34 @@
+<h3 class="section-header">HttpResponseMessage and HttpResponseException</h3>
+<div class="section-content">
+    <p>This guide explains you how to create custom
+        <i>HttpResponseMessage</i> and
+        <i>HttpResponseException</i> and advantages of using them.
+    </p>
+    <h5 class="section-sub-header">1. HttpResponseMessage</h5>
+    <div class="section-content">
+        Dinoloop recommends to create your own version of
+        <i>HttpResponseMessage</i> for a common response by creating and registering a
+        <a routerLink="/docs/middlewares/app-middlewares">RequestEnd</a> middleware. Here is how you do it:
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="httpResponseEx"></pre>
+    </div>
+    <ul>
+        <li>Pretty useful when you want to set
+            <span class="highlight-it">HttpStatusCode</span> in the action method.</li>
+    </ul>
+    <h5 class="section-sub-header">2. HttpResponseException</h5>
+    <div class="section-content">
+        Dinoloop recommends to create your own version of
+        <i>HttpResponseException</i> derived from
+        <a routerLink="/docs/builtin/exceptions">CustomException</a> for a common response by creating and registering
+        <a routerLink="/docs/middlewares/app-middlewares">ServerError</a> middleware. Here is how you do it:
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="httpExceptionEx"></pre>
+    </div>
+    <ul>
+        <li>Pretty useful when you want to set
+            <span class="highlight-it">HttpStatusCode</span> in the action method on exceptions.</li>
+    </ul>
+</div>

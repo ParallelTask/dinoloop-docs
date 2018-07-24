@@ -8,7 +8,7 @@
     <h5 class="section-sub-header">1. RequestStartMiddleware</h5>
     <div class="section-content">
         RequestStart middlewares are the first to run when dino receives a request. Please read
-        <a href="#">Flow of dinowares</a>.
+        <a routerLink="/docs/guide/dinowares-flow">Flow of dinowares</a>.
     </div>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="requestStartEx"></pre>
@@ -42,13 +42,11 @@
     <h5 class="section-sub-header">3. RequestEndMiddleware</h5>
     <div class="section-content">
         RequestEnd middlewares are the last to run in the chain of middlewares. Please read
-        <a href="#">Flow of dinowares</a>.
+        <a routerLink="/docs/guide/dinowares-flow">Flow of dinowares</a>.
     </div>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="requestEndEx"></pre>
     </div>
-    <p>
-        <a href="#">This</a> example explains you how to achieve content negotiation very easily using RequestEnd middleware.</p>
     <ul>
         <li>
             <span class="highlight-it">result</span> is the palceholder of return value of action methods</li>
@@ -103,7 +101,7 @@
             Dinoloop uses
             <i>ResponseEndMiddleware</i> which is a built-in RequestEndMiddleware, it ends every API response with Json content-type
             default. To override this, have your own response middleware by creating one like
-            <a href="#">here</a>.
+            <a routerLink="/docs/examples/response-msg-exception">here</a>.
         </li>
     </ul>
 </div>

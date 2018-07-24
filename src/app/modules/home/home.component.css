@@ -4,6 +4,9 @@
     left:0;
     overflow-x: hidden;
 }
+.notification {
+    color:#990099;
+}
 .left-title {
     color:#ff751a; 
     font-size: 18px;
@@ -26,4 +29,14 @@
     right: 0;
     width: 100%;
     border-top: 1px solid #CCC;
+}
+.contibutors{
+    margin: 10px 0;
+}
+.contibutors img {
+    border:2px solid #eee; 
+    border-radius: 50%; 
+    margin: 2px;
+    width: 40px; 
+    height:40px;
 }
