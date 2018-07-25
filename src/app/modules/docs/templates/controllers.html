@@ -2,8 +2,8 @@
 <div class="section-content">
   <p>
     This documentation assumes that you are already familiar with
-    <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a> architecture. In Dinoloop, controller is just a class. However, we need to add
-    <span class="highlight-it">@Controller</span> decorator and must be derived from
+    <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a> architecture. In Dinoloop, a controller is just a class. However, one must use the
+    <span class="highlight-it">@Controller</span> decorator and the controller must be derived from the
     <span class="highlight-it">ApiController</span> class. Here is how you create a controller
   </p>
   <div class="code-snippet-terminal">
@@ -11,7 +11,7 @@
   </div>
   <p>
     <span class="highlight-it">/home</span> is the prefix which allows all your routes share a common prefix.
-    <a routerLink="/docs/concepts/decorators">@Controller</a> decorator have more features.
+    <a routerLink="/docs/concepts/decorators">@Controller</a> decorator has more features.
   </p>
   <ul>
     <li>
@@ -23,7 +23,7 @@
 <h3 class="section-header">Action Methods</h3>
 <div class="section-content">
   <p>
-    Controller class contains methods and we can use variety of decorators (
+    The Controller class contains methods and we can use variety of decorators (
     <a routerLink="/docs/concepts/decorators">@HttpGet</a>,
     <a routerLink="/docs/concepts/decorators">@HttpPost</a> etc) to treat them as
     <span class="highlight-it">Action methods</span>
@@ -32,12 +32,12 @@
     <pre [innerHTML]="actionMethod"></pre>
   </div>
   <p>
-    <span class="highlight-it">@HttpGet</span> tells to create an endpoint. Here, we have created two endpoints
+    <span class="highlight-it">@HttpGet</span> creates an endpoint. Here, we have created two endpoints
     <span class="highlight-it">/home/get</span> and
     <span class="highlight-it">/home/get/user/:id</span>. For the second endpoint, values are automatically parsed from variable-segments and injected
     into parameters using
-    <a routerLink="/docs/guide/param-injection">ParameterInjection</a> technique. Values parsed from variable-segments are always injected as string type. However, you
-    can use data conversion techniques like
+    <a routerLink="/docs/guide/param-injection">ParameterInjection</a>. Values parsed from variable-segments are always injected as a string type. However, you can use
+    data conversion techniques like
     <span class="highlight-it">@Parse</span> (to be released in Version 2.x)
   </p>
   <ul>
@@ -67,9 +67,9 @@
   </p>
   <ul>
     <li>
-      When an action method is void or return value is undefined then it ends response with 204 status code.
+      When an action method is void or return value is undefined then it ends the response with a 204 status code.
     </li>
-    <li>When action method returns
+    <li>When the action method returns
       <span class="highlight-it">null</span> or
       <span class="highlight-it">other</span> values, It ends responds with 200 status code and result is JSON parsed.
     </li>
@@ -81,16 +81,16 @@
   <p>
     In the example above, we have used
     <a routerLink="/docs/concepts/decorators">@SendsResponse</a>. Dinoloop is now notified and it is the responsibility of this endpoint to send the response. Now,
-    when a GET request is made to this endpoint, here in this example expressjs method
+    when a GET request is made to this endpoint,
     <a href="https://expressjs.com/en/api.html#res.download">res.download</a> ends the response.
   </p>
   <ul>
     <li>
-      <a routerLink="/docs/concepts/api-controller">this.response</a> - derived from ApiController and it is of type
+      <a routerLink="/docs/concepts/api-controller">this.response</a> is derived from ApiController and it is of type
       <a href="https://expressjs.com/en/api.html#res">express.Response</a>
     </li>
     <li>
-      It is better practise to have return type as
+      It is better practice to have return type as
       <span class="highlight-it">void</span> when an action method has @SendsResponse since the return value is ignored.
     </li>
   </ul>
@@ -101,10 +101,10 @@
     </p>
     <ul>
       <li>
-        It is better practise to have every controller class name end with a word "Controller".
+        It is best practice to have every controller class name end with the word "Controller".
       </li>
       <li>
-        It is better practise to have every controller class located in controllers folder of MVC application.
+        It is best practice to have every controller class located in a controllers folder of MVC application.
       </li>
     </ul>
   </div>
