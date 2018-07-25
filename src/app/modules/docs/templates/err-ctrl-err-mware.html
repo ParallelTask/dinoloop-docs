@@ -1,27 +1,27 @@
 <h3 class="section-header">ErrorMiddleware vs ErrorController</h3>
 <div class="section-content">
     <p>Dinoloop has support for multiple
-        <a routerLink="/docs/middlewares/app-middlewares">ErrorMiddleware</a> but single
-        <a routerLink="/docs/concepts/error-controller">ErrorController</a>. This guide explains you the why.</p>
+        <a routerLink="/docs/middlewares/app-middlewares">ErrorMiddleware</a> but only a single
+        <a routerLink="/docs/concepts/error-controller">ErrorController</a>. This guide explains why.</p>
     <h5 class="section-sub-header">Why Multiple ErrorMiddlewares?</h5>
     <div class="section-content">
         <p>Expressjs has robust
-            <a href="https://expressjs.com/en/guide/using-middleware.html#middleware.error-handling">error handling</a> using error middlewares. Dinoloop wants this great feature in its core. Awesome to have it
-            :). Somehow, We do have a problem. How do you figure out this middleware handles logic for global error handler?
-            You either have to walkthrough all the middlewares logic or have consistent filename.
+            <a href="https://expressjs.com/en/guide/using-middleware.html#middleware.error-handling">error handling</a> using error middlewares. Dinoloop wants this great feature in its core. This comes with one
+            problem. How do you figure out if this middleware handles logic for the global error handler? You either have
+            to walkthrough all the middlewares logic or have consistent filenames.
         </p>
-        <p>Here comes the ErrorController to solve this problem.</p>
+        <p>The ErrorController solves this problem.</p>
     </div>
     <h5 class="section-sub-header">Why Single ErrorController?</h5>
     <div class="section-content">
-        <p>To me/others know exactly where to put application error logic.
+        <p>So others know exactly where to put application error logic.
         </p>
     </div>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="errCtrlEx"></pre>
     </div>
     <ul>
-        <li>ErrorController is the last error handler in dinoloop, once the error goes out of its scope, it reaches to expressjs.
-            Now expressjs can decide to crash the container or handle it.</li>
+        <li>ErrorController is the last error handler in Dinoloop. Once the error goes out of its scope, it reaches Expressjs.
+            Now Expressjs can decide to crash the container or handle it.</li>
     </ul>
 </div>
