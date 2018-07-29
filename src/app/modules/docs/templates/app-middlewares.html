@@ -2,8 +2,8 @@
 <div class="section-content">
     <p>Application middlewares are configured at application level (which run for every request handled by dino). Dinoloop supports
         both
-        <span class="highlight-it">sync/async</span> versions of middlewares. Following are the list of classes to be derived to create dinowares at
-        application level
+        <span class="highlight-it">sync/async</span> versions of middlewares. The following is a list of classes for creating dinowares at application
+        level
     </p>
     <h5 class="section-sub-header">1. RequestStartMiddleware</h5>
     <div class="section-content">
@@ -22,11 +22,11 @@
             <span class="highlight-it">invoke()</span> method.</li>
         <li>
             <span class="highlight-it">return type is void for middlewares</span> because return values are ignored.</li>
-        <li>Request, Response, NextFunction are the expressjs types, whatever you can do with expressjs might get done.</li>
+        <li>Request, Response, NextFunction are the Expressjs types, whatever you can do with Expressjs might get done.</li>
         <li>You can read
-            <a href="https://expressjs.com/en/guide/error-handling.html">next(err)</a> on expressjs.</li>
+            <a href="https://expressjs.com/en/guide/error-handling.html">next(err)</a> on Expressjs.</li>
         <li>
-            <i>RequestStart</i> middlewares are similar to expressjs middlewares in functioning. However, they provide class-based
+            <i>RequestStart</i> middlewares are similar to Expressjs middlewares in functioning. However, they provide a class-based
             approach with Dependency Injection support as shown below</li>
     </ul>
     <div class="code-snippet-terminal">
@@ -49,18 +49,18 @@
     </div>
     <ul>
         <li>
-            <span class="highlight-it">result</span> is the palceholder of return value of action methods</li>
+            <span class="highlight-it">result</span> is the placeholder for the return value from action methods</li>
     </ul>
     <h5 class="section-sub-header">4. RequestEndMiddlewareAsync</h5>
     <div class="section-content">
-        Asnyc version of RequestEnd middleware.
+        Async version of RequestEnd middleware.
     </div>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="requestEndAsyncEx"></pre>
     </div>
     <h5 class="section-sub-header">5. ErrorMiddleware</h5>
     <div class="section-content">
-        Following example explains how to create error middlewares that handles uncaught exceptions/errors thrown by application.
+        Following example explains how to create error middlewares that handle uncaught exceptions/errors thrown by the application.
     </div>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="serverErrorEx"></pre>
@@ -69,11 +69,11 @@
         <li>
             <span class="highlight-it">err</span> is the placeholder for original Error that occured.</li>
         <li>Please read
-            <a href="https://expressjs.com/en/guide/error-handling.html">express docs</a> for robust error handling.</li>
+            <a href="https://Expressjs.com/en/guide/error-handling.html">Express docs</a> for robust error handling.</li>
     </ul>
     <h5 class="section-sub-header">6. ErrorMiddlewareAsync</h5>
     <div class="section-content">
-        Asnyc version of ErrorMiddleware.
+        Async version of ErrorMiddleware.
     </div>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="serverErrorAsyncEx"></pre>
@@ -91,16 +91,16 @@
     <ul>
         <li>
             It is recommended to have
-            <span class="highlight-it">Async</span> in name for asynchronous middlewares to recognize easily.
+            <span class="highlight-it">Async</span> in the name for asynchronous middlewares to recognize easily.
         </li>
         <li>
-            You can register multiple RequestStartMiddlewares, RequestEndMiddlewares and ErrorMiddlewares, order of execution depends
+            You can register multiple RequestStartMiddlewares, RequestEndMiddlewares and ErrorMiddlewares. The order of execution depends
             on the order of registration.
         </li>
         <li>
             Dinoloop uses
-            <i>ResponseEndMiddleware</i> which is a built-in RequestEndMiddleware, it ends every API response with Json content-type
-            default. To override this, have your own response middleware by creating one like
+            <i>ResponseEndMiddleware</i> which is a built-in RequestEndMiddleware. It ends every API response with a default
+            json content-type. To override this you must use your own response middleware shown
             <a routerLink="/docs/examples/response-msg-exception">here</a>.
         </li>
     </ul>

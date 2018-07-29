@@ -1,22 +1,22 @@
 <h3 class="section-header">Controller Inheritance</h3>
 <div class="section-content">
     <p>Controllers can be
-        <span class="highlight-it">inherited/derived</span> by other controllers, where in the properties of base controller are
+        <span class="highlight-it">inherited/derived</span> by other controllers, where the properties of base controller are
         <i>inherited/derived</i> by child controllers.
     </p>
     <p class="sub-section-content">Inheritance (base-child controllers)</p>
-    <p>Controllers can be inherited by other controllers, this allows to have base-child controller relationship. You want to
+    <p>Controllers can be inherited by other controllers, which allows a base-child controller relationship. If you want to
         have authorization enabled for few controllers, this is how you do it
     </p>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="inheritanceEx"></pre>
     </div>
     <ul>
-        <li> Always remember, have an empty route on base controller like this
+        <li> Always remember, have an empty route on your base controller like this
             <span class="highlight-it">@Controller('')</span>
         </li>
         <li>
-            If you have a route on base controller like this
+            If you have a route on base controller such as
             <span class="highlight-it">@Controller('/base')</span> then all the child controllers have a base route like
             <i>/base/child1/get</i> and
             <i>/base/child2/get</i>
