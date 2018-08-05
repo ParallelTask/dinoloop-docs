@@ -12,7 +12,7 @@
     </div>
     <h5 class="section-sub-header">2. bind()</h5>
     <div class="section-content">
-        Once you invoke .bind() dinoloop binds routes to express. Invoking .bind() twice throws
+        Once you invoke .bind() dinoloop binds routes to express. Invoking .bind() more than once throws
         <span class="highlight-it">Error: dino.bind(): Already invoked</span>.
     </div>
     <div class="code-snippet-terminal">
@@ -64,7 +64,7 @@
     <div class="section-content">
         <p>
             Dinoloop internally uses router middleware (created by dinoloop team) which handles every request to verify if the request
-            matches a valid endpoint i.e. action method, If the request does not match then dinloop throws
+            matches a valid endpoint i.e. action method, If the request does not match a valid endpoint then dinloop throws
             <a routerLink="/docs/builtin/exceptions">RouteNotFoundException</a>. You can handle it by
             <a routerLink="/docs/builtin/exceptions">writing your own RouteNotFoundException middleware</a>.
         </p>
@@ -89,7 +89,7 @@
     </ul>
     <p>
         Though, the end route is not matched expressjs fires the middlewares in the chain. To overcome this problem, dinoloop introduced
-        router-middleware. Dinoloop makes sure middlewares are executed only when the valid action route/endpoint is matched.
+        router-middleware. Dinoloop makes sure middlewares are executed only when the valid action-route/endpoint is matched.
         This increases response times and reduces unwanted handlers execution time. Invoking this method disables dinoloop
         router middleware and the execution model works similar to expressjs. Highly recommended
         <span class="highlight-it">DO NOT INVOKE</span> this.
@@ -141,7 +141,15 @@
     <div class="code-snippet-terminal">
         <pre [innerHTML]="serverErrorEx"></pre>
     </div>
-    <h5 class="section-sub-header">11. useRouter(cb: () => express.Router)</h5>
+    <h5 class="section-sub-header">11. applicationStart&lt;T&gt;(T)</h5>
+    <div class="section-content">
+        Register ApplicationStart middlewares which run once application starts. More on
+        <a routerLink="/docs/middlewares/app-middlewares">ApplicationStart</a> Middlewares.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="applicationStartEx"></pre>
+    </div>
+    <h5 class="section-sub-header">12. useRouter(cb: () => express.Router)</h5>
     <div class="section-content">
         Register callback that returns new instance of
         <a href="https://expressjs.com/en/guide/routing.html">express.Router</a> on every invoke.
@@ -165,8 +173,8 @@
         </p>
         <ul>
             <li>
-                Multiple requestStart, requestEnd and serverError dinowares can be registered and their order of execution depends on the
-                order of registration.</li>
+                Multiple requestStart, requestEnd, serverError and applicationStart dinowares can be registered and their order of execution
+                depends on the order of registration.</li>
             <li>
                 When you choose DI framework, make sure
                 <i>Controller</i> instances cannot be singleton.

@@ -8,5 +8,11 @@
     <li>
       <i>endpoint</i> and
       <i>action method</i> are used interchangeably.</li>
+    <li>
+      Dinoloop creates
+      <i>.dino</i> property on
+      <a href="http://expressjs.com/en/api.html#res.locals">response.locals</a> of expressjs for maintaining the state across request. Do not override response.locals or response.locals.dino
+      which would give undesired results.
+    </li>
   </ul>
 </div>

@@ -49,7 +49,7 @@
     </div>
     <ul>
         <li>
-            <span class="highlight-it">result</span> is the placeholder for the return value from action methods</li>
+            <span class="highlight-it">result</span> is a placeholder for the return value received from an action method.</li>
     </ul>
     <h5 class="section-sub-header">4. RequestEndMiddlewareAsync</h5>
     <div class="section-content">
@@ -78,6 +78,23 @@
     <div class="code-snippet-terminal">
         <pre [innerHTML]="serverErrorAsyncEx"></pre>
     </div>
+    <h5 class="section-sub-header">7. ApplicationStartMiddleware</h5>
+    <div class="section-content">
+        ApplicationStart middlewares run as soon as server starts and they run only once. Here we can put startup or initialization
+        code.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="applicationStartEx"></pre>
+    </div>
+    <p>AppStartMiddleware are normal typescript classes which execute as normal javascript function calls. They dont require
+        <span class="highlight-it">next()</span> to pass the control to next middleware.
+    </p>
+    <ul>
+        <li> You can register multiple AppStartMiddleware and their execution is based on the order of registration.</li>
+        <li> Currently, there is no async version of AppStartMiddleware which is planned to be released in future versions.</li>
+        <li> AppStartMiddleware are not dinowares since they dont handle user request, hence they dont require invoking
+            <span class="highlight-it">next()</span>.</li>
+    </ul>
     <h5 class="section-sub-header">How to register application middlewares?</h5>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="appMwareEx"></pre>
@@ -90,12 +107,20 @@
     </p>
     <ul>
         <li>
+            You have to extend the middlewares and implement
+            <span class="highlight-it">invoke()</span> method.
+        </li>
+        <li>
+            AppStartMiddleware is the only middleware that does not have req, res, next in
+            <span class="highlight-it">invoke()</span> method.
+        </li>
+        <li>
             It is recommended to have
             <span class="highlight-it">Async</span> in the name for asynchronous middlewares to recognize easily.
         </li>
         <li>
-            You can register multiple RequestStartMiddlewares, RequestEndMiddlewares and ErrorMiddlewares. The order of execution depends
-            on the order of registration.
+            You can register multiple AppStartMiddleware, RequestStartMiddlewares, RequestEndMiddlewares and ErrorMiddlewares. The order
+            of execution depends on the order of registration.
         </li>
         <li>
             Dinoloop uses

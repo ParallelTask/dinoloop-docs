@@ -1,0 +1,72 @@
+<h3 class="section-header">Parameter Validations</h3>
+<div class="section-content">
+    <p>
+        Using IParseHandlers along with
+        <span class="highlight-it">dino.model</span> property provides a clean way of validating request data. By the end of this guide, you will learn
+        some best practises to handle parameter validations.
+    </p>
+    <h5 class="section-sub-header">Using Parameter Validations</h5>
+    <p class="sub-section-content">1. Create custom IParseHandlers</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="parseHandlerEx"></pre>
+    </div>
+    <ul>
+        <li>It is recommended to set
+            <span class="highlight-it">model.isValid</span> to false when action parameters fails the validation.</li>
+        <li>While adding values to
+            <span class="highlight-it">model.values</span>, we have to set the parameter key to differentiate with other action parameters.</li>
+        <li>While adding validation errors to
+            <span class="highlight-it">model.errors</span>, we have to set the parameter key to differentiate with other action parameters.</li>
+        <li>
+            Always use
+            <span class="highlight-it">.push</span> for
+            <i>model.values</i> and
+            <i>model.errors</i>, because assigning values would override the object.
+        </li>
+        <li>
+            Do no throw any exceptions while performing validations because it would not pass the control back to controller.
+        </li>
+    </ul>
+    <p class="sub-section-content">2. Add IParseHandlers to Controller</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="controllerEx"></pre>
+    </div>
+    <p>
+        From the above example, we have learnt seperation of validation concerns from controllers logic.
+        <span class="highlight-it">Parameter validations</span> provides an ability to reuse validation handlers with constructive errors displayed
+        back to user.
+    </p>
+</div>
+<h3 class="section-header">DinoModel and its properties</h3>
+<div class="section-content">
+    <p>DinoModel holds the model-values and model-errors which are added by IParseHandlers. This property is derived from ApiController
+        and it is accessible using
+        <span class="highlight-it">this.model</span>
+    </p>
+    <p class="sub-section-content">List of properties</p>
+    <ul>
+        <li>
+            <span class="highlight-it">isValid: boolean</span> - placeholder whether model data is valid or not</li>
+        <li>
+            <span class="highlight-it">values: KeyValuePair[]</span> - placeholder for action parameter key and value pairs</li>
+        <li>
+            <span class="highlight-it">errors: ModelError[]</span> - placeholder for action parameter key and errors pairs</li>
+    </ul>
+</div>
+<div class="remember-points">
+    <p>
+        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+        <span class="title">Remember</span>
+    </p>
+    <ul>
+        <li>
+            Do no throw any exceptions while performing validations because it would not pass the control back to controller.
+        </li>
+        <li>
+            Always use
+            <span class="highlight-it">.push</span> for
+            <i>model.values</i> and
+            <i>model.errors</i>, because assigning values would override the object.
+        </li>
+    </ul>
+</div>

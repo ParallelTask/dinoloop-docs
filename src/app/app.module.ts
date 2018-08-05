@@ -15,7 +15,9 @@ import {
   DocsCrudAppComponent,
   DocsConceptsDecoratorComponent,
   DocsConceptsApiCtrlComponent,
-  DocsConceptsErrCtrlComponent
+  DocsConceptsErrCtrlComponent,
+  DocsRoadMapComponent,
+  DocsVersionsComponent
 } from './modules/docs/components/components';
 import {
   DocsConceptsDinoPropComponent,
@@ -36,7 +38,10 @@ import {
   DocsExamplesExpressjsComponent
 } from './modules/docs/components/examples.component';
 import {
-  DocsBuiltInExceptionsComponent
+  DocsBuiltInExceptionsComponent,
+  DocsBuiltInParseHandlerComponent,
+  DocsBuiltInParamValidationsComponent,
+  DocsBuiltInModelValidationsComponent
 } from './modules/docs/components/builtin.component';
 
 @NgModule({
@@ -65,7 +70,12 @@ import {
     DocsGuideErrCtrlErrMwareDComponent,
     DocsExamplesResMsgExComponent,
     DocsBuiltInExceptionsComponent,
-    DocsExamplesExpressjsComponent
+    DocsBuiltInParseHandlerComponent,
+    DocsExamplesExpressjsComponent,
+    DocsRoadMapComponent,
+    DocsVersionsComponent,
+    DocsBuiltInParamValidationsComponent,
+    DocsBuiltInModelValidationsComponent
   ],
   imports: [
     BrowserModule,
