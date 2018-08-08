@@ -24,11 +24,8 @@
         <li>It is a run time exception which can be caught by the ServerError middlewares</li>
         <li>It is recommended to register
             <span class="highlight-it">RouteNotFoundErrorMiddleware</span> as the first ServerError middleware.</li>
-<<<<<<< HEAD
-=======
         <li>dinoloop has a builtin middleware to handle this exception. However, you can oveeride the behavior as explained above.
         </li>
->>>>>>> master
     </ul>
     <h5 class="section-sub-header">2. InvalidRouteException</h5>
     <p>Dinoloop throws
@@ -51,17 +48,10 @@
         <li>
             <span class="highlight-it">message: string</span> - placeholder for custom message</li>
     </ul>
-<<<<<<< HEAD
-    <p>It is a compile time exception which occurs while Dinoloop starts binding routes to Expressjs. This exception does not
-        require setting up ServerError middleware.</p>
-    <h5 class="section-sub-header">3. CustomException</h5>
-    <p>Programmers from C#/Java have robust support for exception handling. The Dinoloop team suggests to create a
-=======
     <p>This exception occurs while dinoloop starts binding routes to expressjs. It exits the application since routes are not
         properly configured.</p>
     <h5 class="section-sub-header">3. CustomException</h5>
     <p>Programmers from C#/Java have robust support for exception handling. The dinoloop team suggests to create a
->>>>>>> master
         <span class="highlight-it">CustomException</span>
         class and derive all your exceptions from it.</p>
     <div class="code-snippet-terminal">
