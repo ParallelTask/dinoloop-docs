@@ -3,29 +3,32 @@
     <h5 class="section-sub-header">1. RouteNotFoundException</h5>
     <div class="section-content">
         <p>Dinoloop throws
-            <i>RouteNotFoundException</i> when it receives a request that does not match an endpoint. The request continues
-            only if the endpoint (i.e. action method) is found. </p>
+            <i>RouteNotFoundException</i> when it receives a request that does not match an endpoint.</p>
         <p class="sub-section-content">List of properties</p>
         <ul>
             <li>
-                <span class="highlight-it">this.httpVerb: string</span> - placeholder for HttpVerb request</li>
+                <span class="highlight-it">httpVerb: string</span> - placeholder for HttpVerb request</li>
             <li>
-                <span class="highlight-it">this.requestUrl: string</span> - placeholder for endpoint</li>
+                <span class="highlight-it">requestUrl: string</span> - placeholder for endpoint</li>
             <li>
-                <span class="highlight-it">this.type: string</span> - placeholder for exception type</li>
+                <span class="highlight-it">type: string</span> - placeholder for exception type</li>
             <li>
-                <span class="highlight-it">this.message: string</span> - placeholder for custom message</li>
+                <span class="highlight-it">message: string</span> - placeholder for custom message</li>
         </ul>
     </div>
-    <p>Here is how you can handle your own version of ServerError middleware</p>
+    <p>Here is how you can handle by writing your version of ServerError middleware</p>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="routeNotFoundEx"></pre>
     </div>
     <ul>
         <li>It is a run time exception which can be caught by the ServerError middlewares</li>
-        <li>It is so easy to setup error-middlewares and add custom response.</li>
         <li>It is recommended to register
             <span class="highlight-it">RouteNotFoundErrorMiddleware</span> as the first ServerError middleware.</li>
+<<<<<<< HEAD
+=======
+        <li>dinoloop has a builtin middleware to handle this exception. However, you can oveeride the behavior as explained above.
+        </li>
+>>>>>>> master
     </ul>
     <h5 class="section-sub-header">2. InvalidRouteException</h5>
     <p>Dinoloop throws
@@ -36,20 +39,29 @@
     <p class="sub-section-content">List of properties</p>
     <ul>
         <li>
-            <span class="highlight-it">this.httpVerb: string</span> - placeholder for HttpVerb request</li>
+            <span class="highlight-it">httpVerb: string</span> - placeholder for HttpVerb request</li>
         <li>
-            <span class="highlight-it">this.action: string</span> - placeholder for action method</li>
+            <span class="highlight-it">action: string</span> - placeholder for action method</li>
         <li>
-            <span class="highlight-it">this.controller: string</span> - placeholder for controller</li>
+            <span class="highlight-it">controller: string</span> - placeholder for controller</li>
         <li>
-            <span class="highlight-it">this.route: string</span> - placeholder for complete endpoint</li>
+            <span class="highlight-it">route: string</span> - placeholder for complete endpoint</li>
         <li>
-            <span class="highlight-it">this.message: string</span> - placeholder for custom message</li>
+            <span class="highlight-it">type: string</span> - placeholder for exception type</li>
+        <li>
+            <span class="highlight-it">message: string</span> - placeholder for custom message</li>
     </ul>
+<<<<<<< HEAD
     <p>It is a compile time exception which occurs while Dinoloop starts binding routes to Expressjs. This exception does not
         require setting up ServerError middleware.</p>
     <h5 class="section-sub-header">3. CustomException</h5>
     <p>Programmers from C#/Java have robust support for exception handling. The Dinoloop team suggests to create a
+=======
+    <p>This exception occurs while dinoloop starts binding routes to expressjs. It exits the application since routes are not
+        properly configured.</p>
+    <h5 class="section-sub-header">3. CustomException</h5>
+    <p>Programmers from C#/Java have robust support for exception handling. The dinoloop team suggests to create a
+>>>>>>> master
         <span class="highlight-it">CustomException</span>
         class and derive all your exceptions from it.</p>
     <div class="code-snippet-terminal">

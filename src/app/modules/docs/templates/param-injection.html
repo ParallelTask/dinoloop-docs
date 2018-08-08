@@ -6,9 +6,46 @@
     <div class="code-snippet-terminal">
         <pre [innerHTML]="paramEx"></pre>
     </div>
+    <p>
+        ValueInjection framework uses
+        <a href="https://github.com/pillarjs/path-to-regexp">path-to-regexp</a> which is created by expressjs team and it is extensively used in expressjs for routing. Please
+        go through their
+        <a href="https://github.com/pillarjs/path-to-regexp">documentation</a> on how to use variable-segments, optional-segments and etc. Following are the assumptions made
+        by ValueInjection framework.
+    </p>
     <ul>
-        <li>The variable segment key should match with action method parameter.</li>
-        <li>Currently, all values are injected as a
-            <i>string</i> type. This is the limitation of Http segments.</li>
+        <li>The Variable segment key should match with action method parameter.</li>
+        <li>Currently, all values are injected as
+            <i>string</i> type. This is the limitation of variable segments itself.</li>
     </ul>
+</div>
+<h5 class="section-header">Using @Parse in ParameterInjection (V2.x.x and above)</h5>
+<div class="section-content">
+    <p>@Parse does the validation/transformation on the variable segments using IParseHandler (which is simply a mapper function).
+        This reduces writing boilerplate code for validation and also seperates the concerns from controllers logic.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="parseEx"></pre>
+    </div>
+    <ul>
+        <li>@Parse can also be used with http-body for model validation.
+            <a routerLink="/docs/builtin/model-validations">Here is an example</a> that explains it.</li>
+    </ul>
+</div>
+<h5 class="section-header">Using @QueryParam in ParameterInjection (V2.x.x and above)</h5>
+<div class="section-content">
+    <p>@QueryParam does the validation/transformation on the
+        <i>query-string/query-params</i> using IParseHandler (which is simply a mapper function). This reduces writing boilerplate
+        code for validation and also seperates the concerns from controllers logic.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="queryParamEx"></pre>
+    </div>
+    <ul>
+        <li>@QueryParam works only with query-string values.</li>
+    </ul>
+    <p>
+        Here is the link to understand
+        <a routerLink="/docs/builtin/parse-handlers">IParseHandlers</a> in detail
+    </p>
 </div>

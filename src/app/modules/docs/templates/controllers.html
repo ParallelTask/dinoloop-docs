@@ -26,7 +26,8 @@
     The Controller class contains methods and we can use variety of decorators (
     <a routerLink="/docs/concepts/decorators">@HttpGet</a>,
     <a routerLink="/docs/concepts/decorators">@HttpPost</a> etc) to treat them as
-    <span class="highlight-it">Action methods</span>
+    <span class="highlight-it">Action methods</span>, commonly called as
+    <span class="highlight-it">endpoints</span>.
   </p>
   <div class="code-snippet-terminal">
     <pre [innerHTML]="actionMethod"></pre>
@@ -36,9 +37,15 @@
     <span class="highlight-it">/home/get</span> and
     <span class="highlight-it">/home/get/user/:id</span>. For the second endpoint, values are automatically parsed from variable-segments and injected
     into parameters using
+<<<<<<< HEAD
     <a routerLink="/docs/guide/param-injection">ParameterInjection</a>. Values parsed from variable-segments are always injected as a string type. However, you can use
     data conversion techniques like
     <span class="highlight-it">@Parse</span> (to be released in Version 2.x)
+=======
+    <a routerLink="/docs/guide/param-injection">ParameterInjection</a>. Values parsed from variable-segments are always injected as
+    <span class="highlight-it">string</span> type. However, you can use data conversion techniques like
+    <a routerLink="/docs/guide/param-injection">@Parse</a> (released in Version 2.x)
+>>>>>>> master
   </p>
   <ul>
     <li>
@@ -47,12 +54,12 @@
     </li>
   </ul>
   <p>
-    Now, when a GET request is made to any of these endpoints, Dinloop will return a json response with 200 status code. How
+    Now, when a GET request is made to any of these endpoints, Dinoloop will return a json response with 200 status code. How
     is that possible? Generally, we distinguish two different approaches to send the response:
   </p>
   <p class="sub-section-content">1. Action method without @SendsResponse decorator</p>
   <p>
-    In the example above, we haven't used
+    In the examples above, we haven't used
     <a routerLink="/docs/concepts/decorators">@SendsResponse</a>. So, Dinoloop keeps waiting for result from controller, once the results are returned it invokes ResponseEndMiddleware
     (a built-in dinoware) which is responsible to send JSON response. Here is the pseudo code
   </p>
@@ -61,7 +68,7 @@
   </div>
   <p>If result is undefined then it ends the response with 204 status code. Otherwise, it ends the response with 200 status
     code. You can override this behavior by creating you own dinoware using
-    <a routerLink="/docs/middlewares/app-middlewares">RequestEndMiddleware</a> technique.
+    <a routerLink="/docs/examples/response-msg-exception">RequestEndMiddleware</a> technique.
     <!--An example to implement
     <a routerLink="/docs/examples/content-negotiation">content-negotation</a> using RequestEndMiddleware. -->
   </p>
@@ -86,6 +93,12 @@
   </p>
   <ul>
     <li>
+<<<<<<< HEAD
+=======
+      <span class="highlight-it">res.download</span> is the expressjs method to download a file.
+    </li>
+    <li>
+>>>>>>> master
       <a routerLink="/docs/concepts/api-controller">this.response</a> is derived from ApiController and it is of type
       <a href="https://expressjs.com/en/api.html#res">express.Response</a>
     </li>

@@ -135,7 +135,7 @@
 <div class="section-content">
     <p>Adds metadata to a controller class derived from ApiController.</p>
     <p class="sub-section-content">prefix: string</p>
-    <p>Acts as a base route for all your action endpoints.</p>
+    <p>Acts as a base route for all your action method endpoints.</p>
     <p class="sub-section-content">attr: IControllerAttribute</p>
     <p>Configures middlewares for the particular controller. These middlewares are invoked when any one of the enpoint of controller
         gets request.
@@ -170,6 +170,80 @@
     </div>
     <p>Controller dinowares are explained in detail
         <a routerLink="/docs/middlewares/controller-middlewares">here</a>.</p>
+</div>
+<h3 class="section-header">3. Parameter Decorators</h3>
+<h5 class="section-sub-header">@Parse(cb: IParseHandler, data?: any)</h5>
+<div class="section-content">
+    <p>
+        <span class="highlight-it">@Parse</span> is similar to a mapper function for action parameters. It accepts a
+        <a routerLink="/docs/builtin/parse-handlers">IParseHandler</a> where the parameter value is injected into the mapper function and the return value of the mapper
+        is injected back to action parameter.</p>
+    <p class="sub-section-content">cb: IParseHandler</p>
+    <p>This is the mapper function for the action parameter.</p>
+    <p class="sub-section-content">data?: any</p>
+    <p>We can also provide custom data to IParseHandler which gives the ability to
+        <i>make decisions/change behavior</i>.
+    </p>
+    <p>
+        As we have mentioned earlier, the variable-segments which are injected by value injection framework are always
+        <span class="highlight-it">string</span> type.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="withoutParseEx"></pre>
+    </div>
+    <p>
+        To solve this problem, we have introduced
+        <span class="highlight-it">@Parse</span> in V2.x.x. The following example explains it.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="parseEx"></pre>
+    </div>
+    <p>
+        <span class="highlight-it">@Parse</span> is explained with more examples
+        <a routerLink="/docs/guide/param-injection">here</a>.</p>
+    <ul>
+        <li>
+            <span class="highlight-it">toNumber</span> is the
+            <a routerLink="/docs/builtin/parse-handlers">built-in IParseHandler</a> to convert string value to number.
+        </li>
+    </ul>
+</div>
+<h5 class="section-sub-header">@QueryParam(cb?: IParseHandler, data?: any)</h5>
+<div class="section-content">
+    <p>
+        <span class="highlight-it">@QueryParam</span> works exactly similar to
+        <span class="highlight-it">@Parse</span>. However, there is one major difference between the both. The @QueryParam works only with query-params/query-string
+        where the @Parse works only with variable-segments and http-body.</p>
+    <p class="sub-section-content">cb?: IParseHandler</p>
+    <p>This is the mapper function for the query parameter. However unlike in @Parse, it is optional.</p>
+    <p class="sub-section-content">data?: any</p>
+    <p>We can also provide custom data to IParseHandler which gives the ability to
+        <i>make decisions/change behavior</i>.
+    </p>
+    <p>
+        Following example explains the use of @QueryParam.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="queryParamEx"></pre>
+    </div>
+    <p>
+        <span class="highlight-it">@QueryParam</span> is explained with more examples
+        <a routerLink="/docs/guide/param-injection">here</a>.</p>
+    <ul>
+        <li>
+            IParseHandler is optional in @QueryParam where it is required in @Parse.
+        </li>
+        <li>
+            When you don't provide a IParseHandler in @QueryParam, framework injects the exact query-string values into action parameter.
+        </li>
+    </ul>
+</div>
+<h5 class="section-sub-header">Why IParseHandler optional in @QueryParam?</h5>
+<div class="section-content">
+    <p>While using variable-segments and http-body, it is not explicitly required to use @Parse because dinoloop default maps
+        variable-segments to action parameters. However, while dealing with query-string values, it is required to speficy
+        @QueryParam to inject the query-string values.
+    </p>
 </div>
 <div class="remember-points">
     <p>
