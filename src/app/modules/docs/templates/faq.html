@@ -2,8 +2,8 @@
 <div class="section-content">
   <ul>
     <li>Result values (objects) returned by action methods are passed by reference to result filters and
-      <i>RequestEnd</i> middlwares, if one of your result filter mutates the object then the mutated object reflects in other
-      filters. Highly recommended to perform
+      <i>RequestEnd</i> middlwares. If one of your filters mutates the object then the mutated object will be reflected in other
+      filters. It is highly recommended to perform
       <span class="highlight-it">read-only</span> operations on result values.</li>
     <li>
       <i>endpoint</i> and

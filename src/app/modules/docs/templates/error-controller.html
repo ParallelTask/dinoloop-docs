@@ -2,35 +2,35 @@
 <div class="section-content">
     <p>Extend this class to handle Application Level errors (all thrown exceptions across your whole application). Unlike controllers
         (where you register multiple), you can register only one class extending ErrorController. This
-        <a routerLink="/docs/guide/errctrl-errmware">link</a> explains you
-        <span class="highlight-it">why single error controller</span>. List of properties which are available
+        <a routerLink="/docs/guide/errctrl-errmware">link</a> explains
+        <span class="highlight-it">the single error controller limitation</span>. Here is a list of properties which are available
     </p>
     <h5 class="section-sub-header">request: Express.Request</h5>
     <div class="section-content">
         Expressjs
-        <a href="https://expressjs.com/en/api.html#req">request</a> object is mapped to
+        <a href="https://expressjs.com/en/api.html#req">request</a> object is mapped to the
         <span class="highlight-it">this.request</span> property.
     </div>
     <h5 class="section-sub-header">response: Express.Response</h5>
     <div class="section-content">
         Expressjs
-        <a href="https://expressjs.com/en/api.html#res">response</a> object is mapped to
+        <a href="https://expressjs.com/en/api.html#res">response</a> object is mapped to the
         <span class="highlight-it">this.response</span> property.
     </div>
     <h5 class="section-sub-header">next: Express.NextFunction</h5>
     <div class="section-content">
         Expressjs
-        <a href="https://stackoverflow.com/questions/10695629/what-is-the-parameter-next-used-for-in-express">next</a> handler is mapped to
+        <a href="https://stackoverflow.com/questions/10695629/what-is-the-parameter-next-used-for-in-express">next</a> handler is mapped to the
         <span class="highlight-it">this.next</span> property.
     </div>
     <h5 class="section-sub-header">error: Error</h5>
     <div class="section-content">
-        Placeholder for unhandled error thrown by application.
+        Placeholder for an unhandled error thrown by application.
     </div>
     <h5 class="section-sub-header">internalServerError()</h5>
     <div class="section-content">
-        <p>Gets executed when any unhandled error thrown by application. This is an appropriate place to put your global error
-            handling logic.
+        <p>Gets executed when any unhandled error is thrown by application. This is an appropriate place to put your global
+            error handling logic.
         </p>
         <div class="code-snippet-terminal">
             <pre [innerHTML]="internalErrorEx"></pre>
