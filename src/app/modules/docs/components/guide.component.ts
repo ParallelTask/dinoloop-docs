@@ -170,11 +170,11 @@ export class DocsGuideParamInjectionComponent {
 
         @HttpGet('/user/:id/images/:photo')
         getImage(id: string, photo: string) {
-            return { imgVal: img };
+            return { idVal: id, photoVal: photo };
         }
 
-        // for POST requests, Injects http body to first parameter
-        @HttpPost('/post');
+        // for POST requests, Injects http-body to first parameter
+        @HttpPost('/post')
         post(body: any): any {
             return body;
         }
@@ -191,13 +191,38 @@ export class DocsGuideParamInjectionComponent {
         }
 
         // Wrong: body must be first parameter
-        // This would not throw compilation or runtime error but http body is injected to id.
+        // This would not throw compilation or runtime error but http-body is injected to id.
         @HttpPost('/post/:id')
         post(id: string, body: any): any {
             return {
                 bodyVal: body,
                 idVal: id
             };
+        }
+    }`;
+    parseEx = `
+    @Controller('/home')
+    export class HomeController extends ApiController {
+
+        @HttpGet('/get/:id')
+        getImage(@Parse(toNumber) id: number) {
+            return { idVal: id };
+        }
+    }`;
+    queryParamEx = `
+    @Controller('/home')
+    export class HomeController extends ApiController {
+
+        // GET /home/get?filter=mobiles
+        @HttpGet('/get')
+        getImage(@QueryParam() filter: string) {
+            return { filter: filter };
+        }
+
+        // GET /home/get/mobiles?minRate=1000&used=false
+        @HttpGet('/get/mobiles')
+        getImage(@QueryParam(toNumber) minRate: number, @QueryParam(toBoolean) used: boolean) {
+            return { minRate: minRate, used: used };
         }
     }`;
 }

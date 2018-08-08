@@ -1,6 +1,20 @@
 import { Component } from '@angular/core';
 
 @Component({
+  selector: 'app-docs-versions',
+  templateUrl: '../templates/versions.html',
+  styleUrls: ['../docs.component.css']
+})
+export class DocsVersionsComponent { }
+
+@Component({
+  selector: 'app-docs-road-map',
+  templateUrl: '../templates/road-map.html',
+  styleUrls: ['../docs.component.css']
+})
+export class DocsRoadMapComponent { }
+
+@Component({
   selector: 'app-docs-intro',
   templateUrl: '../templates/intro.html',
   styleUrls: ['../docs.component.css']
@@ -28,7 +42,7 @@ export class DocsCrudAppComponent {
       start: 'npm run build && node dist/app.js'
     },
     dependencies: {
-      dinoloop: '^1.0.0',
+      dinoloop: '^2.0.0',
       express: '^4.16.3'
     },
     devDependencies: {
@@ -130,7 +144,7 @@ export class DocsControllerComponent {
   }`;
 
   responseEndMiddleware = `
-  if (result is undefined)) response.status(204).end();
+  if (result === undefined) response.status(204).end();
   else response.status(200).json(result);`;
   sendsResponseUsed = `
   import { Controller, ApiController, HttpGet, SendsResponse } from 'dinoloop';
@@ -171,11 +185,11 @@ export class DocsConceptsDecoratorComponent {
       return prom;
     }
 
-    // Async methods must be decorated with @Async
+    // Async endpoints must be decorated with @Async
     @Async()
     @HttpGet('/get');
     async get(): Promise&lt;string&gt; {
-      const result = await tout();
+      const result = await this.tout();
       return result;
     }
   }`;
@@ -206,7 +220,8 @@ export class DocsConceptsDecoratorComponent {
     return body;
   }
 
-  // With variable-segments, params must be added from 2nd parameter
+  // If you have variable-segments in HttpPost route,
+  // variable-segment params must be added from 2nd parameter
   // body will always be injected to first parameter
   @HttpPost('/post/:id')
   post(body: any, id: string): any {
@@ -217,7 +232,7 @@ export class DocsConceptsDecoratorComponent {
   }
 
   // Wrong: body must be first parameter.
-  // This would not throw compilation or runtime error but http-body is injected to id.
+  // This would not throw compilation or mapping error but silently injects http-body to id.
   @HttpPost('/post/:id')
   post(id: string, body: any): any {
     return {
@@ -266,7 +281,7 @@ export class DocsConceptsDecoratorComponent {
   @Controller('/home')
   export class HomeController extends ApiController {
 
-    HttpGet('/get');
+    HttpGet('/get')
     get(): string {
       return 'Hello world!';
     }
@@ -277,10 +292,10 @@ export class DocsConceptsDecoratorComponent {
 
   @Controller('/orders', {
     use: [
-      // enable cors for this controller - it's an express middleware
+      // enable cors for this controller - it's an expressjs middleware
       cors(),
 
-      // or have a custom express middleware
+      // or have an inline expressjs middleware
       (req, res, next) => {
         ... add logic
         next();
@@ -305,16 +320,43 @@ export class DocsConceptsDecoratorComponent {
   })
   export class OrdersController extends ApiController {
 
-    @HttpGet('/get');
+    @HttpGet('/get')
     get(): string {
       return 'Successfully placed your orders. Yay!';
     }
 
-    @HttpGet('/get/:id');
+    @HttpGet('/get/:id')
     getById(id: string): string {
       throw new InvalidOrderException();
     }
   }`;
+  withoutParseEx = `
+  @HttpGet('/get/:id');
+  get(id: string): any {
+    return { data: id };
+  }
+
+  // The value is of string type
+  GET /get/45
+  { "data": "45" }`;
+  parseEx = `
+  import { HttpGet, Parse, toNumber } from 'dinoloop';
+
+  @HttpGet('/get/:id');
+  get(@Parse(toNumber) id: number): any {
+    return { data: id };
+  }
+
+  // The value is of number type (no quotes)
+  GET /get/45
+  { "data": 45 }`;
+  queryParamEx = `
+  @HttpGet('/user/:id');
+  get(@Parse(toNumber) id: number, @QueryParam() search: string): any {
+    return { id: id, search: search };
+  }
+
+  GET /user/45?search=photos`;
 }
 
 @Component({
@@ -383,7 +425,7 @@ export class DocsConceptsApiCtrlComponent {
     get(): void {
       MongoClient.connect("XXXX", (err, db) => {
         if (err) this.dino.throw(new MongoConnectException());
-        db.close();
+        ...;
       });
     }
   }`;

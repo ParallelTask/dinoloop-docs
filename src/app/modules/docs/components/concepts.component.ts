@@ -87,6 +87,9 @@ export class DocsConceptsDinoPropComponent {
     serverErrorEx = `
     dino.serverError&lt;FormatException&gt;(FormatException);
     dino.serverError&lt;MongoException&gt;(MongoException);`;
+    applicationStartEx = `
+    dino.applicationStart&lt;LoadConfiguration&gt;(LoadConfiguration);
+    dino.applicationStart&lt;InitializeRedux&gt;(InitializeRedux);`;
     routerEx = `
     dino.useRouter(() => express.Router());`;
 }
@@ -97,6 +100,36 @@ export class DocsConceptsDinoPropComponent {
     styleUrls: ['../docs.component.css']
 })
 export class DocsAppMiddlewareComponent {
+    applicationStartEx = `
+    import { AppStartMiddleware } from 'dinoloop';
+
+    export class LoadConfiguration extends AppStartMiddleware {
+
+        // Assuming IAppConfig is singleton instance
+        constructor(private appConfig: IAppConfig) {
+            super();
+        }
+
+        invoke(): void {
+            this.appConfig.clientId = 'abcde';
+        }
+    }
+
+    // Register the middleware with dino
+    dino.applicationStart(LoadConfiguration);
+
+    @Controller('/home')
+    export class HomeController extends ApiController {
+
+        constructor(private appConfig: IAppConfig) {
+            super();
+        }
+
+        @HttpGet('/get')
+        get(): any {
+            this.appConfig.clientId;
+        }
+    }`;
     requestStartEx = `
     import { RequestStartMiddleware } from 'dinoloop';
     import { Request, Response, NextFunction } from 'express';
@@ -191,7 +224,7 @@ export class DocsAppMiddlewareComponent {
 
     export class InvalidHeaderMiddlewareAsync extends ErrorMiddlewareAsync {
 
-        async invoke(err: Error, request: Request, response: Response, next: NextFunction): Promise<void> {
+        async invoke(err: Error, request: Request, response: Response, next: NextFunction): Promise&lt;void&gt; {
             // handle it
             if(err instanceof InvalidHeaderException) {
                 await logToDb(err);
@@ -203,6 +236,10 @@ export class DocsAppMiddlewareComponent {
         }
     }`;
     appMwareEx = `
+    // This is how you register AppStartMiddlewares
+    dino.applicationStart(LoadConfig);
+    dino.applicationStart(InitializeMetadata);
+
     // This is how you register RequestStartMiddleware and RequestStartMiddlewareAsync
     dino.requestStart(RequestLogMiddleware);
     dino.requestStart(RequestLogMiddlewareAsync);
@@ -225,11 +262,11 @@ export class DocsConceptsCtrlMiddlewareComponent {
     useEx = `
     @Controller('/home',{
         use: [
-            // native express middlewares
+            // native expressjs middlewares
             cors(),
             bodyParser(),
 
-            // or just have your custom express middleware
+            // or just have inline expressjs middleware
             // do not forget to invoke next()
             (req, res, next) => {
                 ... add logic
@@ -267,7 +304,7 @@ export class DocsConceptsCtrlMiddlewareComponent {
 
         invoke(request: Request, response: Response, next: NextFunction, data?: any): void {
             // If user holds admin role
-            if(data.role === request.locals.role){
+            if(data.role === response.locals.role){
                 next();
             } else {
                 // InvalidRoleException is your custom error/exception

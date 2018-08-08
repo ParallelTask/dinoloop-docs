@@ -11,7 +11,7 @@
   <p>
     We love TypeScript because it provides great tooling to build enterprise applications.
     <a href="https://angular.io">Angular</a> uses TypeScript and now every npm package has types. If you love Angular (like us), we highly advise you
-    to use Dinoloop to maintain a single TypeScript codebase for your
+    Dinoloop to maintain a single TypeScript codebase for
     <a href="http://mean.io/">MEAN</a> application.
   </p>
   <p class="sub-section-content">Why Dinoloop?</p>
@@ -22,7 +22,7 @@
     is a library more than a framework (like
     <a href="https://reactjs.org">ReactJS</a>, we love what ReactJS does client-side). You can develop an entire application in Dinoloop, part of an application,
     or gradually migrate an existing Expressjs application to Dinoloop. The first principle of Dinoloop is to provide an
-    architecture to developers and not to create a complete bundled framework. We love and support pluggable architecture.
+    architecture to developers and not to create a complete bundled framework.
   </p>
 </div>
 <h3 class="section-header">Features</h3>
@@ -41,16 +41,14 @@
       </ol>
     </li>
     <li>
-      Supports Expressjs middlewares with a completely Expressjs driven library. Here is one
-      <a routerLink="/docs/examples/using-Expressjs">example</a> that uses Expressjs middleware in Dinoloop.
+      Supports Expressjs middlewares with a completely Expressjs driven library.
     </li>
     <li>
       Heavily influenced by MVC pattern.
     </li>
     <li>
-      Configurable Dependency Injection framework. You can choose your favorite DI framework
-      <a href="http://inversify.io/">InversifyJs</a>,
-      <a href="https://www.npmjs.com/package/peppermint-di">peppermint-di</a> and
+      Configurable Dependency Injection framework. Choose your favorite DI framework
+      <a href="http://inversify.io/">InversifyJs</a> and
       <a href="https://www.npmjs.com/search?q=DI">more</a> or build one of your own.
       <!--Here is
       <a routerLink="/docs/examples/configure-di">how you can configure your favorite DI framework</a>. -->
@@ -65,7 +63,8 @@
       Controller middlewares - ActionFilters, ExceptionFilters, ResultFilters with Robust sync/async (handles es6 async/await pattern).
     </li>
     <li>
-      Application middlewares - RequestStart, RequestEnd and ServerError with Robust sync/async (handles es6 async/await pattern).
+      Application middlewares - AppStart, RequestStart, RequestEnd and ServerError with Robust sync/async (handles es6 async/await
+      pattern).
     </li>
     <li>
       UserIdentity principal across requests. Still an experimental feature.
@@ -76,14 +75,14 @@
 <div class="section-content">
   <p>
     Dinoloop lets users freely upgrade/downgrade Expressjs.
-    <span style="text-decoration: underline">Installing Dinoloop won't install Express</span>. You can install your own version of Express. All you have to provide
+    <span style="text-decoration: underline">Installing Dinoloop won't install Expressjs</span>. You can install your own version of Express. All you have to provide
     is the Express app and router instances to Dinoloop.
   </p>
   <p class="sub-section-content">Why Expressjs is not bundled as dependency?</p>
   <p>
     Dinoloop is an Expressjs library with the core principles centered around being a light-weight and pluggable architecture.
-    We use the same principles of libraries to work with targeted versions. Dinoloop version 1.x.x works with Expressjs >=
-    4.x.x version.
+    We use the same principles of libraries to work with targeted versions. Here is a page that describes
+    <a routerLink="/docs/versions">version compatibility</a>.
   </p>
 </div>
 <h3 class="section-header">Principles</h3>

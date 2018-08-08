@@ -16,7 +16,7 @@
     </div>
     <ul>
         <li>
-            <span class="highlight-it">use:</span> Provide an array of express middlewares.</li>
+            <span class="highlight-it">use:</span> Provide an array of expressjs middlewares.</li>
     </ul>
     <h5 class="section-sub-header">2. Middleware</h5>
     <p>This example shows how to create Dino middleware.</p>
@@ -25,7 +25,7 @@
     </div>
     <ul>
         <li>
-            <span class="highlight-it">invoke()</span> is executed everytime the controller receives a request.
+            <span class="highlight-it">invoke(request, response, next)</span> is executed everytime the controller receives a request.
         </li>
     </ul>
     <p class="sub-section-content">Dino middleware with custom data</p>
@@ -46,7 +46,7 @@
     </div>
     <ul>
         <li>
-            You can provide custom data to your async middlewares too.
+            You can provide custom data to your async middlewares as suggested in above examples.
         </li>
     </ul>
     <h5 class="section-sub-header">4. ActionFilter</h5>
@@ -64,7 +64,7 @@
     </p>
     <ul>
         <li>
-            <span class="highlight-it">result</span> is the placeholder for return value of action method</li>
+            <span class="highlight-it">result</span> is the placeholder for return value of an action method</li>
         <li>
             <span class="highlight-it">data</span> is the placeholder for custom data (if you provide)</li>
     </ul>
@@ -78,7 +78,7 @@
         <pre [innerHTML]="filterAsyncEx"></pre>
     </div>
     <h5 class="section-sub-header">6. ResultFilter</h5>
-    <p>This example shows how to create result filter which handles return value of action method</p>
+    <p>This example shows how to create result filter which handles return value of an action method</p>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="resultEx"></pre>
     </div>
@@ -86,6 +86,7 @@
         <li>
             <span class="highlight-it">result</span> is the placeholder for return value of action method</li>
         <li>Using result filters, you can override the response type for a particular controller endpoints.</li>
+        <li>You can also provide custom data as suggested in above examples.</li>
     </ul>
     <h5 class="section-sub-header">7. ResultFilterAsync</h5>
     <p>Asnyc version of ResultFilter.</p>

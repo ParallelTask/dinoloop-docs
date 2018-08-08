@@ -1,0 +1,43 @@
+<h3 class="section-header">Model Validations</h3>
+<div class="section-content">
+    <p>
+        By the end of this guide, you will be able to understand performing model validations using
+        <a href="https://github.com/hapijs/joi">joi</a> in dinoloop. Following example explains it
+    </p>
+    <h5 class="section-sub-header">Using Joi Validations</h5>
+    <p class="sub-section-content">1. Install Joi</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="joiEx"></pre>
+    </div>
+    <p class="sub-section-content">2. Using Joi in IParseHandler</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="parseHandlerEx"></pre>
+    </div>
+    <p class="sub-section-content">3. Add to controller</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="controllerEx"></pre>
+    </div>
+    <p>
+        We have used
+        <span class="highlight-it">Joi</span> which is just fantastic and lightweight utility for performing model validations. There are so many libraries
+        like
+        <a href="https://github.com/typestack/class-validator">class-validators</a> which does exactly the same in slightly different way. Please refer their documentaion for indepth
+        details.
+    </p>
+    <p>
+        It is best practise to have a single
+        <span class="highlight-it">modelBinder</span> IParseHandler while providing custom data via
+        <span class="highlight-it">@Parse</span> as shown below.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="controllerParseEx"></pre>
+    </div>
+    <p>Now lets perform validations based on the provided model type</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="parseHandlerModelEx"></pre>
+    </div>
+    <p>
+        You can even write your own implementation for performing model validations. From these examples, it makes very easy to validate
+        model data and display constructive errors to user.
+    </p>
+</div>

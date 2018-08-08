@@ -1,4 +1,4 @@
-import { Route, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { HomeComponent } from './modules/home/home.component';
 import { DocsComponent } from './modules/docs/docs.component';
 import {
@@ -9,7 +9,9 @@ import {
     DocsCrudAppComponent,
     DocsConceptsDecoratorComponent,
     DocsConceptsApiCtrlComponent,
-    DocsConceptsErrCtrlComponent
+    DocsConceptsErrCtrlComponent,
+    DocsRoadMapComponent,
+    DocsVersionsComponent
 } from './modules/docs/components/components';
 import {
     DocsConceptsDinoPropComponent,
@@ -30,7 +32,10 @@ import {
     DocsExamplesExpressjsComponent
 } from './modules/docs/components/examples.component';
 import {
-    DocsBuiltInExceptionsComponent
+    DocsBuiltInExceptionsComponent,
+    DocsBuiltInParseHandlerComponent,
+    DocsBuiltInParamValidationsComponent,
+    DocsBuiltInModelValidationsComponent
 } from './modules/docs/components/builtin.component';
 
 export const AppRouteStates: Routes = [
@@ -47,6 +52,8 @@ export const AppRouteStates: Routes = [
             { path: 'getting-started', component: DocsGettingStartedComponent },
             { path: 'todo-app', component: DocsCrudAppComponent },
             { path: 'faq', component: DocsFaqComponent },
+            { path: 'releases', component: DocsRoadMapComponent },
+            { path: 'versions', component: DocsVersionsComponent },
             { path: 'concepts/controllers', component: DocsControllerComponent },
             { path: 'concepts/decorators', component: DocsConceptsDecoratorComponent },
             { path: 'concepts/api-controller', component: DocsConceptsApiCtrlComponent },
@@ -63,7 +70,10 @@ export const AppRouteStates: Routes = [
             { path: 'guide/errctrl-errmware', component: DocsGuideErrCtrlErrMwareDComponent },
             { path: 'examples/using-expressjs', component: DocsExamplesExpressjsComponent },
             { path: 'examples/response-msg-exception', component: DocsExamplesResMsgExComponent },
-            { path: 'builtin/exceptions', component: DocsBuiltInExceptionsComponent }
+            { path: 'builtin/exceptions', component: DocsBuiltInExceptionsComponent },
+            { path: 'builtin/parse-handlers', component: DocsBuiltInParseHandlerComponent },
+            { path: 'builtin/param-validations', component: DocsBuiltInParamValidationsComponent },
+            { path: 'builtin/model-validations', component: DocsBuiltInModelValidationsComponent }
         ]
     }
 ];
