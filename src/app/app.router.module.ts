@@ -1,12 +1,8 @@
 import {
-    NgModule,
-    Provider,
-    ModuleWithProviders,
-    Type
+    NgModule
 } from '@angular/core';
 import {
     RouterModule,
-    Routes,
     DefaultUrlSerializer,
     UrlTree,
     UrlSerializer

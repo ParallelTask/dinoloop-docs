@@ -1,0 +1,166 @@
+<h3 class="section-header">Builtin IParseHandlers</h3>
+<div class="section-content">
+    <h5 class="section-sub-header">1. toNumber</h5>
+    <div class="section-content">
+        <span class="highlight-it">toNumber</span> is a builtin IParseHandler to convert the action parameter value to number.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="toNumberEx"></pre>
+    </div>
+    <p>
+        For an invalid conversion, toNumber throws
+        <span class="highlight-it">ActionParamException</span> which is explained in the next section.
+    </p>
+    <h5 class="section-sub-header">2. toBoolean</h5>
+    <div class="section-content">
+        <span class="highlight-it">toBoolean</span> is a builtin IParseHandler to convert the action parameter value to boolean.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="toBooleanEx"></pre>
+    </div>
+    <h5 class="section-sub-header">3. toInteger</h5>
+    <div class="section-content">
+        <span class="highlight-it">toInteger</span> is a builtin IParseHandler to convert the action parameter value to integer.
+    </div>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="toIntegerEx"></pre>
+    </div>
+</div>
+<ul>
+    <li>
+        You can use builtin IParseHandlers with @QueryParam also.
+    </li>
+    <li>There is no
+        <span class="highlight-it">toString</span> IParseHandler since the default value is string type.</li>
+</ul>
+<h3 class="section-header">ActionParamException</h3>
+<div class="section-content">
+    <p>All the builtin IParseHandlers throws
+        <span class="highlight-it">ActionParamException</span> for an invalid conversion.</p>
+    <p class="sub-section-content">List of properties</p>
+    <ul>
+        <li>
+            <span class="highlight-it">value: any</span> - placeholder for action parameter value received in the request</li>
+        <li>
+            <span class="highlight-it">key: string</span> - placeholder for action parameter key</li>
+        <li>
+            <span class="highlight-it">action: string</span> - placeholder for action method</li>
+        <li>
+            <span class="highlight-it">controller: string</span> - placeholder for controller name</li>
+        <li>
+            <span class="highlight-it">type: string</span> - placeholder for exception type</li>
+        <li>
+            <span class="highlight-it">message: string</span> - placeholder for custom message</li>
+    </ul>
+    <p>Like the other exceptions, you can handle this exception using exception filters per controller or serverError middleware.
+        Dinoloop already has a
+        <span class="highlight-it">ActionParamExceptionMiddleware</span> which handles this exception on application-level. Here is the implementation.
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="toParseParamMiddlewareEx"></pre>
+    </div>
+    <p>
+        However, you can override this by writing your own exception middleware. You can then register the middleware as shown below
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="registerParseParamEx"></pre>
+    </div>
+</div>
+<h3 class="section-header">IParseHandler = (props: IParseProps, model?: DinoModel)</h3>
+<div class="section-content">
+    <p>Most of the times we use the builtin IParseHandlers. However, sometimes we need more custom behavior. Here we are going
+        to explain how to write one. Lets first look at
+        <span class="highlight-it">toNumber</span> IParseHandler and how it is implemented</p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="parseHandlerEx"></pre>
+    </div>
+    <ul>
+        <li>
+            The return value is injected back to action parameter.
+        </li>
+        <li>
+            If it is an invalid conversion, you can throw
+            <span class="highlight-it">ActionParamException</span> or custom exception (depends on your requirements). We recommend ActionParamException
+            for consistency.
+        </li>
+        <li>
+            All the properties are injected to
+            <span class="highlight-it">IParseProps</span> and you can access these values.
+        </li>
+        <li>
+            IParseHandler also accepts a seconds parameter
+            <span class="highlight-it">dino.model</span> which is explained
+            <a routerLink="/docs/builtin/param-validations">here</a>.
+        </li>
+    </ul>
+    <p>Now lets understand the properties of
+        <span class="highlight-it">IParseProps</span>
+    </p>
+</div>
+<h3 class="section-header">IParseProps and its properties</h3>
+<div class="section-content">
+    <p>IParseProps holds the values which are added by @Parse and @QueryParam decorators.</p>
+    <p class="sub-section-content">List of properties</p>
+    <ul>
+        <li>
+            <span class="highlight-it">value: any</span> - placeholder for action parameter value received in the request</li>
+        <li>
+            <span class="highlight-it">key: string</span> - placeholder for action parameter key</li>
+        <li>
+            <span class="highlight-it">action: string</span> - placeholder for action method</li>
+        <li>
+            <span class="highlight-it">controller: any</span> - placeholder for controller class</li>
+        <li>
+            <span class="highlight-it">data: any</span> - placeholder for custom data</li>
+    </ul>
+</div>
+<p>
+    As mentioned earlier, we can also provide custom data to @Parse and @QueryParam to
+    <i>change behavior/make decisions</i>.
+</p>
+<h3 class="section-header">Custom IParseHandlers</h3>
+<div class="section-content">
+    <h5 class="section-sub-header">1. @Parse - without custom data</h5>
+    <div class="section-content">
+        <div class="code-snippet-terminal">
+            <pre [innerHTML]="parseHandlerWithoutDataEx"></pre>
+        </div>
+    </div>
+    <h5 class="section-sub-header">2. @Parse - with custom data</h5>
+    <div class="section-content">
+        <div class="code-snippet-terminal">
+            <pre [innerHTML]="parseHandlerWithDataEx"></pre>
+        </div>
+    </div>
+    <ul>
+        <li>
+            Dinoloop provides the ability to capture the validation errors which are raised in IParseHandlers and pass it to controller.
+            Here is an example that explains
+            <a routerLink="/docs/builtin/param-validations">passing validation errors to controller</a>.
+        </li>
+        <li>
+            For doing model validation on http-body for Post, Put, Patch requests, we can use
+            <span class="highlight-it">@Parse - with custom data</span> which is a great tool doing it. Here is an example that explains
+            <a routerLink="/docs/builtin/model-validations">http-body model validation</a> in detail.
+        </li>
+    </ul>
+</div>
+<div class="remember-points">
+    <p>
+        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+        <span class="title">Remember</span>
+    </p>
+    <ul>
+        <li>
+            All the builtin IParseHandlers throws
+            <i>ActionParamException</i> for an invalid conversion.
+        </li>
+        <li>There is no
+            <i>toString</i> IParseHandler since the default value is string type.
+        </li>
+        <li>
+            You can use builtin IParseHandlers with
+            <i>@QueryParam</i> also.
+        </li>
+    </ul>
+</div>

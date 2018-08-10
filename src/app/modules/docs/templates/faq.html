@@ -2,11 +2,17 @@
 <div class="section-content">
   <ul>
     <li>Result values (objects) returned by action methods are passed by reference to result filters and
-      <i>RequestEnd</i> middlwares, if one of your result filter mutates the object then the mutated object reflects in other
-      filters. Highly recommended to perform
+      <i>RequestEnd</i> middlwares. If one of your filters mutates the object then the mutated object will be reflected in other
+      filters. It is highly recommended to perform
       <span class="highlight-it">read-only</span> operations on result values.</li>
     <li>
       <i>endpoint</i> and
       <i>action method</i> are used interchangeably.</li>
+    <li>
+      Dinoloop creates
+      <i>.dino</i> property on
+      <a href="http://expressjs.com/en/api.html#res.locals">response.locals</a> of expressjs for maintaining the state across request. Do not override response.locals or response.locals.dino
+      which would give undesired results.
+    </li>
   </ul>
 </div>

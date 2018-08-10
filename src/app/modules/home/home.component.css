@@ -3,12 +3,17 @@
     top:0;
     left:0;
     overflow-x: hidden;
+    overflow-y: auto;
+    height: 100vh;
+    background: #fafafa;
 }
 .notification {
     color:#990099;
+    text-align: right;
 }
 .left-title {
     color:#ff751a; 
+    color:#444;
     font-size: 18px;
     font-weight:bold;
     font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Arial,sans-serif;
@@ -29,6 +34,8 @@
     right: 0;
     width: 100%;
     border-top: 1px solid #CCC;
+    z-index: 1000;
+    background: #fff;
 }
 .contibutors{
     margin: 10px 0;

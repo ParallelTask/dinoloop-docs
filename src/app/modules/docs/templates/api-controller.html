@@ -4,7 +4,10 @@
     </p>
     <h5 class="section-sub-header">model: DinoModel</h5>
     <div class="section-content">
-        Reserved for future use.
+        Placeholder for the validation errors added by
+        <a routerLink="/docs/builtin/parse-handlers">IParseHandlers</a>. Here is an example that explains
+        <a routerLink="/docs/builtin/param-validations">Parameter validation</a> and
+        <a routerLink="/docs/builtin/model-validations">Model validation</a>.
     </div>
     <h5 class="section-sub-header">request: Express.Request</h5>
     <div class="section-content">
@@ -34,10 +37,11 @@
         <p class="sub-section-content">1. proceed(result: any)</p>
         <p>When an action method is decorated with
             <span class="highlight-it">@SendsResponse</span>, Dinoloop is notified and it is the responsibility of this endpoint to send the response.
-            However, there are cases where you still want to process and continue your results with the
-            <a routerLink="/docs/guide/dinowares-flow">chain of dinowares</a> (ex: after returning from callbacks). When results are returned after async-callback operation,
-            you would then like to have your result available to the next middlewares in the chain, say your result filters
-            and ResponseEnd middlewares. Here is how you do it:</p>
+            However, there are cases where you still want to process the request and continue your middleware chain with
+            a
+            <a routerLink="/docs/guide/dinowares-flow">chain of dinowares</a> (ex: after returning from callbacks). When results are returned after an async-callback
+            operation, and you'd like to have your result available to the next middlewares in the chain (i.e. your result
+            filters and ResponseEnd middlewares) - Here is how you do it:</p>
         <div class="code-snippet-terminal">
             <pre [innerHTML]="callbackEx"></pre>
         </div>
@@ -48,16 +52,16 @@
             </li>
             <li>
                 Invoking
-                <span class="highlight-it">this.next()</span> proceeds the execution to the next dinoware but results are not captured. If results are
-                to be captured use
+                <span class="highlight-it">this.next()</span> proceeds the execution to the next dinoware but the results are not captured. If results
+                are intended to be captured use
                 <i>this.dino.proceed(result)</i>.
             </li>
         </ul>
         <p class="sub-section-content">2. throw(err: Error)</p>
         <p>
-            <span class="highlight-it">this.dino.throw</span> is responsible to capture and proceed errors to the next error middlewares in the chain
-            when error is encountered in async-callback operation. Following example explains one such example of mongo connection
-            error.
+            <span class="highlight-it">this.dino.throw</span> is responsible for capturing and fowarding errors to the next error middlewares in the
+            chain whenever an error is encountered in async-callback operation. The following example explains one such example
+            of a mongo connection error.
         </p>
         <div class="code-snippet-terminal">
             <pre [innerHTML]="dinoThrowEx"></pre>
@@ -67,13 +71,13 @@
                 <a href="https://mongodb.github.io/node-mongodb-native/api-generated/mongoclient.html#mongoclient-connect">MongoClient</a> is an external npm package to install.</li>
             <li>
                 <span class="highlight-it">this.next(new MongoConnectException())</span> or
-                <span class="highlight-it">this.dino.throw(new MongoConnectException())</span> both essentially does the same, you can pick your own
-                choice.
+                <span class="highlight-it">this.dino.throw(new MongoConnectException())</span> both essentially are equivalent, so you can pick your
+                own choice.
             </li>
             <li>
                 The exception will be caught by
-                <span class="highlight-it">MongoConnectExceptionFilter</span> which is declared on controller and ends the response with 500 status
-                code.
+                <span class="highlight-it">MongoConnectExceptionFilter</span> which is declared on the controller and returns the response with a 500
+                status code.
             </li>
         </ul>
     </div>
@@ -89,20 +93,20 @@
             <i>this.dino.proceed</i> is derived from ApiController which proceeds the results to the next chain of middlewares.
         </li>
         <li>
-            The request and response properties depends purely on express.js version you have installed.
+            The request and response properties depends purely on the Express.js version you have installed.
         </li>
         <li>
             We suggest you to use
-            <i>this.dino.throw(err)</i> over
+            <i>this.dino.throw(err)</i> instead of
             <i>this.next(err)</i> for better consistency and readability.
         </li>
         <li>
-            90% of javascript libraries uses
+            90% of JavaScript libraries use the
             <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout">Callback</a> /
             <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> pattern which are fully reusable using
             <span class="highlight-it">this.dino.proceed</span>
         </li>
         <li> We also have a
-            <a routerLink="/docs/guide/deferrer">Deferrer</a> built into dinoloop to convert promise objects to async-await pattern (if you are a lover of async-await).</li>
+            <a routerLink="/docs/guide/deferrer">Deferrer</a> built into Dinoloop to convert Promise objects to async/await pattern (if you love async/await!).</li>
     </ul>
 </div>
