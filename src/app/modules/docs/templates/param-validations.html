@@ -3,7 +3,7 @@
     <p>
         Using IParseHandlers along with
         <span class="highlight-it">dino.model</span> property provides a clean way of validating request data. By the end of this guide, you will learn
-        some best practises to handle parameter validations.
+        the best practices for handling parameter validations.
     </p>
     <h5 class="section-sub-header">Using Parameter Validations</h5>
     <p class="sub-section-content">1. Create custom IParseHandlers</p>
@@ -24,7 +24,7 @@
             <i>model.errors</i>, because assigning values would override the object.
         </li>
         <li>
-            Do no throw any exceptions while performing validations because it would not pass the control back to controller.
+            Do no throw any exceptions while performing validations because it would not pass control back to controller.
         </li>
     </ul>
     <p class="sub-section-content">2. Add IParseHandlers to Controller</p>
@@ -32,7 +32,7 @@
         <pre [innerHTML]="controllerEx"></pre>
     </div>
     <p>
-        From the above example, we have learnt seperation of validation concerns from controllers logic.
+        From the above example, we have learned how to separate validation concerns from the controllers logic.
         <span class="highlight-it">Parameter validations</span> provides an ability to reuse validation handlers with constructive errors displayed
         back to user.
     </p>
@@ -60,7 +60,7 @@
     </p>
     <ul>
         <li>
-            Do no throw any exceptions while performing validations because it would not pass the control back to controller.
+            Do no throw any exceptions while performing validations because it would not pass control back to controller.
         </li>
         <li>
             Always use
