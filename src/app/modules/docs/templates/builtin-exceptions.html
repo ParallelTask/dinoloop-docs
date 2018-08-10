@@ -16,7 +16,7 @@
                 <span class="highlight-it">message: string</span> - placeholder for custom message</li>
         </ul>
     </div>
-    <p>Here is how you can handle by writing your version of ServerError middleware</p>
+    <p>Here is how you can handle by writing your version of the ServerError middleware</p>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="routeNotFoundEx"></pre>
     </div>
@@ -24,7 +24,7 @@
         <li>It is a run time exception which can be caught by the ServerError middlewares</li>
         <li>It is recommended to register
             <span class="highlight-it">RouteNotFoundErrorMiddleware</span> as the first ServerError middleware.</li>
-        <li>dinoloop has a builtin middleware to handle this exception. However, you can oveeride the behavior as explained above.
+        <li>Dinoloop has a builtin middleware to handle this exception. However, you can override the behavior as explained above.
         </li>
     </ul>
     <h5 class="section-sub-header">2. InvalidRouteException</h5>
@@ -48,7 +48,7 @@
         <li>
             <span class="highlight-it">message: string</span> - placeholder for custom message</li>
     </ul>
-    <p>This exception occurs while dinoloop starts binding routes to expressjs. It exits the application since routes are not
+    <p>This exception occurs while Dinoloop starts binding routes to Expressjs. It exits the application since routes are not
         properly configured.</p>
     <h5 class="section-sub-header">3. CustomException</h5>
     <p>Programmers from C#/Java have robust support for exception handling. The dinoloop team suggests to create a
@@ -58,6 +58,6 @@
         <pre [innerHTML]="customExceptionEx"></pre>
     </div>
     <ul>
-        <li>This allows you to hold an inner exception whereas the native javascript Error does not.</li>
+        <li>This allows you to hold an inner exception whereas the native JavaScript Error does not.</li>
     </ul>
 </div>
