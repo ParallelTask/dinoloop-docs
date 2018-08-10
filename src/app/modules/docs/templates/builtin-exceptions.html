@@ -17,15 +17,15 @@
                 <span class="highlight-it">this.message: string</span> - placeholder for custom message</li>
         </ul>
     </div>
-    <p>Here is how you can handle your own version of ServerError middleware</p>
+    <p>Here is how you can handle your own version of the ServerError middleware</p>
     <div class="code-snippet-terminal">
         <pre [innerHTML]="routeNotFoundEx"></pre>
     </div>
     <ul>
         <li>It is a run time exception which can be caught by the ServerError middlewares</li>
-        <li>It is so easy to setup error-middlewares and add custom response.</li>
+        <li>It is simple to setup error-middlewares and add custom response.</li>
         <li>It is recommended to register
-            <span class="highlight-it">RouteNotFoundErrorMiddleware</span> as first ServerError middleware.</li>
+            <span class="highlight-it">RouteNotFoundErrorMiddleware</span> as the first ServerError middleware.</li>
     </ul>
     <h5 class="section-sub-header">2. InvalidRouteException</h5>
     <p>Dinoloop throws
@@ -46,8 +46,8 @@
         <li>
             <span class="highlight-it">this.message: string</span> - placeholder for custom message</li>
     </ul>
-    <p>It is a compile time exception which occurs while dino starts binding routes to expressjs. This exception does not require
-        setting up ServerError middleware.</p>
+    <p>It is a compile time exception which occurs while Dino starts binding routes to Expressjs. This exception does not require
+        setting up the ServerError middleware.</p>
     <h5 class="section-sub-header">3. CustomException</h5>
     <p>Programmers from C#/Java have robust support for exception handling. Dinoloop team suggests to create a
         <span class="highlight-it">CustomException</span>
@@ -56,6 +56,6 @@
         <pre [innerHTML]="customExceptionEx"></pre>
     </div>
     <ul>
-        <li>One good reason is to hold inner exception where native javascript Error does not.</li>
+        <li>One good reason is to to hold an inner exception whereas the native javascript Error does not.</li>
     </ul>
 </div>
