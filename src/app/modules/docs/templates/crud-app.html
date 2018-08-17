@@ -16,7 +16,7 @@
         Step 2. Install Dev-Dependencies
     </p>
     <div class="code-snippet-terminal">
-        $ npm install typescript@2.4.x @types/node@10.x --save-dev
+        $ npm install typescript@2.x @types/node --save-dev
     </div>
     <ul>
         <li>TypeScript - To transpile
@@ -56,6 +56,14 @@
     <div class="code-snippet-terminal">
         <pre>{{tsconfig | json}}</pre>
     </div>
+    <ul>
+        <li>
+            "target" is es2017 if you are working with node > 8.10.x
+        </li>
+        <li>
+            You can choose es6 if you are working with node
+            < 8.10.x. Please refer <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">typescript compiler options</a>.</li>
+    </ul>
     <p class="sub-section-content">
         Step 6. Create home.controller.ts
     </p>

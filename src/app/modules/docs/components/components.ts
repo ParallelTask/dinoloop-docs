@@ -42,7 +42,7 @@ export class DocsCrudAppComponent {
       start: 'npm run build && node dist/app.js'
     },
     dependencies: {
-      dinoloop: '^2.0.0',
+      dinoloop: '^2.1.0',
       express: '^4.16.3'
     },
     devDependencies: {
@@ -53,7 +53,7 @@ export class DocsCrudAppComponent {
 
   tsconfig = {
     compilerOptions: {
-      target: 'es5',
+      target: 'es6',
       module: 'commonjs',
       moduleResolution: 'node',
       emitDecoratorMetadata: true,
