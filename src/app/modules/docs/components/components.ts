@@ -357,6 +357,16 @@ export class DocsConceptsDecoratorComponent {
   }
 
   GET /user/45?search=photos`;
+  bindNumberEx = `
+  @HttpGet('/user/:id');
+  get(@BindNumber() id: number): any {
+    return { id: id };
+  }
+
+  @HttpGet('/user/:id');
+  get(@Parse(toNumber) id: number): any {
+    return { id: id };
+  }`;
 }
 
 @Component({

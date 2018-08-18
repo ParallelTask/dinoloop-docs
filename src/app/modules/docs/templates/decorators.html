@@ -245,6 +245,41 @@
         @QueryParam to inject the query-string values.
     </p>
 </div>
+<h5 class="section-sub-header">@BindNumber()</h5>
+<div class="section-content">
+    <p>
+        BindNumber is short and simple way to express
+        <span class="highlight-it">@Parse(toNumber)</span>. It parses the variable-segments to number type and binds those values. Here is an example
+    </p>
+    <div class="code-snippet-terminal">
+        <pre [innerHTML]="bindNumberEx"></pre>
+    </div>
+    <p>Both does exactly the same. However, @Parse gives freedom to write your own
+        <span class="highlight-it">IParseHandlers</span> which is discussed in next sections.
+    </p>
+</div>
+<h5 class="section-sub-header">@BindBoolean()</h5>
+<div class="section-content">
+    <p>
+        BindBoolean is short and simple way to express
+        <span class="highlight-it">@Parse(toBoolean)</span>. It parses the variable-segments to boolean type and binds those values.</p>
+</div>
+<h5 class="section-sub-header">@BindInteger()</h5>
+<div class="section-content">
+    <p>
+        BindInteger is short and simple way to express
+        <span class="highlight-it">@Parse(toInteger)</span>. It parses the variable-segments to integer type and binds those values.</p>
+</div>
+<ul>
+    <li>
+        @BindNumber, @BindBoolean, @BindInteger are really a short way to implement @Parse. However, they do not support query params.
+
+    </li>
+    <li>
+        You still have to use @QueryParam(toNumber), @QueryParam(toBoolean), @QueryParam(toInteger) to work with query-string values,
+        which we are going to solve in next versions.
+    </li>
+</ul>
 <div class="remember-points">
     <p>
         <i class="fa fa-bullhorn" aria-hidden="true"></i>
