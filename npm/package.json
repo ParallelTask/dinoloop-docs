@@ -1,0 +1,10 @@
+{
+  "name": "dinoloop-docs",
+  "version": "0.0.6",
+  "description": "A lightweight REST API Library for building scalable Node.js server-side applications powered by Typescript",
+  "homepage": "https://github.com/ParallelTask/dinoloop",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ParallelTask/dinoloop.git"
+  }
+}
